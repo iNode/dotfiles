@@ -1,0 +1,125 @@
+# Screen config file
+# (c) 2004-2011 iNode 
+# Some hotkeys help can be reached in end of file
+# of by pressing C-a ?
+#
+# Text Tools rule!  :-)
+# unsetenv DISPLAY
+# setenv DISPLAY 'localhost:0.0'
+setenv TERM 'xterm'
+defutf8 on
+#setenv SHELL '/bin/zsh'
+
+
+# ===============================================================
+# STARTUP of programs in an extra window:
+# ===============================================================
+# Uncomment one/some following lines to automatically let
+# SCREEN start some programs in the given window numbers:
+# screen -t mail       0 mutt
+# screen -t zsh        0 zsh
+# screen -t vim        1 vim
+
+    # 
+    # Booleans
+    startup_message off		# suppress copyright banner
+    autodetach	    on		# detach on hangup
+    vbell	    on		# visual bell
+    vbell_msg	    ' *beep* '	# message on vbell
+    deflogin	    off		# default: on
+    defflow	    off		# will force screen to process ^S/^Q
+    # 
+# ===============================================================
+# VARIABLES - string values
+# ===============================================================
+    activity  '   Activity in window %n'    # Message on activity (if monitor mode for it)
+    bell "bell in %n (%t)"
+    caption always # window caption in statusline
+    caption string "%{rk} %c %{dd} %{+b M}%n  %{-b dd}%-w%{B.}%n* %t%{-}%+w%<"
+
+# ===============================================================
+# VARIABLES - Number values
+# ===============================================================
+    defscrollback         1000		    # default: 100
+    msgminwait            3		    # default: 1
+    silencewait           15		    # default: 30
+
+# ===============================================================
+# Key bindings
+# ===============================================================
+# To be able to select windows with n > 9 ->
+# press "C-a - #" instead of just "C-a #"
+bind - command -c select_1n
+bind -c select_1n 0 select 10
+bind -c select_1n 1 select 11
+bind -c select_1n 2 select 12
+bind -c select_1n 3 select 13
+bind -c select_1n 4 select 14
+bind -c select_1n 5 select 15
+bind -c select_1n 6 select 16
+bind -c select_1n 7 select 17
+bind -c select_1n 8 select 18
+bind -c select_1n 9 select 19
+bind -c select_1n - command -c select_2n
+bind -c select_2n 0 select 20
+bind -c select_2n 1 select 21
+bind -c select_2n 2 select 22
+bind -c select_2n 3 select 23
+bind -c select_2n 4 select 24
+bind -c select_2n 5 select 25
+bind -c select_2n 6 select 26
+bind -c select_2n 7 select 27
+bind -c select_2n 8 select 28
+bind -c select_2n 9 select 29
+bind -c select_2n - select -
+
+#remove some stupid / dangerous key bindings
+bind ^k
+#bind L
+bind ^\
+#make them better
+bind h  hardcopy
+bind \\ quit
+bind K kill
+bind I login on
+bind O login off
+bind } history
+
+source ~/.screenrc.host
+
+# Usefull commands
+# number [n] - change window number
+
+#              КРАТКАЯ СВОДКА КОМБИНАЦИЙ КЛАВИШ ПРИ РАБОТЕ
+#
+#   Для создания нового окна -  Ctrl+a c (create).
+#
+#   Для переключения между окнами - Ctrl+a a - между последним активным.
+#
+#      Ctrl+a <НОМЕР> -  выбор окна по номеру.
+#      Ctrl+a (p|n) -  циклическое перемещение между окнами. p - prev, n - next.
+#      Ctrl+a " - список окон для переключения.
+#  
+#   Управление окнами -  Ctrl+a A - изменить заголовок окна. Аналогично
+#   вводу команды title при нажатии Ctrl+a :.
+#      Ctrl+a C - очистить окно.
+#      Ctrl+a F - подогнать размер окна под текущий размер терминала.
+#      Ctrl+a H - протоколирование окна в файл screenlog.<НОМЕР ОКНА>
+#      Ctrl+a K - уничтожить окно.
+#      Ctrl+a M - режим слежения за активностью в окне. Если в момент этого вы
+#                 находитесь в другом окне - в подсказке будет выведено:activity in window <НОМЕР ОКНА>
+#      Ctrl+a r - переключение режима переноса по словам. (wrap)
+#      Ctrl+a S - очень интересный режим работы. Сплит. То-есть текущее окно
+#                 разделяется на две части и в обоих  можно открыть по новому окну.
+#
+#   Переключение между окнами Ctrl+a; TAB, выход из режима сплит - Ctrl+a Q.
+#
+#   Общие команды -     
+#       Ctrl+a ?   - помощь
+#       Ctrl+a Esc - режим скроллинга. Он же режим копирования. Для копирования
+#                    подведите курсор к нужному месту  и нажмите пробел.
+#       Ctrl+a ]   - Вставка выделенной области.
+#       Ctrl+a x   - Запереть менеджер. При вкомпиленной  поддержке PAM - для разблокировки
+#                    нужно ввести пароль пользователя от которого запущен менеджер. 
+#    В обратном случае пароль для разблокировки будет запрошен при
+#                    блокировании.

@@ -1,0 +1,3 @@
+
+:def ihoogle \str -> return $ ":! hoogle --count=15 \"" ++ str ++ "\""
+

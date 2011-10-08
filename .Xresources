@@ -1,0 +1,441 @@
+! Inherits=Silver
+! Xcursor.theme: Silver
+! Xcursor.size: 16
+
+! -- XFT
+Xft.hinting: true
+! Xft.hintstyle: hintslight
+Xft.hintstyle: hintsmedium
+Xft.antialias: false
+Xft.rgba: none 
+
+Emacs.waitForWM:    true
+Emacs*useXIM:       false
+
+
+! ---- Common terminal settings
+*saveLines: 2048
+!*background: #c0c0c0
+!*foreground: #000000
+*background: black
+*foreground: white
+*cursorColor: cyan
+*visualBell:            True
+*scrollKey:             True
+*scrollBar:             False
+
+! RXVT
+! mrxvt*saveLines: 2048
+!mrxvt*font: -rfx-serenetypewriter-medium-r-normal-*-12*-*-*-m-*-koi8-ru
+!rxvt*font:  -xos4-terminus-medium-r-normal--14-*-*-*-*-*-iso8859-5
+!mrxvt*keysym.0xFF57:   \EO
+!mrxvt*keysym.0xFF50:   \EOH
+! mrxvt*colorBD: #0000AA
+! mrxvt*colorUL: #00DDDD
+!mrxvt*transparent: TRUE
+! mrxvt*font: -microsoft-verdana-medium-r-normal--0-0-0-0-p-0-koi8-r
+
+! rxvt (night color theme)
+!rxvt*background:  #000000
+!rxvt*foreground:  #7f7f7f
+!rxvt*color0:      #000000
+!rxvt*color1:      #9e1828
+!rxvt*color2:      #aece92
+!rxvt*color3:      #968a38
+!rxvt*color4:      #414171
+!rxvt*color5:      #963c59
+!rxvt*color6:      #418179
+!rxvt*color7:      #bebebe
+!rxvt*color8:      #666666
+!rxvt*color9:      #cf6171
+!rxvt*color10:     #c5f779
+!rxvt*color11:     #fff796
+!rxvt*color12:     #4186be
+!rxvt*color13:     #cf9ebe
+!rxvt*color14:     #71bebe
+!rxvt*color15:     #ffffff
+
+
+!! evening color theme
+!rxvt*color0: #000000
+!rxvt*color1: #b21818
+!rxvt*color2: #18b218
+!rxvt*color3: #BE5F00
+!rxvt*color4: #6D85BA
+!rxvt*color5: #b218b2
+!rxvt*color6: #18b2b2
+!rxvt*color7: #b2b2b2
+!rxvt*color8: #686868
+!rxvt*color9: #FF5454
+!rxvt*color10: #54FF54
+!rxvt*color11: #FFFF54
+!rxvt*color12: #73A5FF
+!rxvt*color13: #FF54FF
+!rxvt*color14: #54FFFF
+!rxvt*color15: #FFFFFF
+!rxvt*background: black
+!rxvt*foreground: #A8A8A8 
+
+
+!! evening color theme
+!URxvt*color0: #000000
+!URxvt*color1: #b21818
+!URxvt*color2: #18b218
+!URxvt*color3: #BE5F00
+!URxvt*color4: #6D85BA
+!URxvt*color5: #b218b2
+!URxvt*color6: #18b2b2
+!URxvt*color7: #b2b2b2
+!URxvt*color8: #686868
+!URxvt*color9: #FF5454
+!URxvt*color10: #54FF54
+!URxvt*color11: #FFFF54
+!URxvt*color12: #73A5FF
+!URxvt*color13: #FF54FF
+!URxvt*color14: #54FFFF
+!URxvt*color15: #FFFFFF
+!URxvt*background: black
+!URxvt*foreground: #A8A8A8 
+!! disable scrollbar
+!! color of tabbar
+!URxvt.tabbed.tabbar-fg: 2
+!URxvt.tabbed.tabbar-bg: 0
+!URxvt.tabbed.tab-fg:    3
+!URxvt.tabbed.tab-bg:    0
+
+! "-misc_koi8_ru-fixed-medium-*-normal-*-14-*-75-75-*-*-koi8-r"
+!  Rxvt*scrollstyle: next
+!  Rxvt*scrollBar_right: True
+!  Rxvt*internalBorder: 0
+!  Rxvt*externalBorder: 0
+!  Rxvt*colorBD: #FF0000
+!  Rxvt*colorUL: #FFFF00
+!  Rxvt*cursorColor: #FFFFFF
+
+! Override some problematic keys (DELETE, Home, End)
+!if you do not want to compile with WITHOUT_DELETE_KEY=yes, uncomment next line
+! Rxvt*keysym.0xFFFF:   \EOC\177
+! Rxvt*keysym.0xFF50:   \EOH
+! Rxvt*keysym.0xFF57:   \EO
+! Rxvt*keysym.0xFF08:"^H"
+
+! ---- Xterm
+XTerm*colorMode: True
+XTerm*eightBitInput: True
+XTerm*termName: xterm-color
+XTerm*faceName: "Liberation Mono"
+XTerm*faceSize: 10
+XTerm*highlightSelection:  true
+XTerm*reverseWrap:      True
+XTerm*colorBDMode: 	True
+XTerm*colorBD: #0000FF
+XTerm*colorUL: #FFFF00
+
+! ---- UXterm
+!
+! -- colortheme
+! - evening colortheme
+!UXTerm*color0: #000000
+!UXTerm*color1: #b21818
+!UXTerm*color2: #18b218
+!UXTerm*color3: #BE5F00
+!UXTerm*color4: #6D85BA
+!UXTerm*color5: #b218b2
+!UXTerm*color6: #18b2b2
+!UXTerm*color7: #b2b2b2
+!UXTerm*color8: #686868
+!UXTerm*color9: #FF5454
+!UXTerm*color10: #54FF54
+!UXTerm*color11: #FFFF54
+!UXTerm*color12: #73A5FF
+!UXTerm*color13: #FF54FF
+!UXTerm*color14: #54FFFF
+!UXTerm*color15: #FFFFFF
+
+!! Daisuke
+!UXTerm*background: #000000
+!UXTerm*foreground: #dcdccc
+!!black
+!UXTerm*color0: #1e1e1e
+!UXTerm*color8: #505050
+!!red
+!UXTerm*color1: #b04020
+!UXTerm*color9: #dd4010
+!!green
+!UXTerm*color2: #afd700
+!UXTerm*color10: #daff30
+!!yellow
+!UXTerm*color3: #f7cf0a
+!UXTerm*color11: #fce70d
+!!blue
+!UXTerm*color4: #3060aa
+!UXTerm*color12: #6099dd
+!!magenta
+!UXTerm*color5: #d6156c
+!UXTerm*color13: #fe4365
+!!cyan
+!UXTerm*color6: #a0c2de
+!UXTerm*color14: #c9dee8
+!!white
+!UXTerm*color7: #808080
+!UXTerm*color15: #b0b0b0
+
+!! Zenburn
+!! black + red
+!UXTerm*color0: #1E2320
+!UXTerm*color1: #705050
+!! green + yellow
+!UXTerm*color2: #60b48a
+!UXTerm*color3: #dfaf8f
+!! blue + purple
+!UXTerm*color4: #506070
+!UXTerm*color5: #dc8cc3
+!! cyan + white
+!UXTerm*color6: #8cd0d3
+!UXTerm*color7: #dcdccc
+!! bright-black + bright-red
+!UXTerm*color8: #709080
+!UXTerm*color9: #dca3a3
+!! bright-green + bright-yellow
+!UXTerm*color10: #c3bf9f
+!UXTerm*color11: #f0dfaf
+!! bright-blue + bright-purple
+!UXTerm*color12: #94bff3
+!UXTerm*color13: #ec93d3
+!! bright-cyan + bright-white
+!UXTerm*color14: #93e0e3
+!UXTerm*color15: #ffffff
+
+!! MrElendig
+!! black
+!UXTerm*color0: #000000
+!UXTerm*color8: #9999AA
+!! red
+!UXTerm*color1: #DE1923
+!UXTerm*color9: #FF6050
+!! green
+!UXTerm*color2: #559933
+!UXTerm*color10: #66D077
+!! yellow
+!UXTerm*color3: #FF9922
+!UXTerm*color11: #FFFFAF
+!! blue
+!UXTerm*color4: #3579A8
+!UXTerm*color12: #4EB4FA
+!! magenta
+!UXTerm*color5: #BB88DD
+!UXTerm*color13: #D7AFD7
+!! cyan
+!UXTerm*color6: #00BBDD
+!UXTerm*color14: #0DEBFF
+!! white
+!UXTerm*color7: #C7C7C7
+!UXTerm*color15: #D9D9D9
+
+!! Gigamo
+!! Black
+!UXTerm*color0: #1e1e1e
+!UXTerm*color8: #555753
+!! Red
+!UXTerm*color1: #CC0000
+!UXTerm*color9: #EF2929
+!! Green
+!UXTerm*color2: #4E9A06
+!UXTerm*color10: #8AE234
+!! Yellow
+!UXTerm*color3: #C4A000
+!UXTerm*color11: #FCE94F
+!! Blue
+!UXTerm*color4: #3465A4
+!UXTerm*color12: #729FCF
+!! Purple
+!UXTerm*color5: #75507B
+!UXTerm*color13: #AD7FA8
+!! Cyan
+!UXTerm*color6: rgb:06/98/9A
+!UXTerm*color14: #34E2E2
+!! White
+!UXTerm*color7: #9f9f9f
+!UXTerm*color15: #e0e0e0
+
+!! Default
+!UXTerm*color0: black
+!UXTerm*color1: red
+!UXTerm*color2: green
+!UXTerm*color3: yellow
+!UXTerm*color4: blue
+!UXTerm*color5: magenta
+!UXTerm*color6: cyan
+!UXTerm*color7: gray90
+!UXTerm*color8: gray50
+!UXTerm*color9: red
+!UXTerm*color10: green
+!UXTerm*color11: yellow
+!UXTerm*color12: blue
+!UXTerm*color13: magenta
+!UXTerm*color14: cyan
+!UXTerm*color15: white
+
+
+! another default theme
+*color0:      #000000
+*color1:      #9e1828
+*color2:      #aece92
+*color3:      #968a38
+*color4:      #414171
+*color5:      #963c59
+*color6:      #418179
+*color7:      #bebebe
+*color8:      #666666
+*color9:      #cf6171
+*color10:     #c5f779
+*color11:     #fff796
+*color12:     #4186be
+*color13:     #cf9ebe
+*color14:     #71bebe
+*color15:     #ffffff
+
+! # include ".urxvtrc" 
+! -- misc
+UXTerm*colorMode: True
+UXTerm*eightBitInput: True
+UXTerm*termName: xterm-color
+UXTerm*faceName: "Liberation Mono"
+UXTerm*faceSize: 11
+UXTerm*highlightSelection:  true
+UXTerm*reverseWrap:     True
+UXTerm*boldColors: 	True
+UXTerm*colorBDMode: 	True
+UXTerm*colorBD: #3579A8
+UXTerm*colorUL: #FFFF00
+UXTerm*selectToClipboard: True
+
+
+! -- Aterm
+! Aterm*background: #0a0aa0
+Aterm*pointerColor: yellow
+Aterm*transparent: FALSE
+Aterm*tinting: #007000
+Aterm*tintingType: true
+! Aterm*textType: invert
+! Aterm*path: "/home/pashelper/"
+! Aterm*menu: "./trat.menu"
+Aterm*saveLines: 2048
+Aterm*modifier: Mod1
+Aterm*colorBD: #FF0000
+Aterm*colorUL: #FFFF00
+
+! Aterm*keysym.0xFFFF:   \EOC\177                                                                          
+! Aterm*keysym.0xFF50:   \EOH
+! Aterm*keysym.0xFF57:   \EO
+! Aterm*keysym.0xFF08:"^H"
+
+! XCalc (colored)
+XCalc*background:		white
+XCalc*foreground:		black
+XCalc*bevel.background:		#333333
+XCalc*ti.Command.background:	#999999
+XCalc*ti.Command.foreground:	white
+XCalc*ti.button4.background:	#996666
+XCalc*ti.button4.foreground:	white
+XCalc*ti.button5.background:	#996666
+XCalc*ti.button5.foreground:	white
+XCalc*ti.button6.background:	#666666
+XCalc*ti.button6.foreground:	white
+XCalc*ti.button10.background:	#999966
+XCalc*ti.button10.foreground:	white
+XCalc*ti.button7.background:	#666666
+XCalc*ti.button7.foreground:	white
+XCalc*ti.button8.background:	#666666
+XCalc*ti.button8.foreground:	white
+XCalc*ti.button9.background:	#666666
+XCalc*ti.button9.foreground:	white
+XCalc*ti.button13.background:	#666666
+XCalc*ti.button13.foreground:	white
+XCalc*ti.button14.background:	#666666
+XCalc*ti.button14.foreground:	white
+XCalc*ti.button1.background:	#666666
+XCalc*ti.button1.foreground:	white
+XCalc*ti.button2.background:	#666666
+XCalc*ti.button2.foreground:	white
+XCalc*ti.button3.background:	#666666
+XCalc*ti.button3.foreground:	white
+XCalc*ti.button11.background:	#666666
+XCalc*ti.button11.foreground:	white
+XCalc*ti.button12.background:	#666666
+XCalc*ti.button12.foreground:	white
+XCalc*ti.button15.background:	#666666
+XCalc*ti.button15.foreground:	white
+XCalc*ti.button16.background:	#666666
+XCalc*ti.button16.foreground:	white
+XCalc*ti.button17.background:	#666666
+XCalc*ti.button17.foreground:	white
+XCalc*ti.button18.background:	#666666
+XCalc*ti.button18.foreground:	white
+XCalc*ti.button19.background:	#666666
+XCalc*ti.button19.foreground:	white
+XCalc*ti.button20.background:	#333333
+XCalc*ti.button20.foreground:	white
+XCalc*ti.button25.background:	#333333
+XCalc*ti.button25.foreground:	white
+XCalc*ti.button30.background:	#333333
+XCalc*ti.button30.foreground:	white
+XCalc*ti.button35.background:	#333333
+XCalc*ti.button35.foreground:	white
+XCalc*ti.button39.background:	white
+XCalc*ti.button39.foreground:	black
+XCalc*ti.button40.background:	#333333
+XCalc*ti.button40.foreground:	white
+XCalc*ti.button22.background:	white
+XCalc*ti.button22.foreground:	black
+XCalc*ti.button23.background:	white
+XCalc*ti.button23.foreground:	black
+XCalc*ti.button24.background:	white
+XCalc*ti.button24.foreground:	black
+XCalc*ti.button27.background:	white
+XCalc*ti.button27.foreground:	black
+XCalc*ti.button28.background:	white
+XCalc*ti.button28.foreground:	black
+XCalc*ti.button29.background:	white
+XCalc*ti.button29.foreground:	black
+XCalc*ti.button32.background:	white
+XCalc*ti.button32.foreground:	black
+XCalc*ti.button33.background:	white
+XCalc*ti.button33.foreground:	black
+XCalc*ti.button34.background:	white
+XCalc*ti.button34.foreground:	black
+XCalc*ti.button37.background:	white
+XCalc*ti.button37.foreground:	black
+XCalc*ti.button38.background:	white
+XCalc*ti.button38.foreground:	black
+
+
+XLoad.input:			false
+XLoad*background: black
+XLoad*foreground: green
+XLoad*showLabel:		False
+*Label*Justify:			left
+*JumpScroll:			1
+*internalBorderWidth:		0
+*showGrip:			TRUE
+
+
+! fortune (script colored)
+fortune*background: lightgreen
+fortune.title: Fortunes
+fortune*okay.label: Go out
+fortune*more.label: Moar
+
+! Xmessage.title: 
+! -misc-fixed-*-*-*-*-20-*-*-*-*-*-*-ru
+! Xmessage*background: lightgreen
+! xmessage*end.label: Хватит
+! xmessage*end.background: red
+! xmessage*more.label: Еще\ хочу...
+! xmessage*more.background: magenta
+! xmessage*clip.label: Копировать
+! xmessage*clip.background: lightblue
+! xmessage*Text.background: yellow
+
+! refresh = xrdb -merge $HOME/.Xresources
+

@@ -1,0 +1,35 @@
+! mod4        Super_L (0x73),  Super_R (0x74),  Super_L (0x7f),  Hyper_L (0x80)
+! add mod3 = Super_L
+! xmodmap -e "add mod4 = Super_L"
+! xmodmap -e "remove mod4 = Super_L"
+
+! keysym 0xffdc = F31
+! keysym 0xffdd = F32
+! keysym 0xffde = F33
+
+!  xmodmap .Xmodmap
+! keycode 66 = Control_L
+! clear Lock
+! add Control = Control_L
+
+
+! add mod4 = Super_L
+!
+! Swap Return and Control_R
+!
+! Alt_R -> Return
+remove mod1 = Alt_R
+keycode 108 = Return
+!
+remove Control = Control_R
+keysym Control_R = Return
+! return
+keycode 36 = Control_R
+add Control = Control_R
+
+! add Control = Control_R
+!remove Mode_switch = keysym 0xff7e
+!remove ISO_Level3_Shift = keysym 0xff03
+
+
+

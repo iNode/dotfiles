@@ -1,0 +1,89 @@
+"When using a dvorak keyboard this file may be of help to you.
+"These mappings have been made by Lawrence Kesteloot <kesteloo@cs.unc.edu>.
+"What they do is that the most often used keys, like hjkl, are put in a more
+"easy to use position.
+"It may take some time to learn using this.
+
+"Put these lines in your .vimrc:
+"-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+" Key to go into dvorak mode:
+"map ,d :source ~/.dvorak
+"" Key to get out of dvorak mode:
+"map ,q :source ~/.qwerty
+"-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+"
+"write these lines into the file ~/.qwerty
+"-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+" Qwerty keyboard
+unmap a
+unmap b
+unmap c
+unmap d
+unmap e
+unmap f
+unmap g
+unmap h
+unmap i
+unmap j
+unmap k
+unmap l
+unmap m
+unmap n
+unmap o
+unmap p
+unmap q
+unmap r
+unmap s
+unmap t
+unmap u
+unmap v
+unmap w
+unmap x
+unmap y
+unmap z
+unmap ;
+unmap '
+unmap \"
+unmap ,
+unmap .
+unmap /
+unmap A
+unmap B
+unmap C
+unmap D
+unmap E
+unmap F
+unmap G
+unmap H
+unmap I
+unmap J
+unmap K
+unmap L
+unmap M
+unmap N
+unmap O
+unmap P
+unmap Q
+unmap R
+unmap S
+unmap T
+unmap U
+unmap V
+unmap W
+unmap X
+unmap Y
+unmap Z
+unmap <
+unmap >
+unmap ?
+unmap :
+unmap [
+unmap ]
+unmap {
+unmap }
+unmap -
+unmap _
+unmap =
+unmap +
+"-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
