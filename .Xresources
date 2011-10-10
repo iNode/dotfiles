@@ -11,6 +11,7 @@ Xft.rgba: none
 
 Emacs.waitForWM:    true
 Emacs*useXIM:       false
+Emacs*menuBar:      off
 
 
 ! ---- Common terminal settings
@@ -310,25 +311,6 @@ UXTerm*colorBD: #3579A8
 UXTerm*colorUL: #FFFF00
 UXTerm*selectToClipboard: True
 
-
-! -- Aterm
-! Aterm*background: #0a0aa0
-Aterm*pointerColor: yellow
-Aterm*transparent: FALSE
-Aterm*tinting: #007000
-Aterm*tintingType: true
-! Aterm*textType: invert
-! Aterm*path: "/home/pashelper/"
-! Aterm*menu: "./trat.menu"
-Aterm*saveLines: 2048
-Aterm*modifier: Mod1
-Aterm*colorBD: #FF0000
-Aterm*colorUL: #FFFF00
-
-! Aterm*keysym.0xFFFF:   \EOC\177                                                                          
-! Aterm*keysym.0xFF50:   \EOH
-! Aterm*keysym.0xFF57:   \EO
-! Aterm*keysym.0xFF08:"^H"
 
 ! XCalc (colored)
 XCalc*background:		white
