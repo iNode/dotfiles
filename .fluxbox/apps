@@ -1,0 +1,54 @@
+[app] (name=xterm)
+  [Dimensions]	{954 747}
+  [Position]	(UPPERLEFT)	{0 21}
+[end]
+[app] (name=opera)
+  [Workspace]	{2}
+  [Dimensions]	{1021 747}
+  [Position]	(UPPERLEFT)	{0 23}
+[end]
+[app] (class=Firefox)
+  [Workspace]	{2}
+  [Dimensions]	{1020 777}
+  [Position]	(UPPERLEFT)	{0 0}
+  [Close]	{yes}
+[end]
+[app] (name=emacs)
+  [Workspace]	{1}
+  [Dimensions]	{1098 745}
+  [Position]	(UPPERLEFT)	{0 -23}
+  [Close]	{yes}
+[end]
+[app] (class=Gvim)
+  [Dimensions]	{500 336}
+  [Position]	(UPPERLEFT)	{212 158}
+  [Close]	{yes}
+[end]
+[app] (class=Gajim.py)
+  [Workspace]	{4}
+[end]
+[app] (name=gecko) (class=Firefox-bin)
+  [Workspace]	{2}
+[end]
+[group]
+ [app] (class=OpenOffice)
+  [Workspace]	{4}
+[end]
+[app] (name=google-chrome) (class=Google-chrome)
+  [Workspace]	{2}
+  [Deco]	{NONE}
+  [Fullscreen]	{no}
+[end]
+[app] (name=Navigator) (class=Aurora) (role=browser)
+  [Workspace]	{2}
+  [Deco]	{NONE}
+  [Fullscreen]	{no}
+  [Close]	{yes}
+[end]
+[app] (name=chrome) (class=Chrome)
+  [Workspace]	{2}
+  [Deco]	{NONE}
+  [Maximized]	{yes}
+  [Fullscreen]	{no}
+  [Close]	{yes}
+[end]

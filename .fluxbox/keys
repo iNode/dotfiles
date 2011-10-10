@@ -1,0 +1,100 @@
+! fluxbox-update_configs added '(workspace=[current])' to (Next|Prev)(Window|Group)
+! check lines marked by 'FBCV13' if they are correctly updated
+!mouse actions added by fluxbox-update_configs
+OnTitlebar Mouse1 :MacroCmd {Focus} {Raise} {ActivateTab}
+!mouse actions added by fluxbox-update_configs
+OnTitlebar Move1 :StartMoving
+OnLeftGrip Move1 :StartResizing bottomleft
+OnRightGrip Move1 :StartResizing bottomright
+OnWindowBorder Move1 :StartMoving
+
+!mouse actions added by fluxbox-update_configs
+OnTitlebar Mouse2 :StartTabbing
+
+!mouse actions added by fluxbox-update_configs
+OnTitlebar Double Mouse1 :Shade
+OnTitlebar Mouse3 :WindowMenu
+
+!mouse actions added by fluxbox-update_configs
+OnWindow Mod1 Mouse1 :MacroCmd {Raise} {Focus} {StartMoving}
+OnWindow Mod1 Mouse3 :MacroCmd {Raise} {Focus} {StartResizing BottomRight}
+
+!mouse actions added by fluxbox-update_configs
+OnToolbar Mouse4 :NextWorkspace
+OnToolbar Mouse5 :PrevWorkspace
+
+! mouse actions added by fluxbox-update_configs
+OnDesktop Mouse1 :hideMenus
+OnDesktop Mouse2 :workspaceMenu
+OnDesktop Mouse3 :rootMenu
+OnDesktop Mouse4 :nextWorkspace
+OnDesktop Mouse5 :prevWorkspace
+
+Mod1 Tab :NextWindow  (workspace=[current]) (stuck=no)
+Mod1 Shift Tab :PrevWindow  (workspace=[current]) (stuck=no)
+
+Mod4 t :Layer Top
+Mod4 m :Minimize
+Mod4 d :ToggleDecor
+Control Mod1 D :ToggleDecor
+Control F11 :MacroCmd {ToggleDecor}	{Maximize}
+Mod4 F11 :MaximizeWindow
+Control Mod4 F11 :FullScreen
+Control Mod4 K :restart icewm
+
+
+Mod4 1 :Workspace 1
+Mod4 2 :Workspace 2
+Mod4 3 :Workspace 3
+Mod4 q :Workspace 4
+Mod4 w :Workspace 5
+Mod4 e :Workspace 6
+
+Shift Mod4 1 :TakeToWorkspace 1
+Shift Mod4 2 :TakeToWorkspace 2
+Shift Mod4 3 :TakeToWorkspace 3
+Shift Mod4 q :TakeToWorkspace 4
+Shift Mod4 w :TakeToWorkspace 5
+Shift Mod4 e :TakeToWorkspace 6
+
+Mod4 Right :nextWorkspace
+Mod4 Left :prevWorkspace
+
+Mod1 F4 :Close
+Control Mod4 r :Reconfigure
+
+
+None XF86AudioLowerVolume :ExecCommand amixer -q set PCM 5%- unmute
+None XF86AudioMute :ExecCommand amixer -q set Master toggle
+None XF86AudioRaiseVolume :ExecCommand amixer -q set PCM 5%+ unmute
+
+Mod4 Up :ExecCommand amixer -c 0 set Master 2dB+
+Mod4 Down :ExecCommand amixer -c 0 set Master 2dB-
+
+None XF86AudioPlay :ExecCommand mocp -G
+None XF86AudioStop :ExecCommand mocp -s
+None XF86AudioNext :ExecCommand mocp -f
+None XF86AudioPrev :ExecCommand mocp -r
+
+Mod4 i :Iconify
+
+# If any emacs windows are open, cycle through them. If none are open, open one:
+Mod4 t Mod4 e :MacroCmd {Workspace 2} {If {Some Matches (emacs)} {NextWindow (workspace=[current]) (emacs)} {Exec emacs}} !! FBCV13 !!
+Mod4 t Mod4 f :MacroCmd {Workspace 3} {If {Some Matches (Firefox)} {NextWindow (workspace=[current]) (Firefox)} {Exec ~/opt/firefox7/firefox}} !! FBCV13 !!
+Mod4 t Mod4 t :MacroCmd {Workspace 2} {NextWindow (workspace=[current]) (emacs)} !! FBCV13 !!
+
+# xlock
+Mod4 l :ExecCommand slock
+
+# screenShots
+#Control Mod4 Mod1 p :ExecCommand import -window root -quality 100 ~/`date +shot-%Y-%m-%d-%H%M%S.jpg`
+#Control Mod4 Mod1 w :ExecCommand import -quality 100 ~/`date +window-%Y-%m-%d-%H%M%S.jpg`
+
+# open-urls
+Mod4 p :ExecCommand for i in `xclip -o | ~/bin/cut-urls`; do firefox  -remote "openURL($i,new-tab)"; done
+
+# commands
+Mod4 x :ExecCommand xkill
+Mod4 r	:ExecCommand gmrun
+
+
