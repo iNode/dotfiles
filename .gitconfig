@@ -1,0 +1,25 @@
+[user]
+	name = Stan. S. Krupoderov
+	email = pashelper@gmail.com
+
+[alias]
+  cisa = commit -a -s
+  ci = commit
+  co = checkout
+  b  = branch
+  rb = branch -r
+  nb = checkout -b
+  st = status
+  stat = status
+  sl = stash list
+  sa = stash apply
+  sd = stash drop
+  st =  status
+  wu = log --stat origin..@{0}
+  up = !sh -c \"git commit -a -m 'Before rebase' && git pull --rebase && git reset head^\"
+  quicklog = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
+  ql = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
+  changes = log --pretty=oneline
+  svnup = svn rebase
+  svnpush = svn dcommit
+

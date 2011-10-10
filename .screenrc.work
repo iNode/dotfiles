@@ -1,0 +1,9 @@
+source ~/.screenrc
+
+# -h 0 - scrollback options
+screen -t '#' sudo -s
+screen -t '$'
+screen -t 'sdcv' sdcv
+screen -t 'repu'
+screen -t 'mail' mutt
+

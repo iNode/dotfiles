@@ -1,0 +1,268 @@
+;; -*-lisp-*-
+;; Author: iNode <pashelper@gmail.com>
+;; Keywords: local, customization, Stumpwm
+
+;; Declare what this file is for.
+(in-package :stumpwm)
+
+;;; Variables
+
+(defparameter X-TERM "konsole"
+  "What shall be the command run when we want an X terminal?")
+
+;;I don't really want to be constantly typing "concatenate 'string" - this simplifies things.
+;;Thanks to sabetts of #stumpwm
+(defun cat (&rest strings)
+  "Concatenates strings, like the Unix command 'cat'. A shortcut for (concatenate 'string foo bar)."
+  (apply 'concatenate 'string strings))
+
+;;Text browsers are good, too.
+(defparameter X-TERM-BROWSER (cat X-TERM  " -e elinks")
+  "We will want to open up our chosen CLI web browser in our chosen X terminal. What is it?")
+
+;;Yay for GUI web browsing!
+(defparameter X-WWW-BROWSER "exec $HOME/opt/firefox/firefox"
+  "What GUI WWW browser shall we use?")
+
+;;Image viewers can be useful.
+(defparameter X-IMAGE-VIEWER "exec gqview "
+  "Sometimes I like to look at images. We need some sort of client for that.")
+
+;;Set the default shell
+(setf *shell-program* (stumpwm::getenv "SHELL")) ;getenv is not exported
+
+
+;;; Functions
+;;; Scratchpad ------------------------------------------------------------------
+(defstruct scratchpad
+  (last-group '())
+  (group '()))
+
+(defvar *scratchpads* '()
+  "All scratchpads indexed by screen.")
+
+(defun current-scratchpad ()
+  (gethash (current-screen) *scratchpads*))
+
+(defun create-scratchpad-group (screen)
+  (let ((scratchpad-group (add-group screen ".scratchpad")))
+    (setf (group-number scratchpad-group) 0)
+    scratchpad-group))
+
+(unless *scratchpads*
+  ;; Create a scratchpad for each screen
+  (setf *scratchpads* (make-hash-table :test #'eq))
+  (let ((start-screen (car *screen-list*)))
+    (loop for i in *screen-list*
+       do (progn (switch-to-screen i)
+                 (let ((scratchpad-group (create-scratchpad-group i)))
+                   ;;Store the scratchpad
+                   (setf (gethash (current-screen)
+                                  *scratchpads*)
+                         (make-scratchpad
+                          :group scratchpad-group)))))
+    (switch-to-screen start-screen)))
+
+(defcommand scratchpad () ()
+            (let ((scratchpad (current-scratchpad)))
+              (if scratchpad
+                  (cond
+                    ((scratchpad-last-group scratchpad)
+                     (switch-to-group (scratchpad-last-group scratchpad))
+                     (setf (scratchpad-last-group scratchpad) nil))
+                    ((eq (current-group) (scratchpad-group scratchpad))
+                     (message "scratchpad: I don't know where home is"))
+                    (t
+                     (setf (scratchpad-last-group scratchpad) (current-group))
+                     (switch-to-group (scratchpad-group scratchpad))
+                     (message "scratchpad")))
+                  (message "No scratchpad for this screen."))))
+
+
+(define-key *root-map* (kbd "SPC") "scratchpad")
+
+;; ;; scratchpad
+;; (defvar *scratchpad-group* '()
+;;   "Group of the scratchpad.")
+
+;; (unless *scratchpad-group*
+;;   (setf *scratchpad-group* (add-group (current-screen) ".scratchpad")
+;;         (group-number *scratchpad-group*) 0))
+
+;; (defcommand scratchpad () ()
+;;   (if (eq (current-group) *scratchpad-group*)
+;;     (switch-to-group (second (screen-groups (current-screen))))
+;;     (switch-to-group *scratchpad-group*)))
+
+;; (gnewbg "test")
+
+;; (define-key *root-map* (kbd "C-SPC") "scratchpad")
+;; (define-key *root-map* (kbd "SPC") "scratchpad")
+
+;; Notification
+(load "$HOME/repos/git/stumpwm/contrib/notifications.lisp")
+(define-key *root-map* (kbd "N") '*notifications-map*)
+;;   (setf *screen-mode-line-format* "[%W] {%g} (%N)")
+(setf *screen-mode-line-format* "{%g} (%N)")
+;; use: stumpish notifications-add 'Foo Bar Baz'
+
+;; Surfraw keybindings.
+;; (define-key *root-map* (kbd "S") '*surfraw-map*)
+
+(defcommand wikipedia
+    (search-string) ((:string "wikipedia "))
+    "surfraw wikipedia"
+    (run-shell-command (cat "surfraw wikipedia " search-string)))
+
+;;Get the X selection and search for it in Wikipedia.
+(defcommand wikipedia-selection () ()
+	    "surfraw wikipedia by selection"
+	    (run-shell-command (cat "surfraw wikipedia " (get-x-selection))))
+
+(defcommand google (search-string) ((:string "google "))
+	    "Ask user for a search string and search Google for it."
+	    (run-shell-command (cat "surfraw google " search-string)))
+
+(defcommand google-selection () ()
+	    "Get the X selection and search for it through Google"
+	    (run-shell-command (cat "exec surfraw google " (get-x-selection))))
+
+(defcommand debpackages
+    (search-string) ((:string "debpackages:"))
+    "search debpackages"
+    (run-shell-command (cat "surfraw debpackages " search-string)))
+
+(defcommand debbugs
+    (search-string) (("debbugs " :string))
+    "search debian bugs"
+    (run-shell-command (cat "surfraw debbugs " search-string)))
+
+
+
+;; ;;Ask user for a search string and search the Internet Archive/Wayback Machine for it.
+;; (define-stumpwm-command "wayback" ((search-string :string "wayback " :string))
+;;   (check-type search-string string)
+;;   (run-shell-command (cat "surfraw wayback " search-string)))
+;; ;;Get the X selection (an HTTP address) and search for it in the Internet Archive.
+;; (define-stumpwm-command "wayback-selection" ()
+;;   (run-shell-command (cat "exec surfraw wayback " (get-x-selection))))
+
+;; (define-key *root-map* (kbd "t") "wikipedia")
+;; (define-key *root-map* (kbd "T") "wikipedia-selection")
+;; (define-key *root-map* (kbd "g") "google ")
+;; (define-key *root-map* (kbd "G") "google-selection")
+;; (define-key *root-map* (kbd "y") "wayback ")
+;; (define-key *root-map* (kbd "Y") "wayback-selection")
+
+
+
+;;;; **** Hooks ****
+
+(defun toggle-mode-line-hook (key key-seq cmd)
+  (declare (ignore key key-seq cmd))
+  (mode-line))
+
+(defun show-key-pressed-hook (key key-seq cmd)
+  (declare (ignore key))
+  (unless (eq *top-map* *resize-map*)
+    (let ((*message-window-gravity* :bottom-right))
+      (message "Key sequence: ~A~%==> ~A"
+               (print-key-seq (reverse key-seq)) cmd))))
+
+(defmacro replace-hook (hook fn)
+  `(remove-hook ,hook ,fn)
+  `(add-hook ,hook ,fn))
+
+;; (replace-hook *key-press-hook* 'toggle-mode-line-hook)
+
+;;;; **** VISUAL bindings for some console applications (thanks to dzen) ****
+(defcommand translate-selection () ()
+	    "Show stardict translation of selection."
+	    (setq dzen-command
+		  "dzen2 -l 9 -p -w 400 -bg darkblue -fg grey75 -x 0 -y 0 -e 'onstart=scrollhome,uncollapse;button4=scrollup;button5=scrolldown;button1=exit'")
+	    (run-shell-command
+	     (cat "sdcv -n " (get-x-selection) " | " dzen-command)))
+
+(define-key *root-map* (kbd "TAB") "translate-selection ")
+
+;;;; others
+
+(defcommand firefox () ()
+	    "Start/Switchto Firefox."
+	    (run-or-raise "$HOME/opt/firefox/firefox" '(:class "Firefox")))
+
+(defcommand konsole () ()
+	    "Start/Switchto Konsole."
+	    (run-or-raise "konsole" '(:class "Konsole")))
+
+(defcommand urxvt () ()
+	    "Start/Switchto urxvt."
+	    (run-or-raise "$HOME/bin/urxvt-start" '(:class "URxvt")))
+
+(defcommand run-urxvt () ()
+	    "Start urxvt."
+	    (run-shell-command "$HOME/bin/urxvt-start"))
+
+
+(defcommand show-battery () ()
+	    "Query ACPI and show the battery's status."
+	    (echo-string (current-screen) (run-shell-command "acpi" t)))
+
+(defcommand playtoggle () ()
+	    "toggle play/pause on player"
+	    (run-shell-command "mocp -G " t)
+	    (echo-string (current-screen) "player play/pause toggled"))
+
+(defcommand volup () ()
+	    "volume up to +10%"
+	    (run-shell-command "mocp -v +10" t)
+	    (echo-string (current-screen) "volume +10%"))
+
+(defcommand voldown () ()
+	    "volume up to -10%"
+	    (run-shell-command "mocp -v -10" t)
+	    (echo-string (current-screen) "volume -10%"))
+
+(defcommand xlock () ()
+	    "run xlock %"
+	    (run-shell-command "xlock" t))
+
+
+;;Make prtscreen work, as long as in command mode. "import" is an Imagemagick command.
+(define-key *root-map* (kbd "Print") "exec import -window root png:$HOME/xwd-$(date +%s)$$.png")
+
+(define-key *root-map* (kbd "u") "debbugs ")
+(define-key *root-map* (kbd "U") "debpackages ")
+
+; command is defined in functions
+(define-key *root-map* (kbd "b") "firefox")
+(define-key *root-map* (kbd "e") "emacs")
+;; (define-key *root-map* (kbd "c") "konsole")
+(define-key *root-map* (kbd "c") "urxvt")
+(define-key *root-map* (kbd "C-c") "run-urxvt")
+
+
+(define-key *root-map* (kbd "*") "show-battery")
+
+(define-key *root-map* (kbd "T") "playtoggle")
+(define-key *root-map* (kbd "<") "voldown")
+(define-key *root-map* (kbd ">") "volup")
+
+(define-key *root-map* (kbd "~") "vgroups")
+(define-key *root-map* (kbd "quoteleft") "gprev")
+
+(define-key *root-map* (kbd "l") "xlock")
+
+
+;; (defprogram-shortcut firefox
+;;   ; "Start firefox or switch to a running browser window"
+;;   :props '(:role "browser")
+;;  :key (kbd "g"))
+;;; line below does not work
+;; (undefine-key *root-map* (kbd "g"))
+
+;; vim: syntax=lisp:
+;; Local Variables: **
+;; mode:lisp **
+;; outline-regexp: ";;; " **
+;; End: **
