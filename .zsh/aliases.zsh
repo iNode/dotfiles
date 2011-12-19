@@ -34,6 +34,8 @@ if [ -x `whence emacs` ]; then
     alias deh='emacsclient -e "(dired \"`pwd`\")"'
     # dir emms add
     alias dea='emacsclient -e "(emms-add-directory-tree \"`pwd`\")"'
+    # edit file with root privs
+    alias E="SUDO_EDITOR=\"emacsclient -c -a emacs\" sudoedit" 
 fi
 #emacs section end
 
@@ -111,7 +113,7 @@ alias ps='ps -e'
 alias cal='cal -m'
 alias ispell='ispell -d russian'
 
-alias sws2disk='echo platform >! /sys/power/disk; echo disk >! /sys/power/state'
+#alias sws2disk='echo platform >! /sys/power/disk; echo disk >! /sys/power/state'
 alias sws2mem='echo platform >! /sys/power/disk; echo mem >! /sys/power/state'
 
 # ls tricks
