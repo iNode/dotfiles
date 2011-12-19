@@ -1,0 +1,19 @@
+#!/bin/sh
+# Add file changes to the repository
+
+if [ -z "$1" ]
+then
+	echo "usage: `basename $0` DIR_NAME"
+	exit 1
+fi
+
+for REPO in $*
+do
+    cd $REPO
+    # Remove deleted files
+    git ls-files --deleted -z | xargs -0 git rm >/dev/null 2>&1
+    # Add new files
+    git add . >/dev/null 2>&1
+    git commit -m "$(date)"
+done
+

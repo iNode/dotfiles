@@ -1,0 +1,3 @@
+#!/bin/sh
+
+dzen2 -p 3 -bg blue -fg white -ta r

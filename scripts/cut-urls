@@ -1,0 +1,12 @@
+#!/usr/bin/env perl
+# by ramok@core.org.ua
+# cut urls from stdio
+# regex from man urlview
+
+while(<>)
+{
+    while (s$((((file|http|https|ftp|gopher)|mailto):(//)?[^< >"\t]*|(www|ftp)[0-9]?\.[-a-z0-9.]+)[^".,;\t\n\r< >\):]?[^,< >"\t]*[^".,;\t\n\r< >\):])$$)
+    {
+        print "$1\n";
+    }
+}

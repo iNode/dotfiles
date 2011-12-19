@@ -1,0 +1,3 @@
+#!/bin/sh
+
+sdcv -n $(xsel -b -o) | dzen2 -l 9 -p -w 400 -bg darkblue -fg grey75 -x 0 -y 0 -e 'onstart=scrollhome,uncollapse;button4=scrollup;button5=scrolldown;button1=exit' -fn \*

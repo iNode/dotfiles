@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# need package gstreamer-tools
+gst-launch -v ximagesrc ! video/x-raw-rgb,framerate=5/1 ! videorate ! ffmpegcolorspace ! videoscale method=1 ! timeoverlay ! theoraenc ! oggmux ! filesink location=screencast.ogg
+

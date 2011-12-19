@@ -1,0 +1,23 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+choose window for do action
+reuire: wmctrl and dmenu utilities
+"""
+
+from subprocess import Popen, PIPE, STDOUT, call, check_output
+
+ID = 0
+DESKTOP = 2
+TITLE = 4
+
+winlist = check_output(["wmctrl", "-l"]).split("\n")
+windows = [win.split(" ", 4) for win in winlist if win != ""]
+titles = "\n".join([win[TITLE] for win in windows])
+
+p = Popen(['dmenu', '-fn', '*'], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
+out = p.communicate(input=titles)[0]
+
+for win in windows:
+    if win[TITLE] == out:
+        print win[ID],

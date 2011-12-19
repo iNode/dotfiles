@@ -1,0 +1,29 @@
+#!/bin/sh
+
+for desktop in ~/.emacs.desktop ~/.emacs.d/.emacs.desktop; do
+    if [ -e $desktop ];
+    then
+        echo > $desktop
+    fi
+done
+
+# Start the emacs daemon if not already running.
+daemon_running=`ps ux | grep "[e]macs --daemon"`
+if [ ! -z "$daemon_running" ];
+then
+    echo "Emacs daemon already running."
+else
+    echo "Emacs daemon not running. Starting it."
+    emacs --daemon
+    # exit
+fi
+
+# Check whether we're graphical or not.
+if [ ! -z $DISPLAY ]; then
+    emacsclient -c -n -e "(shell \"@login\")"
+else
+    emacsclient -t -n -e "(shell \"@login\")"
+fi
+
+
+# emacsclient -ca ""  # should run client (and server if it's not exists)
