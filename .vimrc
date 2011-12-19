@@ -16,6 +16,9 @@ if &term == "xterm-color"
 endif
 
 set expandtab
+au FileType haskell setlocal tabstop=2 shiftwidth=2
+au FileType c setlocal tabstop=4 shiftwidth=4
+au FileType python setlocal tabstop=4 shiftwidth=4
 
 "  view' mode settings
 if &readonly == 1
