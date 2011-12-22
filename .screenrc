@@ -6,7 +6,7 @@
 # Text Tools rule!  :-)
 # unsetenv DISPLAY
 # setenv DISPLAY 'localhost:0.0'
-setenv TERM 'xterm'
+setenv TERM 'xterm256-color'
 defutf8 on
 #setenv SHELL '/bin/zsh'
 
