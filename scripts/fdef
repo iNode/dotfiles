@@ -1,0 +1,15 @@
+#!/bin/sh
+# find some C language definition
+# typedef
+# struct definition
+# or macro defined by define
+
+# use source grepping tool you prefer here
+#mygrep=ack-grep  # perl thing
+mygrep=pss        # pythonish way
+
+$mygrep "typedef.*$1;" 
+$mygrep "struct $1[\s{]*$"
+$mygrep "#\s*define.*\W$1[\s(]"
+$mygrep "}\s*$1[\W ]?;
+

@@ -1,0 +1,20 @@
+#!/bin/bash
+# X clipboard edit
+
+if $(which xsel; echo $?);
+then
+    _cut="xsel -b -i"
+    _paste="xsel -b -o"
+    echo there is xsel
+else if $(which xsel; echo $?);
+    then
+        _cut="xclip -sel clip"
+        _paste="xclip -sel clip -o"
+    fi
+fi
+
+tmp="$(mktemp /tmp/xcedit.XXXXXXX)"
+$_paste > "$tmp"
+fe  "$tmp"
+cat "$tmp" | $_cut
+(sleep 120; rm "$tmp")&
