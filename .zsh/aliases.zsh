@@ -35,7 +35,7 @@ if [ -x `whence emacs` ]; then
     # dir emms add
     alias dea='emacsclient -e "(emms-add-directory-tree \"`pwd`\")"'
     # edit file with root privs
-    alias E="SUDO_EDITOR=\"emacsclient -c -a emacs\" sudoedit" 
+    alias E="SUDO_EDITOR=\"emacsclient -c -a emacs\" sudoedit"
 fi
 #emacs section end
 
@@ -122,6 +122,7 @@ alias ll='ls -l'
 alias la='ls -a'
 alias li='ls -ial'
 alias l='ls'
+alias lst="ls -ltr"
 ## show only dirs
 alias lsd="ls -ldG *(-/DN)"
 ## show only dot-files
@@ -133,14 +134,14 @@ alias psfg="\ps -ylfC"
 alias psg="\ps aux| grep -v grep | grep"
 
 # CD
-alias cd='pushd'
+alias cd='cd_ls'
 alias cdl='cd_ls'
 alias ..='cd ..'
 alias ...='cd ../../'
 
 alias cfg='./configure --prefix=/usr --sysconfdir=/etc'
 alias clean="rm *~"
-alias clr='find . -regex .*~ | xargs rm -f'
+alias clr='find . -regex .*~ -exec rm {} \;'
 alias hmakej="hilite make -j"
 alias mkinst='sudo make install'
 
@@ -202,6 +203,7 @@ alias -s mpg=vlc
 alias -s wmv=vlc
 alias -s murl=sshmount
 alias -s pdf=evince
+alias -s html=w3m
 
 # alias home-up="rsync -Cavz -e ssh ~/ remoteserver:~/"
 # alias home-down="rsync -Cavz -e ssh --delete --exclude downloads/ --exclude ogg/ --exclude music/ remoteserver:~/ ~/"

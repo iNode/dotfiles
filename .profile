@@ -18,6 +18,7 @@ export HISTFILESIZE=$HISTSIZE
 export EDITOR="vim"
 export PAGER="less"
 export PATH=$PATH:~/bin
+export AUTOLS=true
 
 if [ -e ~/.profile.local ]
 then
