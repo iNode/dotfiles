@@ -62,9 +62,9 @@ mode = opt.keys()[0]
 p  = Popen(args).wait()
 usage = resource.getrusage(resource.RUSAGE_CHILDREN)
 if mode == "-m":
-    print "MAX RSS: ", usage[ru.maxrss]
+    print "MAX RSS: ", getattr(usage, 'ru_maxrss')
 elif mode == "-t":
-    print "Time, system(%s), user(%s):" % (usage[ru.stime], usage[ru.utime])
+    print "Time, system(%s), user(%s):" % (usage.ru_stime, usage.ru_utime)
 elif mode == "-x":
     for name, desc in [
         ('ru_utime', 'User time'),
