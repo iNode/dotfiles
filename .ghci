@@ -1,13 +1,16 @@
 
 :def ihoogle \str -> return $ ":! hoogle --count=15 \"" ++ str ++ "\""
+:def hoogle \x -> return $ ":!hoogle \"" ++ x ++ "\""
 :set editor emacsclient -c                                                                                                                             
-                                                                                                                                                       -- if your editor doesn't understand :e +line file
+:set -XNoMonomorphismRestriction
+                                                
+-- if your editor doesn't understand :e +line file
 -- (jump to line in file), you'll need to change
 -- functions find and loadEditErr below
 -- :set editor gvim
 
 
-let date _ = Time.getClockTime >>= print >> return ""
+let date _ = Data.Time.getZonedTime >>= print >> return ""
 :def date date
 
 :def make (\_ -> return ":! ghc ––make Main")
