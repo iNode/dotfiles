@@ -18,8 +18,8 @@ Emacs*menuBar:      off
 *saveLines: 2048
 !*background: #c0c0c0
 !*foreground: #000000
-*background: black
-*foreground: white
+*background: white
+*foreground: black
 *cursorColor: cyan
 *visualBell:            True
 *scrollKey:             True
