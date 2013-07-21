@@ -1,6 +1,6 @@
 # Key bindings
 #
-    bindkey -e 
+    bindkey -e
 case $TERM in
     linux|screen)
     bindkey "^[[2~" yank
@@ -31,8 +31,15 @@ esac
 bindkey "^Xi" incremental-complete-word ## C-x-i
 bindkey -s "^Xe" '^[[1~emacs \n'		## C-x-e
 bindkey -s "^Xm" 'alsamixer\n'			## C-x-m
+
 bindkey -s "^Xl" 'export AUTOLS=true\n'			## C-x-l
 bindkey -s "^XL" 'unset AUTOLS\n'			## C-x-L
+bindkey -s "^Xh" 'unset HISTFILE\n'			## C-x-h
+bindkey -s "^XH" 'export HISTFILE=~/.bash_history\n'			## C-x-H
+
+## file rename magick
+bindkey "^[m" copy-prev-shell-word
+
 
 #zle -N run-command
 #function run-command {

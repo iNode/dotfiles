@@ -74,6 +74,15 @@ then
     export SYSTYPE="debian"
 fi
 
+# load shell.d definitions (sh and zsh compatible)
+for f in ~/shell.d/*.sh ~/shell.d/*.zsh; do
+    # echo "load $f"
+    source $f
+done
+
+## smart urls
+autoload -U url-quote-magic
+zle -N self-insert url-quote-magic
 
 # Load aliases
 #source ~/.bash/aliases

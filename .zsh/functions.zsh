@@ -5,6 +5,11 @@ hgdiff () { hg diff "${@}" | colordiff | less -R -E }
 eisi () { aptitude search \~i$* }
 eisd () { aptitude search \~d$* }
 
+help()
+{ # help for builtins commands
+    man zshbuiltins | sed -ne "/^       $1 /,/^\$/{s/       //; p}"
+}
+
 translate() {
     wget -qO- "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=$1&langpair=${2:-en}|${3:-ru}" | sed -E -n 's/[[:alnum:]": {}]+"translatedText":"([^"]+)".*/\1/p';
     echo ''
@@ -16,36 +21,23 @@ wanip() {
 }
 
 cd_ls() {
-    pushd "$1"
-    if [ "x$AUTOLS" = "xtrue" ];
-    then
-        ls
-    fi
+    pushd "$1"; [ "x$AUTOLS" = "xtrue" ] &&  ls -lthr
 }
 
-# mkdir & cd to it
-function mcd() {
-  mkdir -p "$1" && cd "$1";
-}
 
-ssh-reagent () {
-    for agent in /tmp/ssh-*/agent.*; do
-        export SSH_AUTH_SOCK=$agent
-        if ssh-add -l 2>&1 > /dev/null; then
-            echo Found working SSH Agent:
-            ssh-add -l
-            return
-        fi
-    done
-    echo Cannot find ssh agent - maybe you should reconnect and forward it?
+make_dir_complete() {
+    local aliasname=$1
+    local dirname=$(readlink -f $2)
+    FUNC="$aliasname () { cd $dirname/\$@ }"
+    eval $FUNC
+    compctl -/ -W $dirname $aliasname
 }
+# fast jump to projects dir
+make_dir_complete p ~/devel/proj/
 
 # zip directory exclude temporarily files
 zipdir() { zip "$@".zip -r "$@" -x "*/.DS_Store" "*/.svn/*" }
 
-# zip directory exclude temporarily files
-comtop () { history -1000 | awk '{print $2}' | sort | uniq -c | sort -rn | head }
-pkgtop () { dpkg-query -W -f='${Installed-Size} ${Package} \n' | sort -n }
 
 # view pdf with elinks
 vp () {
@@ -83,6 +75,7 @@ bookmark() {
     grep -q "^$x=" ~/.bookmarks && echo "TAG $x already exist, remove it manually" && return
     grep -q "='$curd'\$" ~/.bookmarks && echo "bookmark for PATH $curd already exist, remove it manually" && return
     echo "export $x='$curd'" >> ~/.bookmarks
+    . ~/.bookmarks
 }
 
 zle -N fag
