@@ -6,7 +6,7 @@ then
     tmux new-session -s home -d -n "#" "sudo -s"
     tmux source-file -t home ~/.tmux.conf
     tmux new-window -t home -n "ipy" "ipython"
-    tmux new-window -t home -n "ghc" "ghci"
+#    tmux new-window -t home -n "ghc" "ghci"
     tmux new-window -t home -n "sdcv" "sdcv"
     tmux new-window -t home -n "misc"
     tmux new-window -t home -n "mc" mc
