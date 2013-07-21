@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# taken from: http://www.st0ne.at/?q=node/58
+
+win_list="init"
+usage() { echo "usage: $0 app-name keys-to-search-window"; }
+
+[ $# -lt 1 ] && { usage; exit 0; }
+app=$1
+shift
+# read key
+# key=$( zenity --entry --text 'find window:' )
+key="$@"
+
+[ "$key" = "" ] && { usage; exit 0; }
+
+# get id of the focused window
+active_win_id=$(xprop -root | awk -F'# 0x' '/_NET_ACTIVE_W/{print $2}')
+
+# get list of all windows matching the key
+# the for loop is a workaround for the missing AND operator in the grep command
+for k in $key; do
+   if [ "$win_list" = "init" ]; then
+       win_list=$(wmctrl -x -l | grep -i $k | grep -ve "0x${active_win_id} ");
+   else
+       win_list=$(echo "$win_list" | grep -i $k );
+   fi
+done
+
+# add starting 0 if needed
+while [ $(echo "${active_win_id}" | wc -c) -lt 9 ]; do
+    active_win_id="0$active_win_id" 
+done
+win_list=$(echo "$win_list" | grep -v "0x${active_win_id} ");
+
+switch_to=$( echo "$win_list" | cut -d' ' -f 1 )
+
+# run app if no match
+if [ "$switch_to" = "" ]; then
+    echo "need to run $app"; 
+    exec ${app}
+    # sleep 2.
+    # echo $0 $app $@
+    exit 0
+fi
+
+# switch through all window in list
+for i in $switch_to; do
+   wmctrl -i -a $i;
+done
+
+# see also:
+# wmctrl -a $(wmctrl -l | cut -d " " -f 5- | dmenu)
