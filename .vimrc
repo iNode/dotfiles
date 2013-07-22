@@ -15,6 +15,10 @@ if &term == "xterm-color"
     let &term = "xterm-256color"
 endif
 
+" highlight lines longer than 80chars
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
+
 set expandtab
 au FileType haskell setlocal tabstop=2 shiftwidth=2
 au FileType c setlocal tabstop=4 shiftwidth=4
