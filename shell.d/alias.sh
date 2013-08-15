@@ -66,6 +66,8 @@ alias c="cd -"
 alias ..='cd ..'
 alias ...='cd ../../'
 
+# vim based color less
+alias less='/usr/share/vim/vimcurrent/macros/less.sh'
 
 # alias HEAD for automatic smart output
 alias head='head -n $((${LINES:-`tput lines 2>/dev/null||echo -n 12`} - 2))'
