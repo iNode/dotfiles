@@ -13,3 +13,31 @@ ssh-reagent () {
     echo Cannot find ssh agent - maybe you should reconnect and forward it?
 }
 
+
+stail () {
+    if [ $# -eq 0 ]; then
+        coeff=1
+    else
+        coeff=$1
+    fi
+    # Use zsh/bash's arithmetic substitution to do the math
+    # then cast to an integer to round it off
+    integer l=$((($LINES - 2) * $coeff))
+    tail -n$l $2
+}
+
+shead () {
+    if [ $# -eq 0 ]; then
+        coeff=1
+    else
+        coeff=$1
+    fi
+    # Use zsh/bash's arithmetic substitution to do the math
+    # then cast to an integer to round it off
+    integer l=$((($LINES - 2) * $coeff))
+    head -n$l $2
+}
+
+
+
+
