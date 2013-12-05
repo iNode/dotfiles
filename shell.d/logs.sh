@@ -1,4 +1,4 @@
-if [ `which ccze` ];
+if [ -z $(whereis ccze) ];
 then
     colorizer=ccze
 else
