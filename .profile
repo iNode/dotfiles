@@ -24,3 +24,10 @@ if [ -e ~/.profile.local ]
 then
     source ~/.profile.local
 fi
+
+hn=$(hostname)
+if [ -e ~/.profile.$hn ]
+then
+    source ~/.profile.$hn
+fi
+
