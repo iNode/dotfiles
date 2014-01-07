@@ -23,7 +23,19 @@ function ffip()
     cd $curdir
 }
 
+function cscope-add ()
+{
+    curdir=`pwd`
+    adddir=$1
+    cd $adddir
+    cscope-indexer -r -l -i ${curdir}/cscope.add
+    cd ${curdir}
+    cat cscope.add | perl -pe 's#^#'$adddir'/#' >> cscope.files
+    cscope -b
+}
+
 # print stack trace of a core file without needing to enter gdb interactively
 alias gdbbt='gdb -q -n -ex bt -batch'
+alias gdbr='gdb --args'
 
 alias cdr="cd `ffip`"
