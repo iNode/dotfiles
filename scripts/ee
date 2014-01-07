@@ -5,7 +5,7 @@ cmd='emacsclient -n -a "/usr/bin/vim"'
 # TODO: parse result from grep/ack and change file.ext:line to +line file.ext
 if [ $# -eq 1 ];
 then
-    args=`echo $1 | perl -ne 'print if s/(.*):(\d+):/+$2 $1/'`
+    args=`echo $1 | perl -ne 'print if s/(.*):(\d+):?/+$2 $1/'`
 #    cmd=echo
     if [ "x$args" != "x" ];
     then
