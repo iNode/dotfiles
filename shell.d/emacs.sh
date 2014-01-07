@@ -4,13 +4,16 @@
 if [ `which emacs` ]; then
     #alias ee="emacsclient -n -a gvim "
     alias em='emacsclient -c -a ""'
-    alias es='emacsclient -e "(emms-show)"'
-    # jump to current emacs path
-    alias jm='eval cd $(emacsclient -e "(with-current-buffer (window-buffer (frame-selected-window)) default-directory)")'
+    # emacs client execute/evaluate
+    alias ece='emacsclient -e '
+    #
+    alias es='ece "(emms-show)"'
     # DirEd Here
-    alias deh='emacsclient -e "(dired \"`pwd`\")"'
+    alias deh='ece "(dired \"`pwd`\")"'
+    # jump to current emacs path
+    alias jm='eval cd $(ece "(with-current-buffer (window-buffer (frame-selected-window)) default-directory)")'
     # dir emms add
-    alias dea='emacsclient -e "(emms-add-directory-tree \"`pwd`\")"'
+    alias dea='ece "(emms-add-directory-tree \"`pwd`\")"'
     # edit file with root privs
     alias E="SUDO_EDITOR=\"emacsclient -c -a emacs\" sudoedit"
     eer() {
