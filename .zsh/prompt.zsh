@@ -34,6 +34,9 @@ function precmd {
         unset RPROMPT
     fi
 }
+
+autoload -U colors && colors
+
 prompt_inode_setup () {
     local -a pcc
 
@@ -64,7 +67,8 @@ prompt_inode_setup () {
     # PROMPT
     # user@host-(pwd)[hh:mm:ss] - %n@%m %D %*
     # smile signal last command result
-    export PS1="%(?.:%) .:( )$base_prompt"
+    export PS1="%(?.$cgreen✓ :%) .$cred✗ :( )$base_prompt"
+
     # RPROMPT='$(parse_git_branch)'
     # RPROMPT="$cgreen%B%*%b"
 }
