@@ -14,7 +14,6 @@
   sl = stash list
   sa = stash apply
   sd = stash drop
-  st =  status
   wu = log --stat origin..@{0}
   up = !sh -c \"git commit -a -m 'Before rebase' && git pull --rebase && git reset head^\"
   quicklog = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
@@ -22,4 +21,20 @@
   changes = log --pretty=oneline
   svnup = svn rebase
   svnpush = svn dcommit
+  dc = diff --color
+  dcc = diff --color --cached
+  ca = commit --amend -C HEAD
+  cb = !git branch | grep ^* | cut -d' ' -f2
+  lp = log -p --color
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  ilog = log --all --graph --decorate --color
+  ilogs = log --all --graph --decorate --color --oneline
+  g = !git grep
+  prune-all = !git remote | xargs -n 1 git remote prune
+  whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+  whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+  # git forkgiff parent branch
+  forkdiff = !bash -c 'git diff $(git merge-base "$1" "$2") "$2" "${@: 3}" ' -
+
+
 
