@@ -5,7 +5,7 @@ function ffip()
     # root of project determined by .git/.hg/etc. folder
     pattern="-d .git -o -d .hg"
     curdir=`pwd`
-    while [ "x`pwd`" = "x/" ]; do
+    while [ "x`pwd`" != "x/" ]; do
         if [ $pattern ]
         then
             if [ "x$1" != "x" ];
@@ -16,11 +16,10 @@ function ffip()
             echo `pwd`
             break;
         else
-            cd ..
+            \cd ..
         fi
     done
-
-    cd $curdir
+    \cd $curdir
 }
 
 function cscope-add ()
@@ -39,3 +38,5 @@ alias gdbbt='gdb -q -n -ex bt -batch'
 alias gdbr='gdb --args'
 
 alias cdr="cd `ffip`"
+
+alias xmlfmt="tr '\n' ' ' | xmllint --format - |pygmentize -l xml"
