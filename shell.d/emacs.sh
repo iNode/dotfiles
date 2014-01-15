@@ -22,7 +22,6 @@ if [ `which emacs` ]; then
         # results: ee `ffip file.c`:350:
       fn=`echo $1 | perl -pe 's/(.*\/)//; s/([^:]+):.*/$1/;'`
       line=`echo $1| perl -pe 's/.*:(\d+):?/$1/'`
-      echo $fn __:$line
       ee `ffip $fn`:$line:
     }
 
