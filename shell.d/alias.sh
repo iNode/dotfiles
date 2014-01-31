@@ -6,7 +6,7 @@ alias fblobs='nice find . -type f -ignore_readdir_race -size 2>/dev/null'
 
 if [ `which ack-grep` ];
 then
-    alias ack='ack-grep'
+    alias ack='ack-grep --nogroup '
 fi
 
 alias df='df -h'
