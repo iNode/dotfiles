@@ -1,0 +1,6 @@
+# setxkbmap -layout "us,us,ru" -variant colemak,,typewriter -option "grp:caps_toggle,grp_led:caps"
+# setxkbmap -layout "us,us,ru" -variant colemak,,typewriter -option "grp:menu_toggle,grp_led:caps"
+setxkbmap -layout "us,ru" -variant colemak,typewriter -option "grp:menu_toggle,grp_led:caps"
+xmodmap ~/.xmodmap.colemak
+xset -r 66
+
