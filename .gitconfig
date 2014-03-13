@@ -35,6 +35,6 @@
   whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
   # git forkgiff parent branch
   forkdiff = !bash -c 'git diff $(git merge-base "$1" "$2") "$2" "${@: 3}" ' -
-
+  sh = show --color
 
 
