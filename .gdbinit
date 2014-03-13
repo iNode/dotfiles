@@ -159,9 +159,9 @@ document context-off
 Disable display of context on every program stop
 end
 # Calls "context" at every breakpoint.
-define hook-stop
-  context
-end
+# define hook-stop
+#   context
+# end
 
 define mallocinfo
   set $__f = fopen("/dev/tty", "w")
@@ -174,8 +174,8 @@ end
 
 
 # Init parameters
-set output-radix 0x10
-set input-radix 0x10
+set output-radix 0x0A
+set input-radix 0x0A
 set disassembly-flavor intel
 
 
