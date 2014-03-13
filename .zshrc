@@ -95,7 +95,7 @@ source ~/.zsh/completion.zsh
 source ~/.zsh/keybind.zsh
 
 # support for emacs' tramp
-if [ "x$TERM" = "xdumb" ]
+if [ "x$TERM" = "xdumb" -o "x$winid" != "x" ]
 then
   unsetopt zle
   unsetopt prompt_cr
