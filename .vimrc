@@ -17,7 +17,7 @@ endif
 
 " highlight lines longer than 80chars
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+" match OverLength /\%81v.\+/
 
 set expandtab
 au FileType haskell setlocal tabstop=2 shiftwidth=2
