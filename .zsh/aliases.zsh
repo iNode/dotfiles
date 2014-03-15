@@ -11,7 +11,7 @@ alias rezsh="source ~/.zshrc"
 
 alias cd='cd_ls'
 setopt COMPLETE_ALIASES
-compctl -g *(/) -- cd_ls
+# compctl -g *(/) -- cd_ls
 
 alias signfile="gpg -u iNode --clearsign -b -v "
 alias encrypt="gpg -c -v "
