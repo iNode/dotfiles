@@ -3,7 +3,7 @@ function ffip()
     # find file in project
     # when call without arg returns root project path
     # root of project determined by .git/.hg/etc. folder
-    pattern="-d .git -o -d .hg"
+    pattern="-d .git -o -d .hg -d .projectroot"
     curdir=`pwd`
     while [ "x`pwd`" != "x/" ]; do
         if [ $pattern ]
@@ -33,10 +33,30 @@ function cscope-add ()
     cscope -b
 }
 
+function vgrep ()
+{
+  cmd="egrep -v "
+  for arg in $*; do
+      cmd="$cmd -e $arg"
+  done
+  eval $cmd
+}
+
+function mgrep ()
+{
+  cmd="egrep "
+  for arg in $*; do
+      cmd="$cmd -e $arg"
+  done
+  eval $cmd
+}
+
+
 # print stack trace of a core file without needing to enter gdb interactively
 alias gdbbt='gdb -q -n -ex bt -batch'
 alias gdbr='gdb --args'
 
 alias cdr="cd `ffip`"
+alias gn="grep -rnH"
 
 alias xmlfmt="tr '\n' ' ' | xmllint --format - |pygmentize -l xml"
