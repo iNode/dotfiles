@@ -1,4 +1,5 @@
-if [ -z $(whereis ccze) ];
+
+if command -v ccze 2>&1 >/dev/null;
 then
     colorizer=ccze
 else
