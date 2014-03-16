@@ -1,0 +1,11 @@
+#!/usr/local/plan9/bin/rc
+# find TODO FIXME in specified dir
+
+# TODO: add fromdos and todos commands
+
+if(~ $#* 0) dir=./
+if not dir=$1
+
+g TODO: $dir
+g FIXME: $dir
+exit 0
