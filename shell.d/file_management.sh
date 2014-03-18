@@ -13,3 +13,10 @@ function tmv() {
 
 alias pcp="ionice -c 3 rsync -aP"
 alias pmv='ionice -c 3 rsync -aP --remove-source-files'
+
+function fix_path() {
+	# PATH="$(printf "%s" "${PATH}" | /usr/bin/awk -v RS=: -v ORS=: '!($0 in a) {a[$0]; print}')"
+	PATH="$(/usr/bin/awk -v RS=: -v ORS=: '!($0 in a) {a[$0]; print}' <<< $PATH)"
+	export PATH
+	# export PATH=`awk -F: '{for (i=1;i<=NF;i++) { if ( !x[$i]++ ) printf("%s:",$i); }}' <<< $PATH`
+}
