@@ -19,7 +19,7 @@ unset FCEDIT VISUAL
 
 plumber
 
-fn cd { builtin cd $1 && awd $sysname }
+# fn cd { builtin cd $1 && awd $sysname }
 tabstop=4
 #font=/home/jlouis/P/plan9/font/lucsans/unicode.8.font
 #font='/mnt/font/Noto Sans/12a/font'
