@@ -1,0 +1,4 @@
+#!/bin/sh
+# shortcut to git grep
+
+git grep -n "$@"
