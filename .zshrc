@@ -11,8 +11,8 @@ export PYTHONDOCS="/usr/share/doc/python2.5/html"
 # for lftp ls dir's command
 #set -x
 #
-[ -x /usr/bin/most ] && export PAGER=most
-[ -x /usr/bin/most ] && alias more='most' && alias less='most'
+#[ -x /usr/bin/most ] && export PAGER=most
+#[ -x /usr/bin/most ] && alias more='most' && alias less='most'
 
 expand_aliases=1
 
@@ -127,8 +127,10 @@ src ()
     [ -f ~/.zshrc.zwc.old ] && rm -f ~/.zshrc.zwc.old
     [ -f ~/.zcompdump.zwc.old ] && rm -f ~/.zcompdump.zwc.old
     source ~/.zshrc
+    command -v fix_path &>/dev/null && fix_path
 }
 
+command -v fix_path &>/dev/null && fix_path
 
 #precmd()
 #{
