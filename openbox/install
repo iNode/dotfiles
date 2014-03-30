@@ -1,0 +1,12 @@
+#!/bin/sh
+
+startdir=`pwd`
+dir=`dirname $0`
+cd $dir
+dir=`pwd`
+
+# install only when openbox is available
+command -v openbox > /dev/null || exit
+
+ln -sf $dir/lubuntu-rc-`hostname`.xml $HOME/.config/openbox/lubuntu-rc.xml
+
