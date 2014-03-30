@@ -4,9 +4,9 @@ alias ffi='find . -iname '
 alias unx='find . -type f -perm /a+x -exec chmod a-x {} \;'
 alias fblobs='nice find . -type f -ignore_readdir_race -size 2>/dev/null'
 
-if [ `which ack-grep` ];
+if [ command -v ack >/dev/null ];
 then
-    alias ack='ack-grep --nogroup '
+    alias ack='ack --nogroup '
 fi
 
 alias df='df -h'
