@@ -56,10 +56,12 @@ function cdr ()
     cd $(ffip)
 }
 
+# cat to file and make it executable
+function scat () { cat > $1; chmod +x $1 }
+
 # print stack trace of a core file without needing to enter gdb interactively
 alias gdbbt='gdb -q -n -ex bt -batch'
 alias gdbr='gdb --args'
 
 alias gn="grep -rnH"
-
-alias xmlfmt="tr '\n' ' ' | xmllint --format - |pygmentize -l xml"
+alias xmlfmt="tr -d '\n' | xmllint --format - |pygmentize -l xml"
