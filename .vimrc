@@ -23,6 +23,8 @@ set expandtab
 au FileType haskell setlocal tabstop=2 shiftwidth=2
 au FileType c setlocal tabstop=4 shiftwidth=4
 au FileType python setlocal tabstop=4 shiftwidth=4
+" match pairs of < and >
+au FileType cpp set mps+=<:>
 
 "  view' mode settings
 if &readonly == 1
@@ -61,7 +63,7 @@ set hidden
 set statusline=%F%<\ %y%h%m%r%=%b\ 0x%B\ %{&encoding}\ \ %l,%c%V\ %P
 
 """"
-" Key bindings
+" Key bindings (:map, :imap, :nmap :vmap - to view bindings)
 """""
 
 " keep selection after shift
@@ -84,8 +86,15 @@ nmap <Space> <PageDown>
 " Omni Completion
 imap <C-F> <C-X><C-O>
 
-map \c :set ic<CR>
-map \C :set noic<CR>
+" Window switch (emacs like)
+" imap <C-x>o <C-w><C-w>
+nmap <C-x>o <C-w><C-w>
+
+set ignorecase
+
+map \c :set ignorecase<CR>
+map \C :set noignorecase<CR>
+set smartcase " if search word contains Caps don't ignore register works only if ignorecase is enabled
 
 " Bindings
 " F11 - toggle paste mode
@@ -229,6 +238,37 @@ endif
 
 " turn off any existing search
 au VimEnter * nohls
+
+" The following maps the Control-F8 key to toggle between hex and binary (while also setting the 
+" noeol and binary flags, so if you :write your file, vim doesn't perform unwanted conversions.
+
+" vim -b : edit binary using xxd-format!
+augroup Binary
+  au!
+  au BufReadPre  *.bin let &bin=1
+  au BufReadPost *.bin if &bin | %!xxd
+  au BufReadPost *.bin set ft=xxd | endif
+  au BufWritePre *.bin if &bin | %!xxd -r
+  au BufWritePre *.bin endif
+  au BufWritePost *.bin if &bin | %!xxd
+  au BufWritePost *.bin set nomod | endif
+augroup END
+
+" use vim -b to do the same out of box
+noremap <C-F8> :call HexMe()<CR>
+
+let $in_hex=0
+function! HexMe()
+  set binary
+  set noeol
+  if $in_hex>0
+    :%!xxd -r
+    let $in_hex=0
+  else
+    :%!xxd
+    let $in_hex=1
+  endif
+endfunction
 
 " ------------------Spelling
 " set spellfile=~/.vim/spell/ru.utf-8.add
