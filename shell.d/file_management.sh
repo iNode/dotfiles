@@ -20,3 +20,10 @@ function fix_path() {
 	# export PATH
 	export PATH=`awk -F: '{for (i=1;i<=NF;i++) { if ( !x[$i]++ ) printf("%s:",$i); }}' <<< $PATH | sed -e 's/::/:/g'`
 }
+
+function atree()
+{
+    # awk based tree implementation
+    # usage: find . -type d | atree
+    awk -F "/" '{for (i=1; i<=NF-2; i++){printf "| "} print "|____"$NF}'
+}
