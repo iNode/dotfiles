@@ -1,0 +1,33 @@
+# perl/bash like shift
+proc shift {ls} {
+    upvar 1 $ls LIST
+    if {[llength $LIST]} {
+        set ret [lindex $LIST 0]
+        set LIST [lreplace $LIST 0 0]
+        return $ret
+    } else {
+        error "Ran out of list elements."
+    }
+}
+# perl/bash like unshift
+proc unshift {ls data} {
+    upvar 1 $ls LIST
+    set LIST [concat $data $LIST]
+}
+
+if {$tcl_interactive} {
+    package require tclreadline
+    foreach tcl [lsort [glob -directory ~/tcl.d -type f *.tcl]] {
+        if {$tcl in [list ~/tcl.d/pkgIndex.tcl ~/tcl.d/tclshrc.tcl]} {
+            puts "no $tcl"
+            continue
+        }
+        if [file readable $tcl] {
+            puts ">> $tcl"
+            source $tcl
+        }
+    }
+    ::tclreadline::Loop
+}
+
+# proc % {args} {uplevel 1 $args}
