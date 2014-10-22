@@ -49,6 +49,13 @@ vp () {
 
 # allow to see disconnection time
 myssh () {
+    if [ "x$TMUX" != "x" ]; then
+        echo try to rename window
+        tmux rename-window $1
+    else
+        echo no tmux
+    fi
+
     \ssh $*; date
 }
 
