@@ -37,8 +37,7 @@ function lsd() { ls -l $1 | grep \^d; }
 
 
 # ps tricks
-alias psc="\ps -C"
-alias psfg="\ps -ylfC"
+alias psfg="\ps -ylf"
 alias psg="\ps aux| grep -v grep | grep"
 
 alias cfh='./configure --help | less'
@@ -73,10 +72,15 @@ alias ..='cd ..'
 alias ...='cd ../../'
 
 # vim based color less
-alias less='/usr/share/vim/vimcurrent/macros/less.sh'
+if [ -x /usr/share/vim/vimcurrent/macros/less.sh ]; then
+    alias less='/usr/share/vim/vimcurrent/macros/less.sh'
+fi
 
 # alias HEAD for automatic smart output
-alias head='head -n $((${LINES:-`tput lines 2>/dev/null||echo -n 12`} - 2))'
+alias head='head -n $((${LINES:-`tput lines 2>/dev/null||echo -n 25`} - 2))'
+
+# the same for tail
+alias tail='tail -n $((${LINES:-`tput lines 2>/dev/null||echo -n 25`} - 2))'
 
 # rsync
 alias ssync="rsync --rsh=ssh"
