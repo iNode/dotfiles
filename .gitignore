@@ -57,4 +57,11 @@ _build
 
 # project-specific overrides
 
+# ant build directory
+build
 
+# logs
+*.log
+
+# eclipse cruft
+.settings
