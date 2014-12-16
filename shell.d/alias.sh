@@ -25,6 +25,12 @@ alias l='lst'
 ## show only dot-files
 alias lsa='ls -ld .*'
 
+
+# tmux specific
+###############
+# set tmux window name to current directory name
+function td() { tmux rename-window $(basename $(pwd)) }
+
 ## show only dirs
 function lsd() { ls -l $1 | grep \^d; }
 # alias lsd="ls -ldG *(-/DN)"
