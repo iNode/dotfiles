@@ -15,6 +15,11 @@ if &term == "xterm-color"
     let &term = "xterm-256color"
 endif
 
+"
+" use gitignore to ignore files
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+let g:ctrlp_use_caching = 0
+
 " highlight lines longer than 80chars
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 " match OverLength /\%81v.\+/
@@ -176,6 +181,8 @@ endfunction
 au BufEnter * call Safe_cd()
 map ;[ :bprev<CR>
 map ;] :bnext<CR>
+map ;! :bdel<CR>
+
 
 
 
