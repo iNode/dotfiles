@@ -1,9 +1,9 @@
 
-if command -v ccze 2>&1 >/dev/null;
+if command -v ccze  >/dev/null 2>&1;
 then
-    colorizer=ccze
+    export colorizer=ccze
 else
-    colorizer=less
+    export colorizer=less
 fi
 
 alias slog='S tail -f /var/log/syslog | $colorizer'

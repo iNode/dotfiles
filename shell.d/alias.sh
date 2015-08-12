@@ -29,10 +29,10 @@ alias lsa='ls -ld .*'
 # tmux specific
 ###############
 # set tmux window name to current directory name
-function td() { tmux rename-window $(basename $(pwd)) }
+td() { tmux rename-window "$(basename "$(pwd)")"; }
 
 ## show only dirs
-function lsd() { ls -l $1 | grep \^d; }
+lsd() { find "$1" -maxdepth 1 -type d -ls; }
 # alias lsd="ls -ldG *(-/DN)"
 
 
@@ -59,17 +59,21 @@ alias mnt='S mount'
 alias mntl='S mount -o loop'
 alias umnt='S umount'
 
-alias grab="S chown ${USER} --recursive"
+alias grab='S chown "${USER}" --recursive'
 alias rgrab="S chown root --recursive"
 alias ssh="myssh"
 
+# temporary ssh connection without any addtional checks or logs
+alias ssht="myssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oLogLevel=quiet "
+
 alias pst='pstree -Ap | less'
 
-alias d='dirs -v'
+alias dirs='dirs -v'
 # CD
 alias c="cd -"
 alias ..='cd ..'
 alias ...='cd ../../'
+cdd() { cd "$(dirname "$1")"; }
 
 # vim based color less
 if [ -x /usr/share/vim/vimcurrent/macros/less.sh ]; then

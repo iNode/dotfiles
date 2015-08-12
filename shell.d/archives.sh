@@ -1,13 +1,13 @@
 ###### usage: roll <foo.tar.gz> ./foo ./bar
-function roll()
+roll()
 {
-  FILE=$1
+  FILE="$1"
   case $FILE in
-    *.tar.bz2) shift && tar cjf $FILE $* ;;
-    *.tar.gz) shift && tar czf $FILE $* ;;
-    *.tgz) shift && tar czf $FILE $* ;;
-    *.zip) shift && zip $FILE $* ;;
-    *.rar) shift && rar $FILE $* ;;
+    *.tar.bz2) shift && tar cjf "$FILE" "$@" ;;
+    *.tar.gz) shift && tar czf "$FILE" "$@" ;;
+    *.tgz) shift && tar czf "$FILE" "$@" ;;
+    *.zip) shift && zip "$FILE" "$@" ;;
+    *.rar) shift && rar "$FILE" "$@" ;;
       *) echo "unknown format!" ;;
   esac
 }
@@ -17,10 +17,10 @@ function roll()
 # types						 #
 ##################################################
 
-function extract() {
+extract() {
   local e=0 i c
   for i; do
-    if [[ -f $i && -r $i ]]; then
+    if [ -f $i -a -r $i ]; then
         c=''
         case $i in
           # *.t@(gz|lz|xz|b@(2|z?(2))|a@(z|r?(.@(Z|bz?(2)|gz|lzma|xz)))))

@@ -1,7 +1,7 @@
 
 cmdfu () {
     # Search commandlinefu.com from the command line using the API
-    curl "http://www.commandlinefu.com/commandmatching/%$(echo "$@" | sed ' /-/g')/$(echo -n $@ | base64)/plaintext" --silent \
+    curl "http://www.commandlinefu.com/commandmatching/%$(echo "$@" | sed ' /-/g')/$(echo -n "$@" | base64)/plaintext" --silent \
         | vim -R -
 }
 

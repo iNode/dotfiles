@@ -1,5 +1,5 @@
 # GLOBAL
-if [ $SHELL = "/bin/zsh" ];
+if [ "$SHELL" = "/bin/zsh" ];
 then
     # common lazy commands
     alias git='nocorrect git'
