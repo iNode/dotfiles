@@ -20,6 +20,8 @@ then
     alias -g SEN="2>&1 1>/dev/null"
     alias -g C="|ccze -A"
     alias -g D="|colordiff"
+    alias -g G="|grep -rnH "
+    alias -g V="|vim -"
 
     # Extenstions
     alias -s avi=vlc

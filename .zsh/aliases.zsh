@@ -17,10 +17,7 @@ alias signfile="gpg -u iNode --clearsign -b -v "
 alias encrypt="gpg -c -v "
 
 # zsh specific aliases
-alias -g L=less
-# shell.d function
-alias -g T=stail
-alias -g G="grep -rnH "
+# migrated to shell.d
 
 # extensions
 alias -s ps=evince
