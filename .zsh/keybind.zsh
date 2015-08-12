@@ -48,4 +48,5 @@ bindkey "^[m" copy-prev-shell-word
 #    zle -s
 #}
 bindkey -s "^[c" "fag"
+bindkey -s "^[r" "far^M"
 #bindkey -s "^E" 'eject\n'

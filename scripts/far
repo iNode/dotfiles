@@ -1,0 +1,15 @@
+#!/bin/bash
+# fast run script to visualize common commands
+#
+# sample lines from ~/.rbookmarks:
+# libreoffice@@
+# qms@@unset ORACLE_HOME; LC_TIME="en_US.UTF-8" WINEPREFIX=~/.wine32 wine myexe.exe
+
+perl -ne 'print if s/(.*)@@.*/$1/;' < ~/.rbookmarks | dmenu | read t
+  cmd=$(grep $t ~/.rbookmarks |awk -F@@ '{print $2}')
+if [ -z $cmd ]; then
+     cmd=$(grep $t ~/.rbookmarks |awk -F@@ '{print $1}')
+fi
+if [ -z $cmd ]; then exit; fi
+# echo $cmd
+eval $cmd &
