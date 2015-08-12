@@ -1,3 +1,8 @@
+
+execute pathogen#infect()
+execute pathogen#infect('bundle/{}', '~/.vim/bundle/{}')
+call pathogen#infect()
+
 syntax enable
 colorscheme elflord
 set nohlsearch
