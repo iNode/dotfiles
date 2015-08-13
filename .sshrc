@@ -1,0 +1,6 @@
+echo SSHRC configs uploaded
+
+for f in $SSHHOME/.sshrc.d/*.sh; do
+    . $f
+done
+export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
