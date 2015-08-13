@@ -48,5 +48,11 @@ bindkey "^[m" copy-prev-shell-word
 #    zle -s
 #}
 bindkey -s "^[c" "fag"
-bindkey -s "^[r" "far^M"
+bindkey -s "^[r" "far"
+
+# bash alike edit-command-line
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
 #bindkey -s "^E" 'eject\n'
