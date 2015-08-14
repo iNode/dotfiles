@@ -365,7 +365,7 @@ and back in -->
       <keybind key="g">
         <action name="Execute">
           <!-- switch to google-chrome -->
-          <command>~/bin/wmctrl-switch-to google-chrome google-chrome.Google-Chrome
+          <command>~/bin/wmctrl-switch-to google-chrome google-chrome.Google-chrome
          </command>
         </action>
       </keybind>
@@ -583,6 +583,12 @@ and back in -->
     <keybind key="W-r">
       <action name="Execute">
         <command>gmrun
+        </command>
+      </action>
+    </keybind>
+    <keybind key="W-S-r">
+      <action name="Execute">
+        <command>far
         </command>
       </action>
     </keybind>
