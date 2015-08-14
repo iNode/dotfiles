@@ -21,7 +21,7 @@ run_cmd() {
 }
 
 # use directory specific install scripts when available
-for d in $(find $dir -type d | grep -v -e .git -e scripts -e .$); do
+for d in $(find $dir -maxdepth 1 -type d | grep -v -e .git -e scripts -e '\.$'); do
     if [ -x $d/install ]; then
         # self install
         run_cmd $d/install
