@@ -68,3 +68,27 @@ alias xmlfmt="tr -d '\n' | xmllint --format - |pygmentize -l xml"
 
 # go specific
 alias gb='go install -v'
+
+rdiff() {
+    if [ $# -lt 3 ]; then
+        echo "DESCRIPTION: remote files diff"
+        echo "USAGE: rdiff HOST REMOTE_FILE LOCAL_FILE"
+        echo ""
+        echo "NOTE: configure SSH key authentication in order to use"
+        exit 1
+    fi
+    HOST=$1
+    REMOTE_FILE=$2
+    LOCAL_FILE=$3
+    vimdiff <(\ssh $HOST cat $REMOTE_FILE) <(cat $LOCAL_FILE)
+}
+
+httpshare() {
+    # share current directory via http on fixed port
+    busybox httpd -f -p 56000
+}
+
+p4log () {
+    # provide ... argument for whole curren directory
+    p4 changes "$1" | awk '{print $2}' | xargs -i p4 describe -du {} | less -F
+}
