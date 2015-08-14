@@ -10,3 +10,8 @@ cmdfu_download ()
     curl "http://www.commandlinefu.com/commands/browse/sort-by-vote/plaintext" | grep -vE "_curl_|\.com by David" > clf-ALL.txt
 # /[0-9000:25]
 }
+
+zen () {
+    # github zen
+    echo "\n$(curl https://api.github.com/zen 2>/dev/null)\n"
+}
