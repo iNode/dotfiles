@@ -5,11 +5,17 @@
 # libreoffice@@
 # qms@@unset ORACLE_HOME; LC_TIME="en_US.UTF-8" WINEPREFIX=~/.wine32 wine myexe.exe
 
-perl -ne 'print if s/(.*)@@.*/$1/;' < ~/.rbookmarks | dmenu | read t
-  cmd=$(grep $t ~/.rbookmarks |awk -F@@ '{print $2}')
-if [ -z $cmd ]; then
-     cmd=$(grep $t ~/.rbookmarks |awk -F@@ '{print $1}')
+
+t=$(perl -ne 'print if s/(.*)@@.*/$1/;' < ~/.rbookmarks | dmenu)
+
+cmd=$(grep $t ~/.rbookmarks |awk -F@@ '{print $2; exit}')
+if [ -z "$cmd" ]; then
+     cmd=$(grep $t ~/.rbookmarks |awk -F@@ '{print $1; exit}')
 fi
-if [ -z $cmd ]; then exit; fi
-# echo $cmd
-eval $cmd &
+if [ -z "$cmd" ]; then
+    echo "No matching command found. Exiting"
+    exit
+fi
+
+echo $cmd
+eval "$cmd" &
