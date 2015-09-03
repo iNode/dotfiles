@@ -16,11 +16,13 @@ then
     alias -g H='|head'
     alias -g T='|tail'
     alias -g EN='2>/dev/null'
+    alias -g ES='2>&1'
     alias -g SN='1>/dev/null'
     alias -g SEN="2>&1 1>/dev/null"
     alias -g C="|ccze -A"
     alias -g D="|colordiff"
-    alias -g G="|grep -rnH "
+    alias -g G="|grep -n"
+    alias -g GV="|grep -v"
     alias -g V="|vim -"
 
     # Extenstions
