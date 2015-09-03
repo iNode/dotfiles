@@ -3,7 +3,7 @@ ffip()
     # find file in project
     # when call without arg returns root project path
     # root of project determined by .git/.hg/etc. folder
-    pattern="-d .git -o -d .hg -o -d .projectroot"
+    pattern="-d .git -o -d .hg -o -d .projectroot -f Cargo.toml -f README.md"
     curdir=$(pwd)
     while [ "x$(pwd)" != "x/" ]; do
         if [ "$pattern" ]
@@ -88,6 +88,12 @@ httpshare() {
     busybox httpd -f -p 56000
 }
 
+# rust specific
+cr() {
+    cargo run
+}
+
+# perforce specific
 p4log () {
     # provide ... argument for whole curren directory
     p4 changes "$1" | awk '{print $2}' | xargs -i p4 describe -du {} | less -F
