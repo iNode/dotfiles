@@ -1,10 +1,11 @@
-#!/usr/bin/env bash
 AUTOENV_AUTH_FILE=~/.autoenv_authorized
+unset GREP_OPTIONS
+
 if [ -z "$AUTOENV_ENV_FILENAME" ]; then
     AUTOENV_ENV_FILENAME=.env
 fi
 
-if [[ -n "${ZSH_VERSION}" ]]
+if [ -n "${ZSH_VERSION}" ]
 then __array_offset=0
 else __array_offset=1
 fi
@@ -111,7 +112,8 @@ autoenv_deauthorize_env() {
   typeset envfile
   envfile=$1
   \cp "$AUTOENV_AUTH_FILE" "$AUTOENV_AUTH_FILE.tmp"
-  \grep -Gv "$envfile:" "$AUTOENV_AUTH_FILE.tmp" > $AUTOENV_AUTH_FILE
+  \rm "$AUTOENV_AUTH_FILE"
+  \grep -Gv "$envfile:" "$AUTOENV_AUTH_FILE.tmp" > "$AUTOENV_AUTH_FILE"
 }
 
 autoenv_authorize_env() {
