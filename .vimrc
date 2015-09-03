@@ -57,7 +57,7 @@ set nofoldenable
 "
 " russian keymap
 set keymap=russian-jcukenwin
-" latin by default 
+" latin by default
 set iminsert=0
 " and also for search
 set imsearch=0
@@ -197,6 +197,9 @@ map ;! :bdel<CR>
 autocmd BufReadPre  *.doc set ro
 autocmd BufReadPost *.doc %!catdoc %
 
+" auto delete trailing spaces
+autocmd BufWritePre * :%s/\s\+$//e
+
 " --------------------------------------------------
 " Charsets
 " old Plain DOS charset				=p
@@ -251,7 +254,7 @@ endif
 " turn off any existing search
 au VimEnter * nohls
 
-" The following maps the Control-F8 key to toggle between hex and binary (while also setting the 
+" The following maps the Control-F8 key to toggle between hex and binary (while also setting the
 " noeol and binary flags, so if you :write your file, vim doesn't perform unwanted conversions.
 
 " vim -b : edit binary using xxd-format!
