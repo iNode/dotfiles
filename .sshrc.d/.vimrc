@@ -30,7 +30,7 @@ au BufEnter * call Safe_cd()
 au FileType haskell setlocal tabstop=2 shiftwidth=2
 au FileType c setlocal tabstop=4 shiftwidth=4
 au FileType sh setlocal tabstop=4 shiftwidth=4
-au FileType sh map <buffer> <F9> :call MyExec()<CR>
+au FileType sh,python,perl,tcl map <buffer> <F9> :call MyExec()<CR>
 au FileType python setlocal tabstop=3 shiftwidth=3
 " match pairs of < and >
 au FileType cpp set mps+=<:>
