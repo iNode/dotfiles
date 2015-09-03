@@ -74,12 +74,6 @@ then
     export SYSTYPE="debian"
 fi
 
-# load shell.d definitions (sh and zsh compatible)
-for f in ~/shell.d/*.sh ~/shell.d/*.zsh; do
-    # echo "load $f"
-    source $f
-done
-
 ## smart urls
 autoload -U url-quote-magic
 zle -N self-insert url-quote-magic
@@ -117,6 +111,13 @@ select-word-style bash
 source ~/.zsh/functions.zsh
 
 source ~/.zsh/prompt.zsh
+
+# load shell.d definitions (sh and zsh compatible)
+for f in ~/shell.d/*.sh ~/shell.d/*.zsh; do
+    echo "load $f"
+    source $f
+done
+
 # -------------------------------------
 # Base Functions
 
