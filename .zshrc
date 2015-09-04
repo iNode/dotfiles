@@ -114,8 +114,8 @@ source ~/.zsh/prompt.zsh
 
 # load shell.d definitions (sh and zsh compatible)
 for f in ~/shell.d/*.sh ~/shell.d/*.zsh; do
-    echo "load $f"
-    source $f
+    # echo "load $f"
+    [ -s $f ] && source $f
 done
 
 # -------------------------------------
