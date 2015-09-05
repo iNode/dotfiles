@@ -16,7 +16,7 @@ ssh_reagent () {
             return
         fi
     done
-    echo Cannot find ssh agent - maybe you should reconnect and forward it?
+    echo "Cannot find ssh agent - maybe you should reconnect and forward it?"
 }
 
 
@@ -45,6 +45,6 @@ shead () {
 }
 
 genpasswd() {
-    local l=${1:-20}
-    tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
+    local len=${1:-20}
+    tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${len} | xargs
 }
