@@ -69,6 +69,20 @@ alias xmlfmt="tr -d '\n' | xmllint --format - |pygmentize -l xml"
 # go specific
 alias gb='go install -v'
 
+wait_success() {
+    cmd="$@"
+    $cmd;
+    while [ "x$?" != "x0" ]; do
+	sleep 1;
+	$cmd;
+    done;
+}
+
+wait_host() {
+    wait_success ping -q -w 1 "$1"
+}
+
+
 rdiff() {
     if [ $# -lt 3 ]; then
         echo "DESCRIPTION: remote files diff"
