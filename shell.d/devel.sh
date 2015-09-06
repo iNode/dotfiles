@@ -102,10 +102,31 @@ httpshare() {
     busybox httpd -f -p 56000
 }
 
-# rust specific
-cr() {
-    cargo run
-}
+# rust/cargo specific
+if cargo -h 1>/dev/null 2>&1; then
+    Cr() {
+        cargo run "$@"
+    }
+
+    Cn() {
+        cargo new --vcs git "$@"
+    }
+
+    Cc() {
+        cargo clean "$@"
+    }
+
+    Cb() {
+        cargo build --verbose "$@"
+    }
+
+
+    Rd() {
+        # rust compile with dynamic link to stdlib
+        # static linking is default
+        rustc -C prefer-dynamic "$@"
+    }
+fi
 
 # perforce specific
 p4log () {
