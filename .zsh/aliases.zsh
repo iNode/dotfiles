@@ -13,6 +13,30 @@ alias cd='cd_ls'
 setopt COMPLETE_ALIASES
 # compctl -g *(/) -- cd_ls
 
+# Disable correction.
+alias ack='nocorrect ack'
+alias cd='nocorrect cd'
+alias cp='nocorrect cp'
+alias gcc='nocorrect gcc'
+alias gist='nocorrect gist'
+alias grep='nocorrect grep'
+alias ln='nocorrect ln'
+alias man='nocorrect man'
+alias mkdir='nocorrect mkdir'
+alias mv='nocorrect mv'
+alias mysql='nocorrect mysql'
+alias rm='nocorrect rm'
+
+# Disable globbing.
+alias fc='noglob fc'
+alias find='noglob find'
+alias ftp='noglob ftp'
+alias history='noglob history'
+alias locate='noglob locate'
+alias rsync='noglob rsync'
+alias scp='noglob scp'
+alias sftp='noglob sftp'
+
 alias signfile="gpg -u iNode --clearsign -b -v "
 alias encrypt="gpg -c -v "
 
