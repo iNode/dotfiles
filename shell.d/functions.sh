@@ -1,5 +1,5 @@
 # mkdir & cd to it
-mcd() { mkdir -p -v "$1"; cd "$1"; }
+mcd() { [ ! -z "$1" ] && mkdir -p -v "$1" && cd "$1"; }
 
 # Create temporary directory and to it
 cdt() {
