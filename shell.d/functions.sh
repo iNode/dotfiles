@@ -44,6 +44,12 @@ shead () {
     head -n"$l" "$2"
 }
 
+# Prints columns 1 2 3 ... n.
+slit() {
+  awk "{ print ${(j:,:):-\$${^@}} }"
+}
+
+
 genpasswd() {
     local len=${1:-20}
     tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${len} | xargs
