@@ -67,7 +67,8 @@ prompt_inode_setup () {
     # PROMPT
     # user@host-(pwd)[hh:mm:ss] - %n@%m %D %*
     # smile signal last command result
-    export PS1="%(?.$cgreen✓ :%) .$cred✗ :( )$base_prompt"
+    # export PS1="%(?.$cgreen✓ :%) .$cred✗ :( )$base_prompt"
+    export PS1="%(?.${cgreen}v :%) .${cred}x :( )$base_prompt"
 
     # RPROMPT='$(parse_git_branch)'
     # RPROMPT="$cgreen%B%*%b"
