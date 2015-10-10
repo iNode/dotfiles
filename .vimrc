@@ -91,6 +91,14 @@ imap <C-Space> <C-N>
 nmap <Home> ^
 imap <Home> <Esc>I
 
+" default for leader is "\" key
+"close other window
+map <silent> <leader>c <C-w>c
+"quit without saving
+map <silent> <leader>q ZQ
+"re-read config
+map <silent> <leader>s :source ~/.vimrc<CR>
+
 " space work as page down in normal mode
 nmap <Space> <PageDown>
 " Omni Completion
@@ -100,10 +108,10 @@ imap <C-F> <C-X><C-O>
 " imap <C-x>o <C-w><C-w>
 nmap <C-x>o <C-w><C-w>
 
-set ignorecase
+" set ignorecase
 
-map \c :set ignorecase<CR>
-map \C :set noignorecase<CR>
+" map \c :set ignorecase<CR>
+" map \C :set noignorecase<CR>
 set smartcase " if search word contains Caps don't ignore register works only if ignorecase is enabled
 
 " Bindings
