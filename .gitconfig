@@ -38,3 +38,5 @@
   sh = show --color
 
 
+[push]
+	default = simple
