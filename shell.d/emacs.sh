@@ -7,7 +7,7 @@ if [ "$(which emacs)" ]; then
     # emacs client execute/evaluate
     alias ece='emacsclient -e '
     #
-    alias es='ece "(emms-show)"'
+    # alias es='ece "(emms-show)"'
     # DirEd Here
     alias deh='ece "(dired \"`pwd`\")"'
     # jump to current emacs path
@@ -17,6 +17,9 @@ if [ "$(which emacs)" ]; then
     # emacs scratch
     es () {
         emacsclient -e '(switch-to-buffer "*scratch*" t t)'
+        if [ ! -z "$TMUX" ]; then
+            tmux select-window -t emacs
+        fi
         if [ ! -z "$DISPLAY" ]; then
             ~/bin/wmctrl-switch-to emacs emacs.Emacs
         fi
