@@ -94,10 +94,11 @@ then
   unsetopt zle
   unsetopt prompt_cr
   unsetopt prompt_subst
-  unfunction precmd
-  unfunction preexec
-  unalias ls
+  unfunction precmd 2>/dev/null
+  unfunction preexec 2>/dev/null
+  unalias ls 2>/dev/null
   PS1='$ '
+  return
 fi
 
 setopt APPEND_HISTORY # adds history
