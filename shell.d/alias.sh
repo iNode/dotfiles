@@ -67,7 +67,9 @@ alias rgrab="S chown root --recursive"
 alias ssh="myssh"
 
 # temporary ssh connection without any addtional checks or logs
-alias ssht="myssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oLogLevel=quiet "
+alias ssht="sshrc -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oLogLevel=quiet "
+# force ssh to work without checking host key at all
+alias sshf='sshrc -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 
 alias pst='pstree -Ap | less'
 
