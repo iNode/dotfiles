@@ -60,6 +60,7 @@ alias S='sudo'
 alias mnt='S mount'
 alias mntl='S mount -o loop'
 alias umnt='S umount'
+alias mount='mount |column -t'
 
 alias grab='S chown "${USER}" --recursive'
 alias rgrab="S chown root --recursive"
