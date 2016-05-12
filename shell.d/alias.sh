@@ -12,6 +12,8 @@ fi
 alias df='df -h'
 alias du='du -h'
 alias dum='du -h --max-depth=1'
+alias dumk='du -smc * > dum'
+alias dums='cat dum | sort -n'
 alias ps='ps -e'
 alias cal='cal -m'
 
