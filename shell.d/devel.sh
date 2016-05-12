@@ -3,10 +3,10 @@ ffip()
     # find file in project
     # when call without arg returns root project path
     # root of project determined by .git/.hg/etc. folder
-    pattern="-d .git -o -d .hg -o -d .projectroot -f Cargo.toml -f README.md"
+    pattern="-d .git -o -d .hg -o -d .projectroot -o -f Cargo.toml -o -f README.md -o -d .idea"
     curdir=$(pwd)
     while [ "x$(pwd)" != "x/" ]; do
-        if [ "$pattern" ]
+        if [ $pattern ]
         then
             if [ "x$1" != "x" ];
             then
