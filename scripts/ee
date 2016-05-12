@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cmd='emacsclient -n -a "/usr/bin/vim"'
+cmd='emacsclient -n -a /usr/bin/vim'
 
 # TODO: parse result from grep/ack and change file.ext:line to +line file.ext
 if [ $# -eq 1 ];
