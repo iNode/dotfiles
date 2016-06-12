@@ -20,3 +20,27 @@ de() {
     echo "$id"
     docker exec -it "$id" "$cmd"
 }
+
+dm() {
+    # docker machine
+    docker-machine "$@"
+}
+
+di() {
+    docker images
+}
+
+dls() {
+    # docker ps -a
+    docker ps -a "$@"
+}
+
+drmi() {
+    # docker rmi
+    docker rmi "$@"
+}
+
+drm() {
+    # docker rm
+    docker rm "$@"
+}
