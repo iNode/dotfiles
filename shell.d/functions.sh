@@ -49,6 +49,13 @@ slit() {
   awk "{ print ${(j:,:):-\$${^@}} }"
 }
 
+alisten() {
+    if [ $# -lt 1 ]; then
+        echo "Usage: $0 user@host"
+        exit 1
+    fi
+    arecord -f dat | ssh -C user@host aplay -f dat
+}
 
 genpasswd() {
     local len=${1:-20}
