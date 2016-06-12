@@ -24,6 +24,15 @@ if [ "$(which emacs)" ]; then
             ~/bin/wmctrl-switch-to emacs emacs.Emacs
         fi
     }
+    ediff() {
+      if [ $# -lt 2 ]
+      then
+          echo "USAGE: ediff <FILE 1> <FILE 2>"
+      else
+          # The --eval flag takes lisp code and evaluates it with EMACS
+          emacsclient -c --eval "(ediff-files \"$1\" \"$2\")"
+      fi
+    }
     # edit file with root privs
     alias E="SUDO_EDITOR=\"emacsclient -c -a emacs\" sudoedit"
     eer() {
