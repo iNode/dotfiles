@@ -1,0 +1,407 @@
+#!/bin/bash
+
+# Limit path for good security practice
+OLDPATH=$PATH
+export PATH=/bin:/usr/bin
+
+# Name me!
+PROGRAM=sshdo
+VERSION=3.3
+
+# Some put locations may be dangerous.  Especially when doing so automatically
+# and multiple times.  Here we try to filter out bad ones.
+BP="dev/ proc/ sshd.conf etc/shadow etc/gshadow etc/passwd etc/group"
+
+# Some commands may be dangerous.  Especially when doing so automatically
+# and multiple times.  Here we try to filter out bad ones.
+BC="rm mkfs mv dd shred gshred wipe bcwipe scrub"
+
+# Output man page to this default unless specified later.
+mcmd=cat
+
+usage(){
+    cat 1>&2 <<EOF
+    $PROGRAM issues remote commands, puts or gets files to all hosts 
+    sequentially.  Hosts are read from stdin (one per line).  $PROGRAM will use
+    SSH key agent, if available, to avoid repetitive password entry.
+    USAGE:  $PROGRAM 
+        [ -h ] HELP
+        [ -c ] credentials file for SSH AGENT (used only if it's not running)
+        [ -v ] VERSION
+        [ -m ] read man page
+        [ -mm ] make man page
+        [ -r ] recursive get or put
+        [ -f ] force dangerous command or put
+        [ -u <username> ]
+        [ -g  <from> <to> ] Each get is suffixed by '-hostname'.
+        [ -p  <from> <to> ]
+        [ -s <suffix> ] save (redirect) output of remote command of each host
+        to local separate file 'hostname-suffix'.
+        [ "remote command" ] 
+
+     WARNING:  Be sure to validate your command before issuing it.  One mistake
+     dupicated across multiple hosts could be catatrophic.  Backups are also
+     recommended.
+     
+EOF
+}
+
+man() {
+    cat <<EOF | $mcmd
+.\" view by piping to nroff -c -man |col|less
+.\"-----------------------------------------
+.TH $PROGRAM 1 "September 2009" $VERSION
+.\"-----------------------------------------
+.SH NAME
+$PROGRAM \(em Execute remote commands or copies via SSH to multiple hosts.
+.\"-----------------------------------------
+.SH SYNOPSIS
+.B $PROGRAM 
+.B [ \-h | \-\^\-help ]
+.B [ \-v | \-\^\-version ]
+.B [ \-m | \-\^\-man ]
+.B [ \-mm | \-\^\-mman ]
+.B [ \-f | \-\^\-force ]
+.B \-u 
+.I username 
+.B [ \-r ] [ [ \-g | \-p ] 
+.I from to 
+]
+.B [ \-s 
+.I suffix 
+]
+[
+.I 'remote command' 
+]
+.\"-----------------------------------------
+.SH DESCRIPTION
+$PROGRAM issues remote commands, puts or gets files to all hosts sequentially.
+Hosts are read from stdin (one per line).  $PROGRAM will use SSH key agent, if
+available, to avoid repetitive password entry.
+.PP
+WARNING:  Be sure to validate your command before issuing it.  One mistake
+duplicated across multiple hosts could be catastrophic.  Backups are also
+recommended.
+.\"-----------------------------------------
+.SH OPTIONS
+Options can be prefixed with either one or two hyphens, and
+can be abbreviated to any unique prefix.  Thus,
+.BR \-v ,
+.BR \-ver ,
+and
+.B \-\^\-version
+are equivalent.
+.PP
+.IP "[ \-h | \-\^\-help ]"
+Print usage and exit.
+.IP "[ \-v | \-\^\-version ]"
+Print version number an exit.
+.IP "[ \-m | \-\^\-man ]"
+Read man page.  Goes to stdout.
+.IP "[ \-mm | \-\^\-mman ]"
+Make man page.  Sends nroff code to stdout.
+.IP "[ \-f | \-\^\-force ]"
+Force use of dangerous command or file destination.  For example issuing an
+.I rm or copying over 
+.I /etc/passwd.
+.IP \-u 
+.I username 
+Username to use with SSH (e.g. 
+.I username
+@hostname or -l 
+.I username ).
+.IP \-r  
+Recursive copy.
+.IP \-g 
+Get files from remote location.  Followed by 
+.I from to
+the source and destination for file copies. Each get is suffixed by '-hostname'.
+.IP \-p 
+Put files to remote location.  Followed by
+.I from to.
+the ource and destination for file copies.
+.IP \-s 
+.I suffix 
+Save (redirect) output of remote command of each host to local separate file
+.I hostname-suffix.
+.\"-----------------------------------------
+.SH EXAMPLES
+.IP "$PROGRAM \-u wally free < hosts"
+Execute the command 
+.I free 
+on all hosts listed in the file called
+.I hosts.
+Authenticate using the user
+.I wally.
+The output of
+.I free 
+from all hosts is sent to
+.I stdout.
+
+.IP "$PROGRAM \-u wally \-s free.txt free < hosts"
+Same as above but the output of 
+.I free
+from all hosts is directed to a separate file, named
+.I hostname-free.txt
+for each host.
+.IP "$PROGRAM -p myscr.sh /usr/local/bin/"
+Copy local file myscr.sh to /usr/local/sbin on remote hosts.  $PROGRAM will
+wait for input, one host per line. Terminate input with
+.I ctrl-d.
+.\"-----------------------------------------
+.SH "SEE ALSO"
+.BR ssh (1),
+.BR ssh-agent (1),
+.BR ssh-add (1),
+.BR scp (1).
+.\"-----------------------------------------
+.SH AUTHOR
+Neil H. Watson, www.watson-wilson.ca, neil-NOSPAM-@watson-wilson.ca
+.\"-----------------------------------------
+.SH "LICENSE AND COPYING"
+Copyright 2007 Neil H. Watson
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details
+<http://www.gnu.org/licenses/>.
+EOF
+    exit
+}
+
+version(){
+    printf "$PROGRAM version $VERSION"
+}
+
+killagent(){
+    eval "$(ssh-agent -k)" 2>&1 1>/dev/null
+}
+
+error(){
+# Errors are sent to stderr
+
+    # This syslog action need only be used on hosts that have a running syslog
+    #logger -s -t $PROGRAM "$@, $STATUS $ERROR"
+    printf "Error: $@\n" 1>&2
+    usage
+    exit 1
+}
+
+validate(){
+    name=$1
+    shift
+    value=$@
+    if [[ -z $value ]]
+    then
+        error "Missing argument $name"
+
+    elif [[ $name = "To" ]] && [[ "0$put" -eq 1 ]] && [[ "0$force" -ne 1 ]]
+    then
+        for i in $BP
+        do
+            printf "$value" | grep "$i" > /dev/null
+            if [[ $? -eq 0 ]]
+            then
+                error "Potential dangerous 'put' to $value"
+            fi
+        done
+
+    elif [[ $name = "Remote command" ]] && [[ "0$force" -ne 1 ]]
+    then
+        for i in $BC
+        do
+            printf "$value" | grep "^$i " > /dev/null
+            if [[ $? -eq 0 ]]
+            then
+                error "Potential dangerous remote command: $value"
+            fi
+        done
+    fi
+}
+
+# get opts
+while test $# -gt 0
+do
+    case $1 in
+
+        # For each option
+        #-o)
+        #shift
+        #option="$1"
+        #;;
+        # Add custom options ABOVE the defaults below.
+
+        --recurse | --recurs | --recur | --recu | --rec | --rc | --r|\
+        -recurse | -recurs | -recur | -recu | -rec | -rc | -r)
+        recurse="-r"
+        ;;
+
+        --force | --forc | --for | --fo | --f |\
+        -force | -forc | -for | -fo | -f )
+        force=1
+        ;;
+
+        --man | --ma | --m |\
+        -man | -ma | -m )
+        man=1
+        # Read man command
+        mcmd="eval nroff -c -man | col | less"
+        ;;
+
+        --mman | --mma | --mm |\
+        -mman | -mma | -mm )
+        mman=1
+        ;;
+
+        --get | --ge | --g | -get | -ge | -g)
+        get=1
+        shift
+        from="$1"
+        shift
+        to="$1"
+        ;;
+
+        --credeantials | --cred | --cre | -c )
+	shift
+	cred_file="$1"
+ 	shift
+	;;
+
+        --put | --pu | --p | -put | -pu | -p)
+        put=1
+        shift
+        from="$1"
+        shift
+        to="$1"
+        ;;
+
+        --user | --use | --us |--u |\
+        -user | -use | -us |-u )
+        shift
+        u="$1@"
+        ;;
+
+        --save | --sav | --sa | --s |\
+        -save | -sav | -sa | -s )
+        shift
+        s="$1"
+        ;;
+
+        --version | --versio | --versi | --vers | --ver | --ve | --v |\
+        -version | -versio | -versi | -vers | -ver | -ve | -v)
+        version
+        exit 0
+        ;;
+
+        --help | --hel | --he | --h | --\? |\
+        -help | -hel | -he | -h | -\?)
+        usage
+        exit 0
+        ;;
+
+        -*)
+        error "Unrecognized option: $1"
+        ;;
+
+        *)
+        break
+        ;;
+    esac
+    shift
+done
+
+# Left over arguments are the remote command
+rcmd="$@"
+
+# Validate arguments 
+if [ "0$man" -eq 1 ] && [ "0$mman" -eq 1 ]
+then
+    error "-m and --m are mutually exclusive"
+elif [ "0$man" -eq 1 ] || [ "0$mman" -eq 1 ]
+then
+    man
+fi
+if [ "0$get" -eq 1 ] || [ "0$put" -eq 1 ]
+then
+    validate "From" $from
+    validate "To" $to
+else
+    validate "Remote command" $rcmd
+fi
+
+# get hosts from stdin
+while read host
+do
+    case $host in
+
+        \#*)
+# Skip lines that begin with a comment '#'
+        ;;
+        
+        *)
+# remove lines with trailing comments
+        host=$(printf "$host" | sed -e s/#.*$//g)
+        HOSTS="$HOSTS $host"
+        ;;
+
+    esac
+done
+
+# Use ssh-agent for pass-phrase storage
+if [[ -f $(which ssh-agent) -a "x$SSH_AGENT_PID" = "x" ]]
+then
+
+# This prevents ask_passpw from being invoked.
+    OLDDISPLAY=$DISPLAY
+    unset DISPLAY
+
+# Kill ssh-agent on any exit
+    trap "killagent; exit" EXIT
+
+# Load private key into ssh-agent but, only for 5 minutes
+    eval "$(ssh-agent -t 300)" 2>&1 1>/dev/null
+
+# Add private keys to ssh-agent
+    ssh-add $cred_file
+
+# Reset DISPLAY
+    export DISPLAY=$OLDDISPLAY
+fi
+
+# set -x
+# Main matter.  Perform tasks for each host in list
+for h in $HOSTS
+do
+
+    # Set env variable for hostname.  This is useful for gather the same
+    # information but saving it by hostname.
+    export H=${h}
+
+    # Remote command if from and to are empty
+    if [ -z "$from" ] && [ -z "$to"  ]
+    then
+        if [ -z "$s" ]
+        then
+            eval ssh -t ${u}$h "$rcmd" 
+        else
+            eval ssh -t ${u}$h "$rcmd" > ${h}-$s
+        fi
+
+    # Else we want to copy
+    else
+        if [ "0$get" -eq 1 ]
+        then
+            eval scp $recurse ${u}${h}:${from} ${to}-${h}
+        elif [ "0$put" -eq 1 ]
+        then
+            eval scp $recurse $from ${u}${h}:${to}
+        fi
+    fi
+done
+#set +x
+exit 0
