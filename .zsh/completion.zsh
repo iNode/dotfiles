@@ -1,6 +1,6 @@
 # Hosts to use for completion (see later zstyle)
 hosts=(`hostname` `awk '!/^#|^$/{print $2}' /etc/hosts | sort | uniq`)
-
+fpath=(~/.zsh/completions/ $fpath)
 # Setup new style completion system. To see examples of the old style (compctl
 # based) programmable completion, check Misc/compctl-examples in the zsh
 # distribution.
