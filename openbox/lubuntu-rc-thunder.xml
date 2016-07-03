@@ -1177,15 +1177,12 @@ http://openbox.org/wiki/Help:Actions - reference to actions
 
     <application name="emacs">
       <desktop>2</desktop>
+      <focus>yes</focus>
       <fullscreen>yes</fullscreen>
     </application>
 
     <application name="transmission-gtk">
       <desktop>4</desktop>
-    </application>
-
-    <application name="skype">
-      <desktop>6</desktop>
     </application>
 
     <application name="skype">
