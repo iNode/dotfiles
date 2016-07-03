@@ -1158,6 +1158,15 @@ http://openbox.org/wiki/Help:Actions - reference to actions
       <maximized>true</maximized>
     </application>
     -->
+    <application name="lxterminal">
+      <desktop>1</desktop>
+      <position>
+        <x>-0</x>
+        <y>0</y>
+      </position>
+      <maximized>vertical</maximized>
+    </application>
+
     <application class="Firefox">
       <desktop>3</desktop>
     </application>
