@@ -572,9 +572,14 @@ http://openbox.org/wiki/Help:Actions - reference to actions
         <command>lxpanelctl run</command>
       </action>
     </keybind>
+    <keybind key="W-A-r">
+      <action name="Execute">
+        <command>dmenu_run</command>
+      </action>
+    </keybind>
     <keybind key="W-S-r">
       <action name="Execute">
-        <command>far</command>
+        <command>~/bin/far</command>
       </action>
     </keybind>
     <!-- Keybindings for running Menu from Lxpanel -->
