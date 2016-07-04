@@ -285,6 +285,8 @@
       </action>
     </keybind>
 
+    <xi:include href="keyboard-work.xml"/>
+
     <keybind key="W-a">
       <!-- { -->
       <keybind key="c">
