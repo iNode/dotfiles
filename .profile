@@ -20,6 +20,9 @@ export PAGER="less"
 export PATH=$PATH:~/bin
 export AUTOLS=true
 
+# prevent global package installation
+export PIP_REQUIRE_VIRTUALENV=true
+
 if [ -e ~/.profile.local ]
 then
     source ~/.profile.local
