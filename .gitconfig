@@ -37,7 +37,8 @@
   # git forkgiff parent branch
   forkdiff = !bash -c 'git diff $(git merge-base "$1" "$2") "$2" "${@: 3}" ' -
   sh = show --color
-
+  # add all changes except whitespace changes
+  addnw= !sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'
 
 [push]
 	default = simple
