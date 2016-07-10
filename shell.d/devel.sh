@@ -133,3 +133,7 @@ p4log () {
     # provide ... argument for whole curren directory
     p4 changes "$1" | awk '{print $2}' | xargs -i p4 describe -du {} | less -F
 }
+
+gitd () { # run git commands for dotfiles dir
+    git -C ~/dotfiles "$@"
+}
