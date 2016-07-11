@@ -137,3 +137,21 @@ p4log () {
 gitd () { # run git commands for dotfiles dir
     git -C ~/dotfiles "$@"
 }
+
+p4co () {
+    # provide ... argument for whole curren directory
+    for f in "@$"; do
+        p4 open "$f"
+        p4 revert "$f"
+    done
+}
+
+p4shelve() { p4 shelve "$@"; p4 revert "$@" }
+
+
+grep_nascii() {
+    # grep files with non ascii characters
+    # ag "[\x80-\xFF]" "$@"
+    # grep --color='auto' -R -P -n '[^\x00-\x7F]' ../../
+    grep --color='auto' -P -n '[^\x00-\xFF]' "$@"
+
