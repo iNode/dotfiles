@@ -154,4 +154,4 @@ grep_nascii() {
     # ag "[\x80-\xFF]" "$@"
     # grep --color='auto' -R -P -n '[^\x00-\x7F]' ../../
     grep --color='auto' -P -n '[^\x00-\xFF]' "$@"
-
+}
