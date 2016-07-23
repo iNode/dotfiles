@@ -27,3 +27,18 @@ atree()
     # usage: find . -type d | atree
     awk -F "/" '{for (i=1; i<=NF-2; i++){printf "| "} print "|____"$NF}'
 }
+
+if fourmi -h 2>&1 1>/dev/null; then
+    alias fm=fourmi
+    cpdf() {
+        location=${1-~/books/}
+        fn=$(find $location -type f -name "*.pdf" | fm);
+        [ ! -z $fn ] && evince "$fn" 2>/dev/null
+    }
+
+    ckill () {
+        sig=${1-TERM}
+        pid=$(ps aux | fm | awk '{ print $2 }')
+        [ ! -z "$pid" ] && kill $sig $pid
+    }
+fi
