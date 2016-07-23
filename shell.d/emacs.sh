@@ -21,7 +21,11 @@ if [ "$(which emacs)" ]; then
             tmux select-window -t emacs
         fi
         if [ ! -z "$DISPLAY" ]; then
-            ~/bin/wmctrl-switch-to emacs emacs.Emacs
+            if [ "$(which emacs-snapshot)" ]; then
+                ~/bin/wmctrl-switch-to emacs-snapshot emacs-snapshot.Emacs
+            else
+                ~/bin/wmctrl-switch-to emacs emacs.Emacs
+            fi
         fi
     }
     ediff() {
@@ -43,6 +47,10 @@ if [ "$(which emacs)" ]; then
       line=$(echo "$1"| perl -pe 's/.*:(\d+):?/$1/')
       ee "$(ffip "$fn"):$line:"
     }
+
+    # auto fix typos
+    alias emasc=emacs
+    alias emcas=emacs
 
 fi
 
