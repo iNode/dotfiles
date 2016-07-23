@@ -2,8 +2,6 @@
 
 svndiff () { svn diff "${@}" | colordiff | less -R -E }
 hgdiff () { hg diff "${@}" | colordiff | less -R -E }
-eisi () { aptitude search \~i$* }
-eisd () { aptitude search \~d$* }
 
 help()
 { # help for builtins commands
@@ -142,18 +140,6 @@ function qum() {
 #        echo $um
         sudo umount $um
     fi
-}
-
-# usage: awkc 1,2 instead of awk '{print $1,$2}'
-function awkc() {
-    p=\$$( echo $1 | sed 's/,/,\$/g' )
-    shift
-    eval "awk '{ print $p }'" $*
-}
-
-# Sum first column, example: awkc 1 file | awks
-function awks() {
-    awk 'BEGIN{sum=0} {sum+=$1} END{print sum}' $*
 }
 
 ## file manager options

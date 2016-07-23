@@ -44,9 +44,25 @@ shead () {
     head -n"$l" "$2"
 }
 
+# Sum first column, example: awkc 1 file | awks
+function awks() {
+    awk 'BEGIN{sum=0} {sum+=$1} END{print sum}' $*
+}
+
+# Small shortcut for awk '{print $N}'. It is awp N for now. Literally.
+awp() {
+    awk "{print \$$1}"
+}
+
 # Prints columns 1 2 3 ... n.
 slit() {
   awk "{ print ${(j:,:):-\$${^@}} }"
+}
+
+# awk to print psecified columns
+# usage: awkc 1 2 instead of awk '{print $1,$2}'
+function awkc() {
+    slit "$@"
 }
 
 alisten() {
@@ -60,4 +76,11 @@ alisten() {
 genpasswd() {
     local len=${1:-20}
     tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${len} | xargs
+}
+
+purgeoldkernels() {
+    # Purges old Ubuntu kernels
+    # http://askubuntu.com/a/254585
+
+    echo $(dpkg --list | grep linux-image | awk '{ print $2 }' | sort -V | sed -n '/'`uname -r`'/q;p') $(dpkg --list | grep linux-headers | awk '{ print $2 }' | sort -V | sed -n '/'"$(uname -r | sed "s/\([0-9.-]*\)-\([^0-9]\+\)/\1/")"'/q;p') | xargs sudo apt-get -y purge
 }
