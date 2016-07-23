@@ -37,4 +37,9 @@ then
     alias -s xls=libreoffice
     alias -s docx=libreoffice
     alias -s xlsx=libreoffice
+
+    # Tool related aliases
+    if which pygmentize > /dev/null; then
+        alias catc="pygmentize -f terminal256 -O style=native -g"
+    fi
 fi
