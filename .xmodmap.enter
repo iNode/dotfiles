@@ -1,9 +1,9 @@
 ! rempap Return to RAlt RControl and RControl to Enter
 ! remove mod1 = Alt_R
-keycode 108 = Return
+! keycode 108 = Return
 !
 remove Control = Control_R
 keysym Control_R = Return
 ! return
-keycode 36 = Control_R
-add Control = Control_R
+! keycode 36 = Control_R
+! add Control = Control_R
