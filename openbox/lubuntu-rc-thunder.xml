@@ -194,18 +194,18 @@ http://openbox.org/wiki/Help:Actions - reference to actions
         <wrap>no</wrap>
       </action>
     </keybind>
-    <keybind key="C-A-Up">
-      <action name="GoToDesktop">
-        <to>up</to>
-        <wrap>no</wrap>
-      </action>
-    </keybind>
-    <keybind key="C-A-Down">
-      <action name="GoToDesktop">
-        <to>down</to>
-        <wrap>no</wrap>
-      </action>
-    </keybind>
+    <!-- <keybind key="C-A-Up"> -->
+    <!--   <action name="GoToDesktop"> -->
+    <!--     <to>up</to> -->
+    <!--     <wrap>no</wrap> -->
+    <!--   </action> -->
+    <!-- </keybind> -->
+    <!-- <keybind key="C-A-Down"> -->
+    <!--   <action name="GoToDesktop"> -->
+    <!--     <to>down</to> -->
+    <!--     <wrap>no</wrap> -->
+    <!--   </action> -->
+    <!-- </keybind> -->
     <keybind key="W-S-Left">
       <action name="SendToDesktop">
         <to>left</to>
@@ -343,6 +343,17 @@ http://openbox.org/wiki/Help:Actions - reference to actions
         <keybind key="t">
           <action name="ToggleAlwaysOnTop"/>
         </keybind>
+      </keybind>
+
+      <keybind key="m">
+        <!-- minimize window -->
+        <action name="Execute">
+          <action name="Iconify"/>
+          <action name="Shade"/>
+          <action name="FocusToBottom"/>
+          <action name="Unfocus"/>
+          <action name="Lower"/>
+        </action>
       </keybind>
 
       <keybind key="n">
@@ -583,11 +594,11 @@ http://openbox.org/wiki/Help:Actions - reference to actions
       </action>
     </keybind>
     <!-- Keybindings for running Menu from Lxpanel -->
-    <keybind key="A-F1">
-      <action name="Execute">
-        <command>lxpanelctl menu</command>
-      </action>
-    </keybind>
+    <!-- <keybind key="A-F1"> -->
+    <!--   <action name="Execute"> -->
+    <!--     <command>lxpanelctl menu</command> -->
+    <!--   </action> -->
+    <!-- </keybind> -->
     <keybind key="C-Escape">
       <action name="Execute">
         <command>lxpanelctl menu</command>
@@ -604,11 +615,11 @@ http://openbox.org/wiki/Help:Actions - reference to actions
       </action>
     </keybind>
     <!-- Fast access to Terminal -->
-    <keybind key="C-A-T">
-      <action name="Execute">
-        <command>x-terminal-emulator</command>
-      </action>
-    </keybind>
+    <!-- <keybind key="C-A-T"> -->
+    <!--   <action name="Execute"> -->
+    <!--     <command>x-terminal-emulator</command> -->
+    <!--   </action> -->
+    <!-- </keybind> -->
     <!-- Launch a filemanager on Ctrl + Alt + D-->
     <keybind key="C-A-D">
       <action name="Execute">
@@ -757,16 +768,16 @@ http://openbox.org/wiki/Help:Actions - reference to actions
           <to>next</to>
         </action>
       </mousebind>
-      <mousebind button="C-A-Up" action="Click">
-        <action name="GoToDesktop">
-          <to>previous</to>
-        </action>
-      </mousebind>
-      <mousebind button="C-A-Down" action="Click">
-        <action name="GoToDesktop">
-          <to>next</to>
-        </action>
-      </mousebind>
+      <!-- <mousebind button="C-A-Up" action="Click"> -->
+      <!--   <action name="GoToDesktop"> -->
+      <!--     <to>previous</to> -->
+      <!--   </action> -->
+      <!-- </mousebind> -->
+      <!-- <mousebind button="C-A-Down" action="Click"> -->
+      <!--   <action name="GoToDesktop"> -->
+      <!--     <to>next</to> -->
+      <!--   </action> -->
+      <!-- </mousebind> -->
     </context>
     <context name="Titlebar">
       <mousebind button="Left" action="Press">
@@ -999,12 +1010,12 @@ http://openbox.org/wiki/Help:Actions - reference to actions
       <mousebind button="A-Down" action="Click">
         <action name="DesktopNext"/>
       </mousebind>
-      <mousebind button="C-A-Up" action="Click">
-        <action name="DesktopPrevious"/>
-      </mousebind>
-      <mousebind button="C-A-Down" action="Click">
-        <action name="DesktopNext"/>
-      </mousebind>
+      <!-- <mousebind button="C-A-Up" action="Click"> -->
+      <!--   <action name="DesktopPrevious"/> -->
+      <!-- </mousebind> -->
+      <!-- <mousebind button="C-A-Down" action="Click"> -->
+      <!--   <action name="DesktopNext"/> -->
+      <!-- </mousebind> -->
       <mousebind button="Left" action="Press">
         <action name="Focus"/>
         <action name="Raise"/>
