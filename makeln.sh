@@ -5,7 +5,7 @@ dir=`dirname $0`
 cd $dir
 dir=`pwd`
 
-my_pattern="(^\.git$|.swp|\.\/$|\.$|makeln.sh|scripts)"
+my_pattern="(^\.git$|.swp|\.\/$|\.$|makeln.sh|scripts|init.sh|packages)"
 if [ $# -eq 1 -a "$1" == "-d" ]; then
     dry_run=1
 else
