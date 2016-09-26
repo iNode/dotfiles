@@ -24,3 +24,15 @@ then
     alias acs='nocorrect apt-cache search '	# also in descriptions
     alias dq='noglob dpkg-query '
 fi
+
+apt-file-remote()
+{
+    pattern="$1"
+    release="$2"
+    if [ -z "$release" ]; then
+        release="$(lsb_release -c -s)"
+    fi
+
+    wget "http://packages.ubuntu.com/search?searchon=contents&keywords=$pattern&mode=exactfilename&suite=$release" -qO- | \
+        html2text -width 999 | grep --color=never '^/'
+}
