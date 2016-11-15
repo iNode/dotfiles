@@ -12,7 +12,7 @@ setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history
 setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
 
 setopt   correctall autocd recexact longlistjobs
-setopt   autoresume histignoredups pushdsilent noclobber
+setopt   autoresume histignoredups pushdsilent clobber
 setopt   autopushd pushdminus extendedglob rcquotes mailwarning
 unsetopt bgnice autoparamslash
 setopt  No_Beep
