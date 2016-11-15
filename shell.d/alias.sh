@@ -12,7 +12,16 @@ fi
 alias df='df -h'
 alias du='du -h'
 alias dum='du -h --max-depth=1'
-alias dumk='rm dum; du -smc * > dum'
+
+function dumk() {
+    # alias dumk='rm dum; du -smc * > dum'
+
+    filename=$(mktemp `pwd`/dum.XXX)
+    trap "rm -f $filename" TERM
+    du -smc * > $filename
+    mv $filename dum
+}
+
 alias dums='cat dum | sort -n'
 alias ps='ps -e'
 alias cal='cal -m'
