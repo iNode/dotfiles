@@ -2,7 +2,17 @@ ffip()
 {
     # find file in project
     # when call without arg returns root project path
-    # root of project determined by .git/.hg/etc. folder
+    # root of project determined by ROOT_PROJECT env varable or .git/.hg/.projectroot/etc. folder
+    if [ -n "$PROJECT_ROOT" ]; then
+        cd $PROJECT_ROOT
+        if [ "x$1" != "x" ];
+        then
+            find "$(pwd)" -iname "$@"
+            break
+        fi
+        pwd
+        return
+    fi
     pattern="-d .git -o -d .hg -o -d .projectroot -o -f Cargo.toml -o -f README.md -o -d .idea"
     curdir=$(pwd)
     while [ "x$(pwd)" != "x/" ]; do
