@@ -128,7 +128,11 @@ autoenv_source() {
   allexport=$(set +o | grep allexport)
   set -a
   source "$1"
-  eval "$allexport"
+  if [ -n "$allexport" ]; then
+      eval "$allexport"
+  else
+      set +a
+  fi
 }
 
 autoenv_cd()
