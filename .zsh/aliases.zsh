@@ -55,4 +55,9 @@ alias -s htm=sensible-browser
 alias -s avi=vlc
 alias -s mp4=vlc
 
+# fasd specific aliases
+alias v='f -e ee' # quick opening files with editor
+alias m='f -e castnow' # quick opening files with castnow
+alias o='a -e xdg-open' # quick opening files with xdg-open
+
 # vim: set noet ts=4 tw=80 syntax=zsh
