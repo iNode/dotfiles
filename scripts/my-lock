@@ -1,0 +1,7 @@
+#!/bin/bash
+
+emacsclient -n -e '(org-clock-out)'
+#xscreensaver-command -activate
+#xscreensaver-command -lock
+light-locker-command -l
+# ~/bin/skypeapi.py "SET USERSTATUS AWAY"
