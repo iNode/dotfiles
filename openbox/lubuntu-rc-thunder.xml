@@ -335,6 +335,14 @@ http://openbox.org/wiki/Help:Actions - reference to actions
         </action>
       </keybind>
 
+      <keybind key="h">
+        <action name="Execute">
+          <!-- make a screenshot with selection -->
+          <command>/usr/bin/shutter -s
+          </command>
+        </action>
+      </keybind>
+
       <!-- LAYERS -->
       <keybind key="l">
         <keybind key="n">
@@ -503,9 +511,26 @@ http://openbox.org/wiki/Help:Actions - reference to actions
       <!-- } -->
     </keybind>
 
+    <keybind key="W-n">
+      <keybind key="w">
+        <action name="Execute">
+          <command>rofi -show window</command>
+        </action>
+      </keybind>
+      <keybind key="s">
+        <action name="Execute">
+          <command>rofi -show ssh</command>
+        </action>
+      </keybind>
+      <keybind key="r">
+        <action name="Execute">
+          <command>rofi -show run</command>
+        </action>
+      </keybind>
+    </keybind>
+
     <keybind key="W-z">
         <action name="Execute">
-          <!-- to be used after keyboard reconnect-->
           <command>~/bin/cut-date</command>
         </action>
     </keybind>
