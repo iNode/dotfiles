@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# common
+apt install emacs vim zsh tmux mosh autossh openssh-server tree
+# devel
+apt install git mercurial ack-grep cscope ipython silversearcher-ag exuberant-ctags
+# review: cgvg moap
+# UI/desktop
+apt install suckless-tools dzen2 sdcv xclip xbindkeys vlc mc keepassx2 xautomation shutter rofi
+# apt install suckless-toolse dzen2 sdcv xclip git mercurial git-core ack cscope cscope-el ipython xbindkeys vlc mc keepassx silversearcher-ag
+# Office
+# apt install libreoffice
+# desktop
+# apt install pavucontrol
+
+# troubleshooting
+# apt install linux-tools-common linux-tools-generic linux-tools-`uname -r` strace ltrace ntrace tcpdump nmap ngrep
+# kernel troubleshooting / measurements
+# apt install trace-cmd kernelshark
+
+# binary files analysis
+# apt install radare2
+
+# 3rd party software
+# apt google-chrome-stable dropbox
+# web: skype

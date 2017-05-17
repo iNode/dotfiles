@@ -1,0 +1,25 @@
+#!/bin/sh
+
+if python3 -V 2>/dev/null 1>/dev/null; then
+   if [ ! -d ~/pyenv3 ]; then
+      pyvenv ~/pyenv3
+      . ~/pyenv3/bin/activate
+   fi
+   # common tools
+   pip install -U httpie ipython docker-compose pip invoke pexpect defaultenv
+   # devel tools
+   pip install -U bs4 pylint pyflakes sh plumbum
+   # webdev & telegram
+   pip install -U requests flask  bottle telebot sqlite3 sqlalchemy
+
+   # configuration management tools
+   pip install -U cdist
+
+   # noncompatible
+   # ansible cuisine goodplay
+   # review
+   # xlrd
+
+else
+    echo python3 is not installed skiping packages
+fi

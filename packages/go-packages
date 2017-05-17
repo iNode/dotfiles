@@ -1,0 +1,43 @@
+#!/bin/sh
+
+if go version 2>/dev/null 1>/dev/null; then
+    # go tools to use for golang development
+    go get -u -v github.com/golang/lint/golint
+    go get -u -v github.com/lukehoban/go-outline
+    go get -u -v github.com/newhook/go-symbols
+    go get -u -v github.com/nsf/gocode
+    go get -u -v github.com/rogpeppe/godef
+    go get -u -v github.com/tpng/gopkgs
+    go get -u -v golang.org/x/tools/cmd/gorename
+    go get -u -v golang.org/x/tools/cmd/guru
+    go get -u -v sourcegraph.com/sqs/goreturns
+    # vendoring tools
+    go get -u -v github.com/filosottile/gvt
+    go get -u -v github.com/golang/dep
+    # go tools for DevOps
+    # simplified foreman implementation on go
+    go get -u -v github.com/ddollar/forego
+    # go get github.com/mitchellh/packer # for image creation
+    # https://github.com/hashicorp/consul - service discovery, health checking, k/v storage, multi DC
+    # input fuzzy match as percol just on go
+    go get -u -v github.com/zoncoen/fourmi
+    # monitor file changes and perform actions
+    go get -u -v github.com/cespare/reflex
+    go get -u -v github.com/maurice/nanny
+    # TODO: compare these packages
+    # provide webhooks to automate something
+    go get -u -v github.com/adnanh/webhook
+    # simple editor
+    go get -u -v github.com/zyedidia/micro/...
+    # colaborative code editing
+    # go get github.com/jeffail/leaps/cmd/...
+    # google drive
+    go get -u -v github.com/prasmussen/gdrive
+    go get -u github.com/odeke-em/drive/cmd/drive
+    # go implementation of foreman
+    go get -u -v github.com/mattn/goreman
+    # meshbird vpn
+    go get -u -v github.com/meshbird/meshbird
+else
+    echo golang is not installed skiping packages
+fi
