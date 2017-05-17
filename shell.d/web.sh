@@ -16,5 +16,9 @@ zen () {
     echo "\n$(curl https://api.github.com/zen 2>/dev/null)\n"
 }
 
+cheat () {
+    curl http://cheat.sh/$1
+}
+
 alias excuses='echo `telnet bofh.jeffballard.us 666 2>/dev/null` |grep --color -o "Your excuse is:.*$"'
 alias funfacts='wget http://www.randomfunfacts.com -O - 2>/dev/null | grep \<strong\> | sed "s;^.*<i>\(.*\)</i>.*$;\1;";'
