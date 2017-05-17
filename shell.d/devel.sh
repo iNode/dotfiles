@@ -66,6 +66,9 @@ cdr ()
     cd "$(ffip "$@")";
 }
 
+# ag + less function
+agl () { ag $1 --color | less -R }
+
 # cat to file and make it executable
 scat () { cat > "$1"; chmod +x "$1"; }
 
