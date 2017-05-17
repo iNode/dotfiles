@@ -1,3 +1,24 @@
+" use vim not vi
+set nocompatible
+
+" enable syntax and plugins
+syntax enable
+filetype plugin on
+set relativenumber
+" set spell
+
+" Search down into subfolders
+" Provides tab-completion for all file-related tasks
+set path+=**
+" Display all matching files when we tab complete
+set wildmenu
+" use :find *file*name for fuzzy finding and in gf (goto file) and ^Wf (goto
+" file next window)
+" :ls show buffers list
+"
+" ^]
+" g^]
+" |ins-completion|
 
 execute pathogen#infect()
 execute pathogen#infect('bundle/{}', '~/.vim/bundle/{}')
