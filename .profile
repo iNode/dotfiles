@@ -5,7 +5,7 @@ ulimit -c 10000
 
 # Locale specific
 export LANG="ru_RU.UTF-8"
-export LC_ALL=""
+export LC_ALL="en_US.UTF-8"
 export LC_MESSAGES="POSIX"
 
 # Shell specific
