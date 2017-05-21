@@ -24,6 +24,8 @@ if go version 2>/dev/null 1>/dev/null; then
     # monitor file changes and perform actions
     go get -u -v github.com/cespare/reflex
     go get -u -v github.com/maurice/nanny
+    # alternative to ag silversearch
+    go get -u -v github.com/svent/sift
     # TODO: compare these packages
     # provide webhooks to automate something
     go get -u -v github.com/adnanh/webhook
