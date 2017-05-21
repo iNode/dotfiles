@@ -8,15 +8,17 @@ if python3 -V 2>/dev/null 1>/dev/null; then
    # common tools
    pip install -U httpie ipython docker-compose pip invoke pexpect defaultenv
    # devel tools
-   pip install -U bs4 pylint pyflakes sh plumbum
+   pip install -U bs4 pylint pyflakes sh plumbum pep8
    # webdev & telegram
-   pip install -U requests flask  bottle telebot sqlite3 sqlalchemy
+   pip install -U requests flask bottle telebot sqlite3 sqlalchemy
 
    # configuration management tools
-   pip install -U cdist
+   # pip install -U cdist
 
    # noncompatible
-   # ansible cuisine goodplay
+   # ansible 2.2+ it tech preview with some support for python3
+   pip install -U ansible
+   # cuisine goodplay
    # review
    # xlrd
 
