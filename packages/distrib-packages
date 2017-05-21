@@ -3,7 +3,7 @@
 # common
 apt install emacs vim zsh tmux mosh autossh openssh-server tree
 # devel
-apt install git mercurial ack-grep cscope ipython silversearcher-ag exuberant-ctags
+apt install git mercurial ack-grep cscope ipython silversearcher-ag exuberant-ctags python3-dev upx
 # review: cgvg moap
 # UI/desktop
 apt install suckless-tools dzen2 sdcv xclip xbindkeys vlc mc keepassx2 xautomation shutter rofi
