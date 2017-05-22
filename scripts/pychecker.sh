@@ -1,8 +1,8 @@
 #!/bin/sh
 # check python files
-# requires pyflakes and pep8 packages
+# requires pylint and pep8 packages
 
-pyflakes $1
-echo "## pyflakes above, pep8 below ##"
+pylint $1
+echo "## pylint above, pep8 below ##"
 pep8 --repeat $1
 
