@@ -13,18 +13,16 @@ ffip()
         pwd
         return
     fi
-    pattern="-d .git -o -d .hg -o -d .projectroot -o -f Cargo.toml -o -f README.md -o -d .idea"
+    pattern="-d .git -o -d .hg -o -d .projectroot -o -f Cargo.toml -o -f README.md -o -d .idea -o -d .projectile"
     curdir=$(pwd)
     while [ "x$(pwd)" != "x/" ]; do
-        if [ $pattern ]
-        then
-            if [ "x$1" != "x" ];
-            then
+        if [ $pattern ]; then
+            if [ "x$1" != "x" ]; then
                 find "$(pwd)" -iname "$@"
-                break
+            else
+                pwd
             fi
-            pwd
-            break;
+            break
         else
             cd ..
         fi
