@@ -37,3 +37,6 @@ then
     source ~/.profile.$hn
 fi
 
+# Local Variables:
+# mode: sh
+# End:
