@@ -65,7 +65,10 @@ cdr ()
 }
 
 # ag + less function
-agl () { ag $1 --color | less -R }
+agl () { ag --color "$@" | less -R }
+
+# sift + less function
+siftl () { sift --color "$@" | less -R }
 
 # cat to file and make it executable
 scat () { cat > "$1"; chmod +x "$1"; }
@@ -93,6 +96,15 @@ wait_host() {
     wait_success ping -q -w 1 "$1"
 }
 
+if which colordiff 1>/dev/null; then
+    alias diff=colordiff
+else
+    alias colordiff=cat
+fi
+
+
+svndiff () { svn diff "${@}" | colordiff | less -R -E }
+hgdiff () { hg diff "${@}" | colordiff | less -R -E }
 
 rdiff() {
     if [ $# -lt 3 ]; then

@@ -1,27 +1,13 @@
 #!/bin/zsh
 
-svndiff () { svn diff "${@}" | colordiff | less -R -E }
-hgdiff () { hg diff "${@}" | colordiff | less -R -E }
-
 help()
 { # help for builtins commands
     man zshbuiltins | sed -ne "/^       $1 /,/^\$/{s/       //; p}"
 }
 
-translate() {
-    wget -qO- "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=$1&langpair=${2:-en}|${3:-ru}" | sed -E -n 's/[[:alnum:]": {}]+"translatedText":"([^"]+)".*/\1/p';
-    echo ''
-    return 0;
-}
-
-wanip() {
-  wget -q -O - checkip.dyndns.com/ | awk '{print $6}'| sed 's/<.*>//'
-}
-
 cd_ls() {
     pushd "$1"; [ "x$AUTOLS" = "xtrue" ] &&  ls -lthr
 }
-
 
 make_dir_complete() {
     local aliasname=$1
@@ -43,18 +29,6 @@ vp () {
     cp $1 /tmp/$FN && cd /tmp &&
 	pdftohtml $FN $FN.html >/dev/null && elinks $FN.html ; rm /tmp/$FN*
     )
-}
-
-# allow to see disconnection time
-myssh () {
-    if [ "x$TMUX" != "x" ]; then
-        echo try to rename window
-        tmux rename-window $1
-    else
-        echo no tmux
-    fi
-
-    \ssh $*; date
 }
 
 # allow do ssc ssh stop

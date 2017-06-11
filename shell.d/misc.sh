@@ -1,5 +1,4 @@
 # Aliases for applications
-alias diff="colordiff"
 alias miso='mkisofs -joliet-long -jcharset utf8 -r '
 alias wxchm="LANG=ru_RU.CP1251 xchm"
 

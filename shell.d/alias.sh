@@ -69,16 +69,28 @@ alias S='sudo'
 alias mnt='S mount'
 alias mntl='S mount -o loop'
 alias umnt='S umount'
-alias mount='mount |column -t'
+alias cmount='mount |column -t'
 
 alias grab='S chown "${USER}" --recursive'
 alias rgrab="S chown root --recursive"
+
+# allow to see disconnection time
+myssh () {
+    if [ "x$TMUX" != "x" -a "x$NORENAME" = "x" ]; then
+        echo try to rename window
+        tmux rename-window $1
+    else
+	# do nothing for now
+    fi
+
+    \ssh $*; date
+}
 alias ssh="myssh"
 
 # temporary ssh connection without any addtional checks or logs
 alias ssht="sshrc -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oLogLevel=quiet "
 # force ssh to work without checking host key at all
-alias sshf='sshrc -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+alias sshf='sshrc -oUserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 
 alias pst='pstree -Ap | less'
 
@@ -87,7 +99,7 @@ alias dirs='dirs -v'
 alias c="cd -"
 alias ..='cd ..'
 alias ...='cd ../../'
-cdd() { cd "$(dirname "$1")"; }
+cdd() { cd "$(dirname \"$1\")"; }
 
 # vim based color less
 if [ -x /usr/share/vim/vimcurrent/macros/less.sh ]; then
