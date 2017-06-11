@@ -1,18 +1,4 @@
-
 source ~/.profile
-
-export PYTHONDOCS="/usr/share/doc/python2.5/html"
-
-# Midnight Commander chdir enhancement"
-#if [ -f /usr/share/mc/mc.gentoo ]; then
-# . /usr/share/mc/mc.gentoo
-#fi
-
-# for lftp ls dir's command
-#set -x
-#
-#[ -x /usr/bin/most ] && export PAGER=most
-#[ -x /usr/bin/most ] && alias more='most' && alias less='most'
 
 expand_aliases=1
 
@@ -74,6 +60,19 @@ then
     export SYSTYPE="debian"
 fi
 
+# support for emacs' tramp
+if [ "x$TERM" = "xdumb" -o "x$winid" != "x" ]
+then
+  unsetopt zle
+  unsetopt prompt_cr
+  unsetopt prompt_subst
+  unfunction precmd 2>/dev/null
+  unfunction preexec 2>/dev/null
+  unalias ls 2>/dev/null
+  PS1='$ '
+  return
+fi
+
 ## smart urls
 autoload -U url-quote-magic
 zle -N self-insert url-quote-magic
@@ -87,19 +86,6 @@ source ~/.zsh/completion.zsh
 
 # Load binds
 source ~/.zsh/keybind.zsh
-
-# support for emacs' tramp
-if [ "x$TERM" = "xdumb" -o "x$winid" != "x" ]
-then
-  unsetopt zle
-  unsetopt prompt_cr
-  unsetopt prompt_subst
-  unfunction precmd 2>/dev/null
-  unfunction preexec 2>/dev/null
-  unalias ls 2>/dev/null
-  PS1='$ '
-  return
-fi
 
 setopt APPEND_HISTORY # adds history
 setopt INC_APPEND_HISTORY SHARE_HISTORY # adds history incrementally and share it across sessions
@@ -134,15 +120,6 @@ src ()
 
 command -v fix_path &>/dev/null && fix_path
 
-#precmd()
-#{
-#    [[ -t 1 ]] || return case $TERM in
-#	*xterm*|rxvt|(dt|k|E)term*) print -Pn "\e]0;[%~] %m\a" ;;
-#	screen) print -Pn "\ek[%~]\e\\" && print -Pn "\e]0;[%~] %m (screen)\a" ;;
-#    esac
-#    setrprompt
-#}
-
 preexec()
 {
     [[ -t 1 ]] || return
@@ -154,7 +131,23 @@ preexec()
 }
 
 
-ve=/usr/local/bin/virtualenvwrapper.sh
-test -e $ve && source $ve
+ve=/usr/share/virtualenvwrapper/virtualenvwrapper.sh
+test -r $ve && source $ve
+
+# init fasd
+if which fasd &>/dev/null; then
+	eval "$(fasd --init auto)"
+fi
+
+if [ -r "/etc/zsh_command_not_found" ]; then
+    source /etc/zsh_command_not_found
+fi
+
+if which direnv &>/dev/null; then
+    eval "$(direnv hook zsh)"
+fi
 
 # vim: set noet ts=4 tw=80 syntax=zsh :
+# Local Variables:
+# mode: sh
+# End:
