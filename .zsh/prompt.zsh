@@ -1,20 +1,4 @@
 #setopt extended_glob
-#
-#preexec () {
-#    if [[ "$TERM" == "screen" ]]; then
-#        local CMD=${1[(wr)^(*=*|sudo|-*)]}
-#        echo -n "\ek$CMD\e\\"
-#    fi
-#
-#    if [[ "$TERM" == "xterm" ]]; then
-#        print -Pn "\e]0;$1\a"
-#    fi
-#
-#    if [[ "$TERM" == "rxvt" ]]; then
-#        print -Pn "\e]0;$1\a"
-#    fi
-#
-#}
 
 prompt_inode_help () {
     cat <<'EOF'
@@ -69,10 +53,10 @@ prompt_inode_setup () {
     # smile signal last command result
     # export PS1="%(?.$cgreen✓ :%) .$cred✗ :( )$base_prompt"
     export PS1="%(?.${cgreen}v :%) .${cred}x :( )$base_prompt"
-
-    # RPROMPT='$(parse_git_branch)'
-    # RPROMPT="$cgreen%B%*%b"
 }
 
 prompt_inode_setup "$@"
 # vim: set noet ts=4 tw=80 syntax=zsh:
+# Local Variables:
+# mode: sh
+# End:
