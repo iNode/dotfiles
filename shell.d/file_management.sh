@@ -11,6 +11,14 @@ tmv() {
         fi
 }
 
+
+# creat backup for the file with .bak extension
+backup() {
+    cp "$1"{,.bak};
+}
+
+
+# show progress for cp/mv operations
 alias pcp="ionice -c 3 rsync -aP"
 alias pmv='ionice -c 3 rsync -aP --remove-source-files'
 
