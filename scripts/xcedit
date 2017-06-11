@@ -1,12 +1,18 @@
 #!/bin/bash
 # X clipboard edit
 
-if $(which xsel; echo $?);
+if [ -z "$DEBUG" ]; then
+    out=/dev/null
+else
+    out="debug.log"
+fi
+
+if xsel -h 2>$out 1>$out;
 then
     _cut="xsel -b -i"
     _paste="xsel -b -o"
     echo there is xsel
-else if $(which xsel; echo $?);
+else if xclip -h 2>$out 1>$out;
     then
         _cut="xclip -sel clip"
         _paste="xclip -sel clip -o"
@@ -17,4 +23,11 @@ tmp="$(mktemp /tmp/xcedit.XXXXXXX)"
 $_paste > "$tmp"
 fe  "$tmp"
 cat "$tmp" | $_cut
+
+if [ ! -z "$DEBUG" ]; then
+    cat debug.log
+fi
+
 (sleep 120; rm "$tmp")&
+
+
