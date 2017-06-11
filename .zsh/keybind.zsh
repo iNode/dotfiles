@@ -1,6 +1,6 @@
 # Key bindings
 #
-    bindkey -e
+bindkey -e
 case $TERM in
     linux|screen)
     bindkey "^[[2~" yank
@@ -29,7 +29,6 @@ case $TERM in
 esac
 
 bindkey "^Xi" incremental-complete-word ## C-x-i
-bindkey -s "^Xe" '^[[1~emacs \n'		## C-x-e
 bindkey -s "^Xm" 'alsamixer\n'			## C-x-m
 
 bindkey -s "^Xl" 'export AUTOLS=true\n'			## C-x-l
@@ -37,16 +36,6 @@ bindkey -s "^XL" 'unset AUTOLS\n'			## C-x-L
 bindkey -s "^Xh" 'unset HISTFILE\n'			## C-x-h
 bindkey -s "^XH" 'export HISTFILE=~/.bash_history\n'			## C-x-H
 
-## file rename magick
-bindkey "^[m" copy-prev-shell-word
-
-
-#zle -N run-command
-#function run-command {
-#    zle trash-zle
-#    eval "$STACK"
-#    zle -s
-#}
 bindkey -s "^[c" "fag"
 bindkey -s "^[r" "far"
 
@@ -55,4 +44,25 @@ autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
-#bindkey -s "^E" 'eject\n'
+bindkey -s "\C-o" "ee -n .^m"
+bindkey -s "\C-]" '^Upopd >/dev/null; dirs -v^M'
+bindkey -s "\C-[" '^Ucd ..^M'
+
+## file rename magick
+bindkey "^[m" copy-prev-shell-word
+
+# M-C-m runs last command
+function runprev() { zle up-line-or-history ; zle accept-line } ; zle -N runprev ; bindkey '^[^M' runprev
+
+# Key bindings notes:
+# C-x C-e - edit command line in EDITOR
+# C-o - run emacs dired here
+# C-] - popd
+# C-[ - ..
+# M-m - copy-prev-shell-word, usefull for rename
+
+# vim: set noet ts=4 tw=80 syntax=sh
+# Local Variables:
+# mode: sh
+# End:
+
