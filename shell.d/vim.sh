@@ -1,5 +1,5 @@
 # vim specific
-if [ "$(which vim >/dev/null 2>&1)"  ];
+if which vim >/dev/null 2>&1;
 then
    alias mutt="EDITOR=vim mutt"
    alias vi=vim
