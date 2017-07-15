@@ -2,6 +2,8 @@
 if [ "$SHELL" = "/bin/zsh" ];
 then
     # common lazy commands
+    alias ping='ping -c 5'
+    alias path='echo -e ${PATH//:/\\n}'
 
     # Disable correction.
     alias ack='nocorrect ack'
@@ -63,10 +65,13 @@ then
     alias -s murl=sshmount
     alias -s ps=evince
     alias -s pdf=evince
-    alias -s doc=libreoffice
     alias -s xls=libreoffice
+    alias -s xlsx=libreoffice
     alias -s doc=libreoffice
     alias -s docx=libreoffice
+    alias -s ppt=libreoffice
+    alias -s pptx=libreoffice
+    alias -s odg=libreoffice
 
     # Tool related aliases
     if which pygmentize > /dev/null; then
