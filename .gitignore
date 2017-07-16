@@ -17,6 +17,7 @@
 .ropeproject
 
 # vim cruft
+~/.vim/bundle
 *.swp
 
 # wing cruft
