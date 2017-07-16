@@ -36,8 +36,8 @@ atree()
     awk -F "/" '{for (i=1; i<=NF-2; i++){printf "| "} print "|____"$NF}'
 }
 
-if fourmi -h 2>&1 1>/dev/null; then
-    alias fm=fourmi
+if fzf -h 1>/dev/null 2>&1; then
+    alias fm=fzf  # set fuzzy matcher alias
     cpdf() {
         location=${1-~/books/}
         fn=$(find $location -type f -name "*.pdf" | fm);
@@ -50,3 +50,5 @@ if fourmi -h 2>&1 1>/dev/null; then
         [ ! -z "$pid" ] && kill $sig $pid
     }
 fi
+
+# vim: set noet ts=4 tw=80 syntax=sh :
