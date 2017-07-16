@@ -18,6 +18,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'vim-scripts/taglist.vim'  " source code tag browser
     Plug 'ervandew/supertab'        " tab completion
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fuzzy finder
+    Plug 'junegunn/vim-easy-align'  " fuzzy finder
 "   Plug 'valloric/youcompleteme'   " code completion engine, obsoletes ^
 "   Plug 'nfvs/vim-perforce'        " perforce client
 "   Plug 'tpope/tpope-vim-abolish'  " smart replacements and abbrevs
@@ -296,8 +297,8 @@ if has("autocmd")
     autocmd FileType c setlocal tabstop=4 shiftwidth=4
     " match pairs of < and >
     autocmd FileType cpp set mps+=<:>
-    autocmd FileType python setlocal tabstop=4 shiftwidth=4
     autocmd FileType python,lua setlocal ts=4 sw=4 sts=4 et
+    autocmd FileType perl let b:dispatch = 'perl -Wc %'
   augroup END "}}}2
 
   " Transparent editing of gpg encrypted files.
@@ -328,6 +329,8 @@ if has("autocmd")
     " Undo the encryption so we are back in the normal text, directly
     " after the file has been written.
     autocmd BufWritePost,FileWritePost *.gpg u
+    autocmd BufReadPost * if getline(1) =~# '^#!' | let b:dispatch = getline(1)[2:-1] . ' %' | let b:start = b:dispatch | endif
+    autocmd BufReadPost ~/.Xdefaults,~/.Xresources let b:dispatch = 'xrdb -load %'
   augroup END
   augroup FTCheck " {{{2
     autocmd!
@@ -385,7 +388,7 @@ if has("gui_running")
     vnoremap <silent> y "+y
     nnoremap <silent><Leader>p "+gP
 else
-	finish
+    finish
 endif
 
 
@@ -447,12 +450,12 @@ let g:go_highlight_methods   = 1
 let g:go_highlight_structs   = 1
 
 augroup Go
-    autocmd!
-    autocmd BufWritePre *.go :GoImports
-    autocmd FileType    go   nmap K         <Plug>(go-doc)
-    autocmd FileType    go   nmap <leader>g <Plug>(go-def-tab)
-    autocmd FileType    go   nmap <leader>n <Plug>(go-callers)
-    autocmd FileType    go   nmap <leader>r <Plug>(go-rename)
+  autocmd!
+  autocmd BufWritePre *.go :GoImports
+  autocmd FileType    go   nmap K         <Plug>(go-doc)
+  autocmd FileType    go   nmap <leader>g <Plug>(go-def-tab)
+  autocmd FileType    go   nmap <leader>n <Plug>(go-callers)
+  autocmd FileType    go   nmap <leader>r <Plug>(go-rename)
 augroup END
 
 " }}}
@@ -460,6 +463,16 @@ augroup END
 " ack.vim
 let g:ackprg = "ag --vimgrep --smart-case"
 cnoreabbrev ag Ack
+
+" vim-easy-align {{{
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+" }}} vim-easy-align
 
 " # }}} Plugin settings
 
