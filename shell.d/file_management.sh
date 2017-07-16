@@ -1,6 +1,7 @@
-###### ex:	tmv -s /mnt/disk/5k
-# ex:	make a playlist
-# ex:	tmv eye-of-the-tiger.mp3 #  <-> mv eye-of-the-tiger.mp3 /mnt/disk/5k
+
+###### example:	tmv -s /mnt/disk/5k
+# example:	make a playlist
+# example:	tmv eye-of-the-tiger.mp3 #  <-> mv eye-of-the-tiger.mp3 /mnt/disk/5k
 tmv() {
         if [ "$1" = "-s" -o "$1" = "--set-target" ]; then
                 MOVE_TARGET="$(realpath "$2")";
@@ -33,7 +34,7 @@ atree()
 {
     # awk based tree implementation
     # usage: find . -type d | atree
-    awk -F "/" '{for (i=1; i<=NF-2; i++){printf "| "} print "|____"$NF}'
+    awk -F "/" '{for (i=1; i<=NF-2; i++){printf "| "} print "|____ "$NF}'
 }
 
 if fzf -h 1>/dev/null 2>&1; then
