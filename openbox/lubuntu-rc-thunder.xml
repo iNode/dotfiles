@@ -2,7 +2,7 @@
 <!-- Links:
 http://openbox.org/wiki/Help:Actions - reference to actions
 -->
-<openbox_config xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
+<openbox_config xmlns="http://openbox.org/3.6/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
   <resistance>
     <strength>10</strength>
     <screen_edge_strength>20</screen_edge_strength>
@@ -181,19 +181,6 @@ http://openbox.org/wiki/Help:Actions - reference to actions
   </dock>
   <keyboard>
     <chainQuitKey>C-g</chainQuitKey>
-    <!-- Keybindings for desktop switching -->
-    <keybind key="W-Left">
-      <action name="GoToDesktop">
-        <to>left</to>
-        <wrap>no</wrap>
-      </action>
-    </keybind>
-    <keybind key="W-Right">
-      <action name="GoToDesktop">
-        <to>right</to>
-        <wrap>no</wrap>
-      </action>
-    </keybind>
     <!-- <keybind key="C-A-Up"> -->
     <!--   <action name="GoToDesktop"> -->
     <!--     <to>up</to> -->
@@ -629,10 +616,118 @@ http://openbox.org/wiki/Help:Actions - reference to actions
         <command>lxpanelctl menu</command>
       </action>
     </keybind>
+
+    <!-- vertical split  -->
+    <keybind key="W-0">
+      <!-- window 1 -->
+      <action name="If">
+	<query>
+	  <maximized>yes</maximized>
+	</query>
+	<then>
+	  <!-- <action name="ToggleFullscreen"/> -->
+	  <action name="UnmaximizeFull"/>
+	</then>
+      </action>
+      <action name="UnDecorate"/>
+      <action name="UnmaximizeFull"/>
+      <action name="MoveResizeTo">
+        <x>0</x>
+        <y>0</y>
+        <width>50%</width>
+        <height>100%</height>
+      </action>
+
+      <!-- window 2 -->
+      <action name="NextWindow">
+	<linear>yes</linear>
+	<interactive>no</interactive>
+        <finalactions>
+	  <action name="If">
+	    <query>
+	      <maximized>yes</maximized>
+	    </query>
+	    <then>
+	      <action name="ToggleFullscreen"/>
+	    </then>
+	  </action>
+
+	  <action name="UnDecorate"/>
+	  <action name="UnmaximizeFull"/>
+	  <action name="MoveResizeTo">
+            <x>50%</x>
+            <y>0%</y>
+            <width>50%</width>
+            <height>100%</height>
+	  </action>
+	  <!-- <action name="ToggleFullscreen"/> -->
+        </finalactions>
+      </action>
+    </keybind>
+
+    <!-- horisontal split  -->
+    <keybind key="W-9">
+      <!-- window 1 -->
+      <action name="If">
+	<query>
+	  <maximized>yes</maximized>
+	</query>
+	<then>
+	  <!-- <action name="ToggleFullscreen"/> -->
+	  <action name="UnmaximizeFull"/>
+	</then>
+      </action>
+      <action name="UnDecorate"/>
+      <action name="UnmaximizeFull"/>
+      <action name="MoveResizeTo">
+        <x>0</x>
+        <y>0</y>
+        <width>100%</width>
+        <height>50%</height>
+      </action>
+
+      <!-- window 2 -->
+      <action name="NextWindow">
+	<linear>yes</linear>
+	<interactive>no</interactive>
+        <finalactions>
+	  <action name="If">
+	    <query>
+	      <maximized>yes</maximized>
+	    </query>
+	    <then>
+	      <action name="ToggleFullscreen"/>
+	    </then>
+	  </action>
+
+	  <action name="UnDecorate"/>
+	  <action name="UnmaximizeFull"/>
+	  <action name="MoveResizeTo">
+            <x>0%</x>
+            <y>50%</y>
+            <width>100%</width>
+            <height>50%</height>
+	  </action>
+	  <!-- <action name="ToggleFullscreen"/> -->
+        </finalactions>
+      </action>
+    </keybind>
+
+
     <!-- Keybindings to toggle fullscreen -->
     <keybind key="W-F11">
       <action name="ToggleFullscreen"/>
     </keybind>
+    <keybind key="W-S-F11">
+      <action name="ToggleMaximizeVert"/>
+    </keybind>
+    <keybind key="W-S-F12">
+      <!-- <action name="ToggleMaximizeVert"/> -->
+        <action name="ToggleMaximizeHorz"/>
+    </keybind>
+
+
+
     <!-- Launch task manager on Ctrl + Alt + Del-->
     <keybind key="C-A-Delete">
       <action name="Execute">
@@ -673,18 +768,23 @@ http://openbox.org/wiki/Help:Actions - reference to actions
         <command>scrot -u -b</command>
       </action>
     </keybind>
-    <!-- Keybinding for Volume management -->
-    <keybind key="W-Up">
-      <action name="Execute">
-        <command>amixer -c 0 -q sset Master 3%+ unmute</command>
-        <command>amixer -c 1 -q sset Speaker 3%+ unmute</command>
-      </action>
+    <!-- keybinding for window maangement -->
+    <!-- Keybindings for window tiling -->
+    <keybind key="W-Left">        <!-- HalfLeftScreen -->
+      <action name="UnmaximizeFull"/>
+      <action name="MoveResizeTo"><x>0</x><y>0</y><height>100%</height><width>50%</width></action>
     </keybind>
-    <keybind key="W-Down">
-      <action name="Execute">
-        <command>amixer -c 0 -q sset Master 3%- unmute</command>
-        <command>amixer -c 1 -q sset Speaker 3%- unmute</command>
-      </action>
+    <keybind key="W-Right">        <!-- HalfRightScreen -->
+      <action name="UnmaximizeFull"/>
+      <action name="MoveResizeTo"><x>-0</x><y>0</y><height>100%</height><width>50%</width></action>
+    </keybind>
+    <keybind key="W-Up">        <!-- HalfUpperScreen -->
+      <action name="UnmaximizeFull"/>
+      <action name="MoveResizeTo"><x>0</x><y>0</y><width>100%</width><height>50%</height></action>
+    </keybind>
+    <keybind key="W-Down">        <!-- HalfLowerScreen -->
+      <action name="UnmaximizeFull"/>
+      <action name="MoveResizeTo"><x>0</x><y>-0</y><width>100%</width><height>50%</height></action>
     </keybind>
     <keybind key="W-Home">
       <action name="Execute">
