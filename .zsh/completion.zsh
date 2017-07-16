@@ -25,6 +25,10 @@ compctl -g '*.Z *.gz *.tgz' + -g '*' zcat gunzip
 compctl -g '*.tar.Z *.tar.gz *.tgz *.tar.bz2' + -g '*' tar
 compctl -g '*.zip *.ZIP' + -g '*' unzip
 compctl -g '*.(mp3|MP3|ogg|OGG|temp|TEMP)' + -g '*(-/)'  mpg123 xmms mpg321
+compctl -g '*.(avi|mp4|mpg|mkv|flv)' + -g '*(-/)'  vlc
 
 # Completion Styles
 # vim: set noet ts=4 tw=80 syntax=zsh :
+# Local Variables:
+# mode: sh
+# End:
