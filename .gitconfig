@@ -41,6 +41,28 @@
   addnw = !sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'
   # shortcut for submodule update
   su = submodule update --init
-
+[apply]
+	whitespace = fix
 [push]
 	default = simple
+[branch]
+	autosetupmerge = true
+[merge]
+	renameLimit = 999999
+	tool = ediff
+[mergetool]
+	prompt = false
+[mergetool.ediff]
+	cmd = emacs -q --eval \" \
+(progn \
+  (setq ediff-quit-hook 'kill-emacs) \
+  (if (file-readable-p \\\"$BASE\\\") \
+      (ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\" \
+                                       \\\"$BASE\\\" nil \\\"$MERGED\\\") \
+      (ediff-merge-files \\\"$LOCAL\\\" \\\"$REMOTE\\\" nil \\\"$MERGED\\\")))\"
+
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
