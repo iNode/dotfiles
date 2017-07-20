@@ -3,12 +3,6 @@
 """""""""
 " maximum highlight
 let python_highlight_all = 1
-let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
-let g:SuperTabDefaultCompletionTypeDiscovery = "&omnifunc:<C-X><C-O>,&completefunc:<C-X><C-U>"
-
-" setup omni completion to <TAB>
-source ~/.vim/plugin/supertab.vim
-
 
 autocmd FileType python map <buffer> <silent> +m :call ShowDoc("<C-R><C-W>")<CR>
 autocmd FileType python map <buffer> <silent> <leader>ip <Esc>oimport IPython^Mshell = IPython.Shell.IPShell(argv=[])^Mshell.mainloop()^M<Esc>
@@ -47,6 +41,6 @@ function! ShowDoc(name)
   set filetype=man
   normal 1G
 
-  " По D-F10 не выйти, но закрыть справку
+  " D-F10 - close help
   nnoremap <silent> <buffer> <D-F10> <Esc>:bdel<CR>
 endfunction
