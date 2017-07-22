@@ -12,12 +12,14 @@ call plug#begin('~/.vim/bundle')
     Plug 'tpope/vim-fugitive'       " git interface
     Plug 'tpope/vim-scriptease'     " plugin for doing plugins, e.g. Vedit
     Plug 'tpope/vim-dispatch'       " asyn task dispatch
+    Plug 'airblade/vim-gitgutter'   " mark file changes in gutter for git repo
     Plug 'amiorin/vim-eval'         " C-c for eval line or selection
     Plug 'mileszs/ack.vim'          " ack/ag/etc. support
     Plug 'jlanzarotta/bufexplorer'  " buffer navigation
     Plug 'vim-scripts/taglist.vim'  " source code tag browser
     Plug 'ervandew/supertab'        " tab completion
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fuzzy finder
+    Plug 'jiangmiao/auto-pairs'     " insert or delete brackets, parens, quotes in pair
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }    " fuzzy finder
     Plug 'junegunn/vim-easy-align'  " fuzzy finder
 "   Plug 'valloric/youcompleteme'   " code completion engine, obsoletes ^
 "   Plug 'nfvs/vim-perforce'        " perforce client
@@ -54,6 +56,9 @@ set softtabstop=4
 set shiftwidth=4
 set showmatch " check braces
 set termencoding=utf-8
+" enable per project settings
+set exrc
+set secure
 
 if &term == "xterm-color"
     let &term = "xterm-256color"
@@ -473,6 +478,11 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " }}} vim-easy-align
+
+" auto-pairs {{{
+let g:AutoPairsFlyMode = 1
+let g:AutoPairsShortcutBackInsert = '<M-b>'
+" }}} auto-pairs
 
 " # }}} Plugin settings
 
