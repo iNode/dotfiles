@@ -8,30 +8,6 @@ autocmd FileType python map <buffer> <silent> +m :call ShowDoc("<C-R><C-W>")<CR>
 autocmd FileType python map <buffer> <silent> <leader>ip <Esc>oimport IPython^Mshell = IPython.Shell.IPShell(argv=[])^Mshell.mainloop()^M<Esc>
 autocmd FileType xhtml set filetype=htmldjango
 
-" python dev environment
-"
-command Pylint :call Pylint()
-function! Pylint()
-    setlocal makeprg=(echo\ '[%]';\ pylint\ %)
-    setlocal efm=%+P[%f],%t:\ %#%l:%m
-    silent make
-    cwindow
-endfunction
-
-command Pyflakes :call Pyflakes()
-function! Pyflakes()
-    let tmpfile = tempname()
-    execute "w" tmpfile
-    execute "set makeprg=(pyflakes\\ " . tmpfile . "\\\\\\|sed\\ s@" . tmpfile ."@%@)"
-    silent make
-    cwindow
-endfunction
-
-" check with Pyflakes after any save .py file
-autocmd BufWrite *.{py} :call Pyflakes()
-
-"
-" end of python dev environment
 
 function! ShowDoc(name)
   enew

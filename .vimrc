@@ -24,6 +24,9 @@ call plug#begin('~/.vim/bundle')
 "   Plug 'valloric/youcompleteme'   " code completion engine, obsoletes ^
 "   Plug 'nfvs/vim-perforce'        " perforce client
 "   Plug 'tpope/tpope-vim-abolish'  " smart replacements and abbrevs
+    if executable('python')
+        Plug 'andviro/flake8-vim', { 'for': 'python' }
+    endif
     if executable('go')
         Plug 'fatih/vim-go', { 'for': 'go' }
     endif
@@ -479,6 +482,10 @@ nmap ga <Plug>(EasyAlign)
 
 " }}} vim-easy-align
 
+" andviro/flake8-vim {{{
+    let g:PyFlakeOnWrite = 1
+    let g:PyFlakeCheckers = 'pep8,mccabe,frosted'
+" }}} flake8-vim
 " auto-pairs {{{
 let g:AutoPairsFlyMode = 1
 let g:AutoPairsShortcutBackInsert = '<M-b>'
