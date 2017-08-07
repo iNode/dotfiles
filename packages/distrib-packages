@@ -1,17 +1,23 @@
 #!/bin/sh
 
 # common
-apt install emacs vim zsh tmux mosh autossh openssh-server tree
+apt install emacs vim-nox zsh tmux mosh autossh openssh-server tree htop unzip zgen direnv vcsh git-core curl
 # devel
-apt install git mercurial ack-grep cscope ipython silversearcher-ag exuberant-ctags python3-dev upx
-# review: cgvg moap
+apt install git mercurial ack-grep cscope ipython silversearcher-ag exuberant-ctags python3-dev libffi-dev upx sqlite3 jq httpie make
+# experimental
+# apt install picolisp pv
+# review: cgvg
 # UI/desktop
-apt install suckless-tools dzen2 sdcv xclip xbindkeys vlc mc keepassx2 xautomation shutter rofi
-# apt install suckless-toolse dzen2 sdcv xclip git mercurial git-core ack cscope cscope-el ipython xbindkeys vlc mc keepassx silversearcher-ag
-# Office
+apt install suckless-tools dzen2 sdcv vlc mc keepassx2 xautomation shutter rofi synergy libnotify-bin scrot
+# x11 things
+apt install wmctrl x11-xserver-utils xbindkeys xclip xinput xsel
+# # desktop
+apt install pavucontrol
+# # Office
 # apt install libreoffice
-# desktop
-# apt install pavucontrol
+# # xorg related tools
+# apt install xpra xnest xserver-xephyr
+# TODO: add https://github.com/slgobinath/SafeEyes
 
 # troubleshooting
 # apt install linux-tools-common linux-tools-generic linux-tools-`uname -r` strace ltrace ntrace tcpdump nmap ngrep
@@ -19,7 +25,7 @@ apt install suckless-tools dzen2 sdcv xclip xbindkeys vlc mc keepassx2 xautomati
 # apt install trace-cmd kernelshark
 
 # binary files analysis
-# apt install radare2
+# apt install radare2 bvi
 
 # 3rd party software
 # apt google-chrome-stable dropbox
