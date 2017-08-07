@@ -80,7 +80,7 @@ myssh () {
         echo try to rename window
         tmux rename-window $1
     else
-	# do nothing for now
+	: # do nothing for now
     fi
 
     \ssh $*; date
