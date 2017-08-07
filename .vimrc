@@ -22,7 +22,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }    " fuzzy finder
     Plug 'junegunn/vim-easy-align'  " fuzzy finder
 "   Plug 'valloric/youcompleteme'   " code completion engine, obsoletes ^
-"   Plug 'nfvs/vim-perforce'        " perforce client
+    Plug 'nfvs/vim-perforce'        " perforce client
 "   Plug 'tpope/tpope-vim-abolish'  " smart replacements and abbrevs
     if executable('python')
         Plug 'andviro/flake8-vim', { 'for': 'python' }
@@ -264,6 +264,7 @@ au BufEnter * call Safe_cd()
 map ;[ :bprev<CR>
 map ;] :bnext<CR>
 map ;! :bdel<CR>
+imap <special> nt <Esc>
 
 " replace command on curren line by execution result
 " overrides Ex-mode command on Q
