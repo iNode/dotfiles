@@ -73,6 +73,10 @@ siftl () { sift --color "$@" | less -R; }
 # cat to file and make it executable
 scat () { cat > "$1"; chmod +x "$1"; }
 
+# script append
+sapp () { cat >> "$1" }
+
+
 # print stack trace of a core file without needing to enter gdb interactively
 alias gdbbt='gdb -q -n -ex bt -batch'
 alias gdbr='gdb --args'
