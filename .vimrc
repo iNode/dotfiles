@@ -20,10 +20,11 @@ call plug#begin('~/.vim/bundle')
     Plug 'ervandew/supertab'        " tab completion
     Plug 'jiangmiao/auto-pairs'     " insert or delete brackets, parens, quotes in pair
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }    " fuzzy finder
-    Plug 'junegunn/vim-easy-align'  " fuzzy finder
+    Plug 'junegunn/vim-easy-align'  " easy-to-use Vim alignment
 "   Plug 'valloric/youcompleteme'   " code completion engine, obsoletes ^
     Plug 'nfvs/vim-perforce'        " perforce client
 "   Plug 'tpope/tpope-vim-abolish'  " smart replacements and abbrevs
+    Plug 'kien/ctrlp.vim'           " full path fuzzy file, buffer, mru, tag, ... finder for Vim
     if executable('python')
         Plug 'andviro/flake8-vim', { 'for': 'python' }
     endif
@@ -59,9 +60,20 @@ set softtabstop=4
 set shiftwidth=4
 set showmatch " check braces
 set termencoding=utf-8
+
 " enable per project settings
 set exrc
 set secure
+
+" undo file configuration
+if has("persistent_undo")
+    set undofile                " Save undo's after file closes
+    set undodir=~/.vim/undo     " where to save undo histories
+    set undolevels=1000         " How many undos
+    set undoreload=10000        " number of lines to save for undo
+endif
+
+
 
 if &term == "xterm-color"
     let &term = "xterm-256color"
@@ -183,23 +195,27 @@ cnoremap w!! w !sudo tee > /dev/null %
 " Omni Completion
 " imap <C-F> <C-X><C-O>
 
-" Window switch (emacs like)
-nmap <C-x>o <C-w><C-w>
+" emacs like bindings {{{
+" Window switch
+nmap <C-x>O <C-w><C-w>
+nmap <C-x>o <C-w><C-w><C-w>_
+
+" switch buffer
 nmap <C-x>b :BufExplorer<CR>
+" kill buffer
 nmap <C-x>k :bd<CR>
+
 cnoremap <C-A>      <Home>
 cnoremap <C-E>      <End>
-
 inoremap <C-A> <Home>
 inoremap <C-E> <End>
 imap <M-b> <Esc>bi
 imap <M-f> <Esc>wi
-
+" }}}
 " set ignorecase
 
-" map \c :set ignorecase<CR>
-" map \C :set noignorecase<CR>
-set smartcase " if search word contains Caps don't ignore register works only if ignorecase is enabled
+" \c in search ignorecase, \C - noignorecase
+set smartcase " if search word contains UpCase (noic)
 
 function! MyExec()
     let fn="./" . bufname("%")
@@ -208,6 +224,7 @@ function! MyExec()
     endif
     execute "!".fn
 endfunction
+
 function! MyTlist()
 	if !exists('loaded_taglist')
 		source ~/.vim/plugin/taglist.vim
@@ -264,7 +281,7 @@ au BufEnter * call Safe_cd()
 map ;[ :bprev<CR>
 map ;] :bnext<CR>
 map ;! :bdel<CR>
-imap <special> nt <Esc>
+" imap <special> nt <Esc>
 
 " replace command on curren line by execution result
 " overrides Ex-mode command on Q
@@ -289,6 +306,7 @@ if has("autocmd")
 
     " auto delete trailing spaces
     autocmd BufWritePre * :%s/\s\+$//e
+    autocmd FileType spec setlocal commentstring=#\ %s
     autocmd FileType *commit* setlocal spell
     autocmd FileType liquid,markdown,text,txt setlocal tw=78 linebreak nolist
     autocmd BufNewFile,BufRead *.json set ft=javascript
@@ -435,6 +453,9 @@ function! HexMe()
   endif
 endfunction
 
+" Tab for windchange
+" FIXME: find better key
+" map <s-Tab> <C-W>w<C-W>_
 " ------------------Spelling
 " set spellfile=~/.vim/spell/ru.utf-8.add
 "
