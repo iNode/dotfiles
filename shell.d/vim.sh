@@ -4,8 +4,13 @@ then
    alias mutt="EDITOR=vim mutt"
    alias vi=vim
    alias revim="vim -S ~/.vim/lastSession.vim"
-   alias v='vim'
-   alias gv='gvim'
+   # vim server mode
+   alias v='vim --servername $(hostname) $@'
+   alias gvim='gvim --servername $(hostname) $@'
+   # foreground edit
+   alias fv='vim --servername $(hostname) --remote-wait "$@"'
+   # background edit in server
+   alias ev='vim --servername $(hostname) --remote-silent $@'
 else
     alias v='$EDITOR'
 fi
