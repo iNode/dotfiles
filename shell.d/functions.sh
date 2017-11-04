@@ -46,7 +46,12 @@ shead () {
 
 # Sum first column, example: awkc 1 file | awks
 function awks() {
-    awk 'BEGIN{sum=0} {sum+=$1} END{print sum}' $*
+    awk 'BEGIN{sum=0} {sum+=$1} END{print sum}' "$*"
+}
+
+# Multiply first column, example: awkc 1 file | awkm
+function awkm() {
+    awk 'BEGIN{mul=1} {mul*=$1} END{print mul}' "$*"
 }
 
 # Small shortcut for awk '{print $N}'. It is awp N for now. Literally.
