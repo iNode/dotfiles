@@ -74,7 +74,7 @@ siftl () { sift --color "$@" | less -R; }
 scat () { cat > "$1"; chmod +x "$1"; }
 
 # script append
-sapp () { cat >> "$1" }
+sapp () { cat >> "$1"; }
 
 
 # print stack trace of a core file without needing to enter gdb interactively
@@ -166,7 +166,7 @@ gitd () { # run git commands for dotfiles dir
 }
 
 p4co () {
-    # provide ... argument for whole curren directory
+    # provide ... argument for whole current directory
     for f in "@$"; do
         p4 open "$f"
         p4 revert "$f"
