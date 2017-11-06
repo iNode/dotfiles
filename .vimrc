@@ -471,6 +471,20 @@ endfunction
 " menu Encoding.SpellMenu         :emenu VVspell.<TAB>
 " map <F8> :emenu Encoding.<TAB>
 
+" netrw {{{
+    " configure netrw like a nerdtree
+    let g:netrw_liststyle = 3
+    let g:netrw_banner = 0  " Use I for enabling banner
+    let g:netrw_liststyle = 3
+    let g:netrw_browse_split = 4
+    let g:netrw_altv = 1
+    let g:netrw_winsize = 25
+    augroup ProjectDrawer
+        autocmd!
+        autocmd VimEnter * :Vexplore
+    augroup END
+" }}} netrw
+
 " # Plugin settings =============================================== {{{
 " VimGo {{{
 
