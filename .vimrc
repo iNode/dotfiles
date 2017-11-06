@@ -25,6 +25,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'nfvs/vim-perforce'        " perforce client
 "   Plug 'tpope/tpope-vim-abolish'  " smart replacements and abbrevs
     Plug 'kien/ctrlp.vim'           " full path fuzzy file, buffer, mru, tag, ... finder for Vim
+    Plug 'vim-syntastic/syntastic'  " syntax checking plugin
     if executable('python')
         Plug 'andviro/flake8-vim', { 'for': 'python' }
     endif
@@ -526,6 +527,17 @@ nmap ga <Plug>(EasyAlign)
 let g:AutoPairsFlyMode = 1
 let g:AutoPairsShortcutBackInsert = '<M-b>'
 " }}} auto-pairs
+
+" syntactic {{{
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
+
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
+" }}}
 
 " # }}} Plugin settings
 
