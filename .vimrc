@@ -200,16 +200,19 @@ cnoremap w!! w !sudo tee > /dev/null %
 " Window switch
 nmap <C-x>O <C-w><C-w>
 nmap <C-x>o <C-w><C-w><C-w>_
+" command line bindings
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+cnoremap <C-F> <Right>
+cnoremap <C-B> <Left>
+cnoremap <Esc>b <S-Left>
+cnoremap <Esc>f <S-Right>
 
 " switch buffer
 nmap <C-x>b :BufExplorer<CR>
 " kill buffer
 nmap <C-x>k :bd<CR>
 
-cnoremap <C-A>      <Home>
-cnoremap <C-E>      <End>
-inoremap <C-A> <Home>
-inoremap <C-E> <End>
 imap <M-b> <Esc>bi
 imap <M-f> <Esc>wi
 " }}}
@@ -510,13 +513,11 @@ let g:ackprg = "ag --vimgrep --smart-case"
 cnoreabbrev ag Ack
 
 " vim-easy-align {{{
+    " Start interactive EasyAlign in visual mode (e.g. vipga)
+    xmap ga <Plug>(EasyAlign)
 
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
+    " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+    nmap ga <Plug>(EasyAlign)
 " }}} vim-easy-align
 
 " andviro/flake8-vim {{{
