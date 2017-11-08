@@ -404,6 +404,13 @@ map <c-q>  :Man
 filetype plugin on
 filetype indent on
 
+" Pretty-print JSON files with Python (& remove the trailing whitespace that
+" Python <2.7 json module adds, sigh)
+nmap <Leader>j :%!python -m json.tool<CR>:%s/\s\+$//g<CR>
+
+" toggle non-printing characters
+nmap <Leader>h :set list!<CR>
+
 " --------------------------------------------------
 " [GUI]
 if has("gui_running")
