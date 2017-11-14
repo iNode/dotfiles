@@ -292,6 +292,10 @@ map ;! :bdel<CR>
 " overrides Ex-mode command on Q
 nnoremap Q !!$SHELL<CR>
 
+" scroll the viewport faster
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+
 if has("autocmd")
    filetype plugin on
    filetype plugin indent on
