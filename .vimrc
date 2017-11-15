@@ -52,7 +52,6 @@ colorscheme desert
 
 " Search settings {{{
 set hlsearch " use C-L to reset highlight from sensible-vim
-set incsearch
 set ignorecase
 set smartcase
 " }}}
