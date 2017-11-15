@@ -483,6 +483,11 @@ endfunction
 " menu Encoding.SpellMenu         :emenu VVspell.<TAB>
 " map <F8> :emenu Encoding.<TAB>
 
+if executable('ag')
+    set grepprg=ag\ --vimgrep\ $*
+    set grepformat=%f:%l:%c:%m
+endif
+
 " netrw {{{
     " configure netrw like a nerdtree
     let g:netrw_liststyle = 3
