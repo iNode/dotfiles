@@ -283,10 +283,6 @@ function! Safe_cd ()
 endfunction
 
 au BufEnter * call Safe_cd()
-map ;[ :bprev<CR>
-map ;] :bnext<CR>
-map ;! :bdel<CR>
-" imap <special> nt <Esc>
 
 " replace command on curren line by execution result
 " overrides Ex-mode command on Q
