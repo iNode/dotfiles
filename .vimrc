@@ -1,5 +1,5 @@
 " use vim not vi
-set nocompatible
+" set nocompatible                    " enabled by default when handling .vimrc
 set list                            " Display unprintable characters.
 set listchars=tab:▸\ ,trail:·,eol:¬ " Make tabs, trailing whitespace, and EOL characters easy to spot.
 
@@ -292,11 +292,13 @@ nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
 if has("autocmd")
-   filetype plugin on
-   filetype plugin indent on
-   set relativenumber
+    filetype indent on
+    filetype plugin on
+    filetype plugin indent on
+    set relativenumber
   augroup VIMRC " {{{
     autocmd!
+
     autocmd BufWritePost .vimrc source ~/.vimrc
   augroup END " }}}
 
@@ -316,10 +318,10 @@ if has("autocmd")
     autocmd BufNewFile,BufRead *.json set ft=javascript
     autocmd BufNewFile,BufRead *.1.md setlocal tw=78 makeprg=pandoc\ -s\ -w\
         \ man\ %\ -o\ %<
-    autocmd FileType make,snippet,snippets setlocal list ts=8 sw=8 sts=8 noet
+    autocmd FileType make,snippet,snippets setlocal list tabstop=8 shiftwidth=8 softtabstop=8 noexpandtab
     " But for yaml keep 2 characters, pls
     autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
-    autocmd FileType xml,xsd,xslt,javascript setlocal ts=2
+    autocmd FileType xml,xsd,xslt,javascript setlocal tabstop=2
     autocmd FileType text,txt,mail          setlocal ai com=fb:*,fb:-,n:>
     autocmd FileType haskell setlocal tabstop=2 shiftwidth=2
     autocmd FileType help setlocal ai fo+=2n | silent! setlocal nospell
@@ -328,7 +330,7 @@ if has("autocmd")
     autocmd FileType c setlocal tabstop=4 shiftwidth=4
     " match pairs of < and >
     autocmd FileType cpp set mps+=<:>
-    autocmd FileType python,lua setlocal ts=4 sw=4 sts=4 et
+    autocmd FileType python,lua setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
     autocmd FileType perl let b:dispatch = 'perl -Wc %'
   augroup END "}}}2
 
@@ -384,12 +386,6 @@ map =u  :e ++enc=utf-8<CR>
 " --------------------------------------------------
 " [PLUGINS]
 " --------------------------------------------------
-" minibufexpl
-" let g:miniBufExplMapWindowNavVim = 1
-" let g:miniBufExplMapWindowNavArrows = 1
-" let g:miniBufExplMapCTabSwitchBufs = 1
-" let g:miniBufExplModSelTarget = 1
-" source ~/.vim/minibufexpl.vim
 
 " Key to go into dvorak mode:
 " map ,d :source ~/.vim/dvorak
@@ -400,9 +396,6 @@ map =u  :e ++enc=utf-8<CR>
 runtime ftplugin/man.vim
 map <c-F1> :Man
 map <c-q>  :Man
-
-filetype plugin on
-filetype indent on
 
 " Pretty-print JSON files with Python (& remove the trailing whitespace that
 " Python <2.7 json module adds, sigh)
