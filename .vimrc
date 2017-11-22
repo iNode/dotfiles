@@ -537,6 +537,10 @@ let g:AutoPairsFlyMode = 1
 let g:AutoPairsShortcutBackInsert = '<M-b>'
 " }}} auto-pairs
 
+" ctrlp {{{
+map <leader>b :CtrlPBuffer<cr>
+" }}}
+
 " syntactic {{{
     set statusline+=%#warningmsg#
     set statusline+=%{SyntasticStatuslineFlag()}
