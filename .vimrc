@@ -541,6 +541,12 @@ let g:AutoPairsShortcutBackInsert = '<M-b>'
 map <leader>b :CtrlPBuffer<cr>
 " }}}
 
+" vimux {{{
+ " Run last command executed by VimuxRunCommand
+  nnoremap <Leader>vl :VimuxRunLastCommand<cr>
+  nnoremap <Leader>vp :VimuxPromptCommand<cr>
+" }}}
+
 " syntactic {{{
     set statusline+=%#warningmsg#
     set statusline+=%{SyntasticStatuslineFlag()}
