@@ -97,9 +97,9 @@ if &readonly == 1
     set nonumber
     set nofoldenable
     set foldcolumn=10
-    nmap <F10> :qa<cr>
-    nmap q :qa<cr>
-    nmap <Space> <PageDown>
+    nnoremap <F10> :qa<cr>
+    nnoremap q :qa<cr>
+    nnoremap <Space> <PageDown>
 endif
 
 
@@ -292,6 +292,7 @@ nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
 if has("autocmd")
+    set autoindent
     filetype indent on
     filetype plugin on
     filetype plugin indent on
@@ -307,29 +308,29 @@ if has("autocmd")
     " Save and load session by default
     " autocmd VimLeavePre * :silent mksession! ~/.vim/lastSession.vim
     " autocmd VimEnter * :silent source! ~/.vim/lastSession.vim
-    autocmd BufReadPre  *.doc set ro
+    autocmd BufReadPre  *.doc set readonly
     autocmd BufReadPost *.doc %!catdoc %
 
     " auto delete trailing spaces
     autocmd BufWritePre * :%s/\s\+$//e
     autocmd FileType spec setlocal commentstring=#\ %s
     autocmd FileType *commit* setlocal spell
-    autocmd FileType liquid,markdown,text,txt setlocal tw=78 linebreak nolist
-    autocmd BufNewFile,BufRead *.json set ft=javascript
-    autocmd BufNewFile,BufRead *.1.md setlocal tw=78 makeprg=pandoc\ -s\ -w\
+    autocmd FileType liquid,markdown,text,txt setlocal textwidth=78 linebreak nolist
+    autocmd BufNewFile,BufRead *.json set filetype=javascript
+    autocmd BufNewFile,BufRead *.1.md setlocal textwidth=78 makeprg=pandoc\ -s\ -w\
         \ man\ %\ -o\ %<
     autocmd FileType make,snippet,snippets setlocal list tabstop=8 shiftwidth=8 softtabstop=8 noexpandtab
     " But for yaml keep 2 characters, pls
     autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
     autocmd FileType xml,xsd,xslt,javascript setlocal tabstop=2
-    autocmd FileType text,txt,mail          setlocal ai com=fb:*,fb:-,n:>
+    autocmd FileType text,txt,mail          setlocal autoindent comments=fb:*,fb:-,n:>
     autocmd FileType haskell setlocal tabstop=2 shiftwidth=2
-    autocmd FileType help setlocal ai fo+=2n | silent! setlocal nospell
+    autocmd FileType help setlocal autoindent formatoptions+=2n | silent! setlocal nospell
     autocmd FileType help nnoremap <silent><buffer> q :q<CR>
 
     autocmd FileType c setlocal tabstop=4 shiftwidth=4
     " match pairs of < and >
-    autocmd FileType cpp set mps+=<:>
+    autocmd FileType cpp set matchpairs+=<:>
     autocmd FileType python,lua setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
     autocmd FileType perl let b:dispatch = 'perl -Wc %'
   augroup END "}}}2
@@ -337,7 +338,7 @@ if has("autocmd")
   " Transparent editing of gpg encrypted files.
   " By Wouter Hanegraaff
   augroup encrypted
-    au!
+    autocmd!
 
     " First make sure nothing is written to ~/.viminfo while editing
     " an encrypted file.
@@ -371,7 +372,6 @@ if has("autocmd")
   augroup END " }}}2
 endif " has("autocmd")
 
-
 " --------------------------------------------------
 " Charsets
 " old Plain DOS charset				=p
@@ -394,15 +394,15 @@ map =u  :e ++enc=utf-8<CR>
 
 " man
 runtime ftplugin/man.vim
-map <c-F1> :Man
-map <c-q>  :Man
+nnoremap <c-F1> :Man
+nnoremap <c-q>  :Man
 
 " Pretty-print JSON files with Python (& remove the trailing whitespace that
 " Python <2.7 json module adds, sigh)
-nmap <Leader>j :%!python -m json.tool<CR>:%s/\s\+$//g<CR>
+nnoremap <Leader>j :%!python -m json.tool<CR>:%s/\s\+$//g<CR>
 
 " toggle non-printing characters
-nmap <Leader>h :set list!<CR>
+nnoremap <Leader>h :set list!<CR>
 
 " --------------------------------------------------
 " [GUI]
@@ -419,26 +419,25 @@ if has("gui_running")
     vnoremap <silent> y "+y
     nnoremap <silent><Leader>p "+gP
 else
-    finish
+    " finish
 endif
 
-
 " turn off any existing search
-au VimEnter * nohls
+" autocmd VimEnter * nohls
 
 " The following maps the Control-F8 key to toggle between hex and binary (while also setting the
 " noeol and binary flags, so if you :write your file, vim doesn't perform unwanted conversions.
 
 " vim -b : edit binary using xxd-format!
 augroup Binary
-  au!
-  au BufReadPre  *.bin let &bin=1
-  au BufReadPost *.bin if &bin | %!xxd
-  au BufReadPost *.bin set ft=xxd | endif
-  au BufWritePre *.bin if &bin | %!xxd -r
-  au BufWritePre *.bin endif
-  au BufWritePost *.bin if &bin | %!xxd
-  au BufWritePost *.bin set nomod | endif
+  autocmd!
+  autocmd BufReadPre  *.bin let &bin=1
+  autocmd BufReadPost *.bin if &bin | %!xxd
+  autocmd BufReadPost *.bin set ft=xxd | endif
+  autocmd BufWritePre *.bin if &bin | %!xxd -r
+  autocmd BufWritePre *.bin endif
+  autocmd BufWritePost *.bin if &bin | %!xxd
+  autocmd BufWritePost *.bin set nomod | endif
 augroup END
 
 " use vim -b to do the same out of box
@@ -509,6 +508,8 @@ augroup Go
   autocmd FileType    go   nmap <leader>g <Plug>(go-def-tab)
   autocmd FileType    go   nmap <leader>n <Plug>(go-callers)
   autocmd FileType    go   nmap <leader>r <Plug>(go-rename)
+  autocmd FileType    go   nmap <leader>l <Plug>(go-lint)
+  autocmd FileType    go   nmap <leader>R <Plug>(go-run)
 augroup END
 
 " }}}
