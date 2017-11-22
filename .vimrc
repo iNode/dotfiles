@@ -283,7 +283,9 @@ function! Safe_cd ()
     endif
 endfunction
 
-au BufEnter * call Safe_cd()
+" autocmd BufEnter * call Safe_cd()
+" edit in current working directory (location of current file)
+map <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
 
 " replace command on curren line by execution result
 " overrides Ex-mode command on Q
