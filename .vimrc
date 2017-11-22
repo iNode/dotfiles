@@ -531,6 +531,8 @@ cnoreabbrev ag Ack
 " andviro/flake8-vim {{{
     let g:PyFlakeOnWrite = 1
     let g:PyFlakeCheckers = 'pep8,mccabe,frosted'
+    let g:PyFlakeForcePyVersion=3
+
 " }}} flake8-vim
 " auto-pairs {{{
 let g:AutoPairsFlyMode = 1
