@@ -183,6 +183,8 @@ nnoremap <silent> <Leader>qa :qa<CR>
 nnoremap <silent> <leader>s :source ~/.vimrc<CR>
 " write file
 nnoremap <silent> <leader>w :w<CR>
+" switch to the previous buffer
+nnoremap <leader>' <c-^>
 nnoremap <leader>. :bn<CR>
 nnoremap <leader>, :bp<CR>
 nnoremap <silent>   <tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
