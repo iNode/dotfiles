@@ -304,7 +304,7 @@ if has("autocmd")
   augroup VIMRC " {{{
     autocmd!
 
-    autocmd BufWritePost .vimrc source ~/.vimrc
+    autocmd BufWritePost .vimrc nested source ~/.vimrc
   augroup END " }}}
 
   augroup FTOptions " {{{2
