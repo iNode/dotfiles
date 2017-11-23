@@ -27,9 +27,9 @@ call plug#begin('~/.vim/bundle')
 "   Plug 'tpope/tpope-vim-abolish'  " smart replacements and abbrevs
     Plug 'kien/ctrlp.vim'           " full path fuzzy file, buffer, mru, tag, ... finder for Vim
     Plug 'vim-syntastic/syntastic'  " syntax checking plugin
-    if executable('python')
-        Plug 'andviro/flake8-vim', { 'for': 'python' }
-    endif
+    " if executable('python')
+    "     Plug 'andviro/flake8-vim', { 'for': 'python' }
+    " endif
     if executable('go')
         Plug 'fatih/vim-go', { 'for': 'go' }
     endif
