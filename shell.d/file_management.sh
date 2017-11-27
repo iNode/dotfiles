@@ -24,10 +24,8 @@ alias pcp="ionice -c 3 rsync -aP"
 alias pmv='ionice -c 3 rsync -aP --remove-source-files'
 
 fix_path() {
-	# PATH="$(printf "%s" "${PATH}" | /usr/bin/awk -v RS=: -v ORS=: '!($0 in a) {a[$0]; print}')"
-	# PATH="$(/usr/bin/awk -v RS=: -v ORS=: '!($0 in a) {a[$0]; print}' <<< $PATH | sed -e 's/::/:/g'| tr -d '\n')"
-	# export PATH
-	export PATH=$(awk -F: '{for (i=1;i<=NF;i++) { if ( !x[$i]++ ) printf("%s:",$i); }}' <<< "$PATH" | sed -e 's/::/:/g')
+    PATH="$(printf "%s" "${PATH}" | /usr/bin/awk -v RS=: -v ORS=: '!($0 in a) {a[$0]; print}')"
+    export PATH
 }
 
 atree()
@@ -41,14 +39,14 @@ if fzf -h 1>/dev/null 2>&1; then
     alias fm=fzf  # set fuzzy matcher alias
     cpdf() {
         location=${1-~/books/}
-        fn=$(find $location -type f -name "*.pdf" | fm);
-        [ ! -z $fn ] && evince "$fn" 2>/dev/null
+        fn=$(find "$location" -type f -name "*.pdf" | fm);
+        [ ! -z "$fn" ] && evince "$fn" 2>/dev/null
     }
 
     ckill () {
         sig=${1-TERM}
         pid=$(ps aux | fm | awk '{ print $2 }')
-        [ ! -z "$pid" ] && kill $sig $pid
+        [ ! -z "$pid" ] && kill "$sig" "$pid"
     }
 fi
 
