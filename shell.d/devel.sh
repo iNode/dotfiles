@@ -43,11 +43,11 @@ cscope_add ()
 
 vgrep ()
 { # multiple pattern inVert match grep
-  cmd="egrep -v "
-  for arg in "$@"; do
-      cmd="$cmd -e $arg"
-  done
-  eval "$cmd"
+    cmd="egrep -v "
+    for arg in "$@"; do
+        cmd="$cmd -e $arg"
+    done
+    eval "$cmd"
 }
 
 mgrep ()
@@ -91,8 +91,8 @@ wait_success() {
     cmd="$*"
     $cmd;
     while [ "x$?" != "x0" ]; do
-	sleep 1;
-	$cmd;
+        sleep 1;
+        $cmd;
     done;
 }
 
@@ -109,20 +109,6 @@ fi
 
 svndiff () { svn diff "${@}" | colordiff | less -R -E; }
 hgdiff () { hg diff "${@}" | colordiff | less -R -E; }
-
-rdiff() {
-    if [ $# -lt 3 ]; then
-        echo "DESCRIPTION: remote files diff"
-        echo "USAGE: rdiff HOST REMOTE_FILE LOCAL_FILE"
-        echo ""
-        echo "NOTE: configure SSH key authentication in order to use"
-        exit 1
-    fi
-    HOST=$1
-    REMOTE_FILE=$2
-    LOCAL_FILE=$3
-    vimdiff <(\ssh $HOST cat $REMOTE_FILE) <(cat $LOCAL_FILE)
-}
 
 httpshare() {
     # share current directory via http on fixed port
