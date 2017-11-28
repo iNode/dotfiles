@@ -12,6 +12,8 @@ if [ "$(which emacs)" ]; then
     alias deh='ece "(dired \"`pwd`\")"'
     # jump to current emacs path
     alias jm='eval cd $(ece "(with-current-buffer (window-buffer (frame-selected-window)) default-directory)")'
+    # edit emacs active file
+    alias eef='eval vim $(ece "(with-current-buffer (window-buffer (frame-selected-window)) buffer-file-name)")'
     # dir emms add
     alias dea='ece "(emms-add-directory-tree \"`pwd`\")"'
     # emacs scratch
