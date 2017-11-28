@@ -144,6 +144,7 @@ inoremap <right> <nop>
 " completion
 "-----------------------------------------------------------------------
 set dictionary=/usr/share/dict/words
+set wildmode=list:longest,full
 
 set nobackup
 set hidden
@@ -288,7 +289,9 @@ endfunction
 
 " autocmd BufEnter * call Safe_cd()
 " edit in current working directory (location of current file)
-map <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
+map <leader>ew :e %%
+" map <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
 
 " replace command on curren line by execution result
 " overrides Ex-mode command on Q
