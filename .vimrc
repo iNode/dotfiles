@@ -88,6 +88,9 @@ let g:ctrlp_use_caching = 0
 " highlight lines longer than 80chars
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 " match OverLength /\%81v.\+/
+" set colorcolumn=81
+highlight ColorColumn ctermbg=yellow
+call matchadd('ColorColumn', '\%81v', 100)
 
 " No tabs, only spaces
 set expandtab
