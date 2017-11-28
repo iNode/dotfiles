@@ -1,27 +1,64 @@
 #!/bin/sh
 
 if python3 -V 2>/dev/null 1>/dev/null; then
-   if [ ! -d ~/pyenv3 ]; then
+   if [ -d ~/pyenv3 ]; then
       pyvenv ~/pyenv3
       . ~/pyenv3/bin/activate
+   else
+       echo "No pyenv found exiting..."
+       exit 1
    fi
    # common tools
-   pip install -U httpie ipython docker-compose pip invoke pexpect defaultenv
+   pip install -U httpie ipython docker-compose pip invoke pexpect defaultenv jinjer ranger-fm
    # devel tools
-   pip install -U bs4 pylint pyflakes sh plumbum pep8
+   pip install -U bs4 pylint pyflakes sh plumbum pep8 flake8 fn
    # webdev & telegram
-   pip install -U requests flask bottle telebot sqlite3 sqlalchemy
+   pip install -U requests flask bottle telebot sqlalchemy
+
+   # home assistant / speach rec. / tts
+   pip install -U gTTS
+
+   # data science packages
+   # pip install -U csvkit  # -> csvjoin, csvgrep, csvjoin, csvlook, csvsort, csvsql, csvstack, csvstat, in2csv
+
+   # interactive learning and data science
+   # pip install -U jupyter pandas
+   # must not be installed from pypi
+   # pip install -U sqlite3
 
    # configuration management tools
    # pip install -U cdist
 
-   # noncompatible
+   # noncompatible -> track compatibility
    # ansible 2.2+ it tech preview with some support for python3
    pip install -U ansible
+
+
+
+   # python3 compatible fabric
+   # https://github.com/mathiasertl/fabric
+   # pip install -U Fabric3
+   # toolkit for common Unix deployment and sysadmin operations,
+   # such as "install package", "create directory with X owner", etc.
+   # too primitive to be usefull
+   # https://github.com/fabric/patchwork/
+   # pip install -U patchwork
+
+   # for testing paramico2, install latest invoke, invocations, paramico
+   # pip install -e 'git+https://github.com/pyinvoke/invoke#egg=invoke'
+   # And invocations, ditto: Invocations is a collection of reusable Invoke tasks/task modules
+   # pip install -e 'git+https://github.com/pyinvoke/invocations#egg=invocations'
+   # Paramiko ditto
+   # pip install -e 'git+https://github.com/paramiko/paramiko#egg=paramiko'
+
+   # look from time to time to fabric2 from original developer
+   # https://github.com/fabric/fabric/blob/v2/sites/www/roadmap.rst
+   # noncompatible
    # cuisine goodplay
    # review
    # xlrd
 
+   deactivate
 else
-    echo python3 is not installed skiping packages
+    echo "python3 is not installed skiping packages" ;
 fi
