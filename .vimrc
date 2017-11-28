@@ -568,6 +568,10 @@ map <leader>b :CtrlPBuffer<cr>
     let g:syntastic_check_on_wq = 0
 " }}}
 
+" fugitive {{{
+nnoremap <silent> <leader>gs :Gstatus<cr>
+" }}}
+
 " # }}} Plugin settings
 
 if filereadable(expand("~/.vimrc.local"))
