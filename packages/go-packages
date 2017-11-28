@@ -1,8 +1,13 @@
-#!/bin/sh
+#!/bin/bash
+
+# golang auto install
+if [ -z `which go` ]; then
+    curl -L'#' https://godeb.s3.amazonaws.com/godeb-amd64.tar.gz | pv | sudo tar -C /usr/local/bin -zx
+    sudo godeb install
+fi
 
 if go version 2>/dev/null 1>/dev/null; then
     # go tools to use for golang development
-    go get -u -v github.com/golang/lint/golint
     go get -u -v github.com/lukehoban/go-outline
     go get -u -v github.com/newhook/go-symbols
     go get -u -v github.com/nsf/gocode
@@ -10,20 +15,32 @@ if go version 2>/dev/null 1>/dev/null; then
     go get -u -v github.com/tpng/gopkgs
     go get -u -v golang.org/x/tools/cmd/gorename
     go get -u -v golang.org/x/tools/cmd/guru
-    go get -u -v sourcegraph.com/sqs/goreturns
+    # go linters
+    go get -u -v github.com/golang/lint/golint
+    go get -u -v github.com/alecthomas/gometalint
+    # call visualisation
+    go get -u -v truefurby.github.io/go-callvis
+    # go get -u -v sourcegraph.com/sqs/goreturns
+    # to review
+    # https://github.com/graymeta/stow - Cloud storage abstraction package for Go.
     # vendoring tools
     go get -u -v github.com/filosottile/gvt
     go get -u -v github.com/golang/dep
+    # golang interactive shell
+    # pretty useless
+    # go get -u -v github.com/mkouhei/gosh
     # go tools for DevOps
     # simplified foreman implementation on go
     go get -u -v github.com/ddollar/forego
     # go get github.com/mitchellh/packer # for image creation
     # https://github.com/hashicorp/consul - service discovery, health checking, k/v storage, multi DC
-    # input fuzzy match as percol just on go
-    go get -u -v github.com/zoncoen/fourmi
+    # fuzzy matcher: initialized and installed by vim
+    # go get -u -v github.com/junegunn/fzf
     # monitor file changes and perform actions
     go get -u -v github.com/cespare/reflex
     go get -u -v github.com/maurice/nanny
+    # run tests / compile code on fs change
+    # go get -u -v github.com/nathany/looper
     # alternative to ag silversearch
     go get -u -v github.com/svent/sift
     # TODO: compare these packages
@@ -40,6 +57,12 @@ if go version 2>/dev/null 1>/dev/null; then
     go get -u -v github.com/mattn/goreman
     # meshbird vpn
     go get -u -v github.com/meshbird/meshbird
+
+    # data science tools: json to csv converter
+    go get -u -v github.com/jehiah/json2csv
+
+    # misc
+    # go get -u -v 9fans.net/go/acme  # interface to acme windows management
 else
     echo golang is not installed skiping packages
 fi
