@@ -112,8 +112,12 @@ let c_space_errors=1
 set foldmethod=indent
 " set foldmethod=syntax
 " set nofoldenable
-"  set foldclose=all
-set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
+" to auto fold/unfold when cursor moving from/to this line/block
+set foldclose=all
+set foldopen=all
+" to use colums to show folding level
+" set foldcolumn=6
+" set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
 
 "
 " russian keymap
