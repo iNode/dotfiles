@@ -7,17 +7,19 @@ apt install git mercurial ack-grep cscope ipython silversearcher-ag exuberant-ct
 # experimental
 # apt install picolisp pv
 # review: cgvg
+# review: retty - re-attach tty application to your tty/screen/tmux
 # UI/desktop
 apt install suckless-tools dzen2 sdcv vlc mc keepassx2 xautomation shutter rofi synergy libnotify-bin scrot
 # x11 things
-apt install wmctrl x11-xserver-utils xbindkeys xclip xinput xsel
+apt install wmctrl x11-xserver-utils xbindkeys xclip xinput xsel xnest xserver-xephyr
 # # desktop
-apt install pavucontrol
+apt install pavucontrol redshift
 # # Office
 # apt install libreoffice
 # # xorg related tools
 # apt install xpra xnest xserver-xephyr
 # TODO: add https://github.com/slgobinath/SafeEyes
+# TODO: add https://github.com/jp9000/obs-studio/wiki/Install-Instructions#linux
 
 # troubleshooting
 # apt install linux-tools-common linux-tools-generic linux-tools-`uname -r` strace ltrace ntrace tcpdump nmap ngrep
@@ -27,6 +29,8 @@ apt install pavucontrol
 # binary files analysis
 # apt install radare2 bvi
 
+# data science tools
+# python3-csvkit feedgnuplot jq r-base r-cran-ggplot2 parallel
 # 3rd party software
 # apt google-chrome-stable dropbox
 # web: skype
