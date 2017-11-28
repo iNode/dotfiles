@@ -570,6 +570,8 @@ map <leader>b :CtrlPBuffer<cr>
     let g:syntastic_auto_loc_list = 1
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 0
+    " allow shellcheck to work with external files
+    let g:syntastic_sh_shellcheck_args="-x"
 " }}}
 
 " fugitive {{{
