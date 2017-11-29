@@ -73,7 +73,9 @@ if has("persistent_undo")
     set undolevels=5000         " How many undos
     set undoreload=10000        " number of lines to save for undo
 endif
-
+" set swap files location
+" // to avoid filename collisions
+set directory=~/.vim/swap//
 
 
 if &term == "xterm-color"
