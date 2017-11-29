@@ -293,6 +293,14 @@ function! Safe_cd ()
     endif
 endfunction
 
+"Only apply to help files...
+function! HelpInNewTab ()
+    if &buftype == 'help'
+        "Convert the help window to a tab...
+        execute "normal \<C-W>T"
+    endif
+endfunction
+
 " autocmd BufEnter * call Safe_cd()
 " edit in current working directory (location of current file)
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
@@ -306,50 +314,62 @@ nnoremap Q !!$SHELL<CR>
 " scroll the viewport faster
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
-
+nnoremap <silent>  <leader>vv   [Edit .vimrc]          :next ~/.vimrc<CR>
 if has("autocmd")
     set autoindent
     filetype indent on
     filetype plugin on
     filetype plugin indent on
     set relativenumber
-  augroup VIMRC " {{{
-    autocmd!
 
-    autocmd BufWritePost .vimrc nested source ~/.vimrc
-  augroup END " }}}
+    augroup VIMRC " {{{
+        autocmd!
 
-  augroup FTOptions " {{{2
-    autocmd!
-    " Save and load session by default
-    " autocmd VimLeavePre * :silent mksession! ~/.vim/lastSession.vim
-    " autocmd VimEnter * :silent source! ~/.vim/lastSession.vim
-    autocmd BufReadPre  *.doc set readonly
-    autocmd BufReadPost *.doc %!catdoc %
+        autocmd BufWritePost .vimrc nested source ~/.vimrc
+    augroup END " }}}
 
-    " auto delete trailing spaces
-    autocmd BufWritePre * :%s/\s\+$//e
-    autocmd FileType spec setlocal commentstring=#\ %s
-    autocmd FileType *commit* setlocal spell
-    autocmd FileType liquid,markdown,text,txt setlocal textwidth=78 linebreak nolist
-    autocmd BufNewFile,BufRead *.json set filetype=javascript
-    autocmd BufNewFile,BufRead *.1.md setlocal textwidth=78 makeprg=pandoc\ -s\ -w\
-        \ man\ %\ -o\ %<
-    autocmd FileType make,snippet,snippets setlocal list tabstop=8 shiftwidth=8 softtabstop=8 noexpandtab
-    " But for yaml keep 2 characters, pls
-    autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
-    autocmd FileType xml,xsd,xslt,javascript setlocal tabstop=2
-    autocmd FileType text,txt,mail          setlocal autoindent comments=fb:*,fb:-,n:>
-    autocmd FileType haskell setlocal tabstop=2 shiftwidth=2
-    autocmd FileType help setlocal autoindent formatoptions+=2n | silent! setlocal nospell
-    autocmd FileType help nnoremap <silent><buffer> q :q<CR>
+    "Only apply to .txt files...
+    augroup HelpInTabs
+        autocmd!
+        autocmd BufEnter  *.txt   call HelpInNewTab()
+    augroup END
 
-    autocmd FileType c setlocal tabstop=4 shiftwidth=4
-    " match pairs of < and >
-    autocmd FileType cpp set matchpairs+=<:>
-    autocmd FileType python,lua setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
-    autocmd FileType perl let b:dispatch = 'perl -Wc %'
-  augroup END "}}}2
+    augroup FTOptions " {{{2
+        autocmd!
+        " Save and load session by default
+        " autocmd VimLeavePre * :silent mksession! ~/.vim/lastSession.vim
+        " autocmd VimEnter * :silent source! ~/.vim/lastSession.vim
+        autocmd BufReadPre  *.doc set readonly
+        autocmd BufReadPost *.doc %!catdoc %
+
+        " auto delete trailing spaces
+        autocmd BufWritePre * :%s/\s\+$//e
+        autocmd FileType spec setlocal commentstring=#\ %s
+        autocmd FileType *commit* setlocal spell
+        autocmd FileType liquid,markdown,text,txt setlocal textwidth=78 linebreak nolist
+        autocmd BufNewFile,BufRead *.json set filetype=javascript
+        autocmd BufNewFile,BufRead *.1.md setlocal textwidth=78 makeprg=pandoc\ -s\ -w\
+                    \ man\ %\ -o\ %<
+        autocmd FileType make,snippet,snippets setlocal list tabstop=8 shiftwidth=8 softtabstop=8 noexpandtab
+        " But for yaml keep 2 characters, pls
+        autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
+        autocmd FileType xml,xsd,xslt,javascript setlocal tabstop=2
+        autocmd FileType text,txt,mail          setlocal autoindent comments=fb:*,fb:-,n:>
+        autocmd FileType haskell setlocal tabstop=2 shiftwidth=2
+        autocmd FileType help setlocal autoindent formatoptions+=2n | silent! setlocal nospell
+        autocmd FileType help nnoremap <silent><buffer> q :q<CR>
+
+        autocmd FileType c setlocal tabstop=4 shiftwidth=4
+        autocmd FileType sh setlocal tabstop=4 shiftwidth=4 expandtab foldmethod=syntax
+        autocmd FileType sh let g:sh_fold_enabled=5
+        autocmd FileType sh let g:is_bash=1
+        " match pairs of < and >
+        autocmd FileType cpp set matchpairs+=<:>
+        autocmd FileType python,lua setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+        " autocmd FileType python set define=^\\s*def
+        autocmd FileType perl let b:dispatch = 'perl -Wc %'
+        " autocmd FileType perl set define=^\\s*sub
+    augroup END "}}}2
 
   " Transparent editing of gpg encrypted files.
   " By Wouter Hanegraaff
