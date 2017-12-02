@@ -428,6 +428,13 @@ map =u  :e ++enc=utf-8<CR>
 "" Key to get out of dvorak mode:
 " map ,q :source ~/.vim/qwerty
 
+if executable("zsh") && filereadable("~/.zshrc")
+    " zsh -l -c <command>" for :sh and :!
+    " (so it sources my .zshrc and so forth)
+    set shellcmdflag=-c
+    set shell=/bin/zsh\ -l"
+endif
+
 " man
 runtime ftplugin/man.vim
 nnoremap <c-F1> :Man
