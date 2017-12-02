@@ -61,6 +61,9 @@ if go version 2>/dev/null 1>/dev/null; then
     # data science tools: json to csv converter
     go get -u -v github.com/jehiah/json2csv
 
+    # password manager
+    go get -u -v justwatchcom/gopass
+
     # misc
     # go get -u -v 9fans.net/go/acme  # interface to acme windows management
 else
