@@ -18,6 +18,12 @@
 
 # vim cruft
 ~/.vim/bundle
+.vim/.netrwbook
+.vim/.netrwhist
+.vim/bundle/
+.vim/lastSession.vim
+.vim/undo/
+.vim/swap/
 *.swp
 
 # wing cruft
