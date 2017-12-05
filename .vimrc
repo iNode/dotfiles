@@ -174,7 +174,7 @@ set tags=./tags*,tags
 imap <C-Space> <C-N>
 "
 " 'smart' Home
-nmap <Home> ^
+nnoremap <Home> ^
 imap <Home> <Esc>I
 
 " default for leader is "\" key
@@ -210,8 +210,8 @@ cnoremap w!! w !sudo tee > /dev/null %
 
 " emacs like bindings {{{
 " Window switch
-nmap <C-x>O <C-w><C-w>
-nmap <C-x>o <C-w><C-w><C-w>_
+nnoremap <C-x>O <C-w><C-w>
+nnoremap <C-x>o <C-w><C-w><C-w>_
 " command line bindings
 cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
@@ -221,9 +221,9 @@ cnoremap <Esc>b <S-Left>
 cnoremap <Esc>f <S-Right>
 
 " switch buffer
-nmap <C-x>b :BufExplorer<CR>
+nnoremap <C-x>b :BufExplorer<CR>
 " kill buffer
-nmap <C-x>k :bd<CR>
+nnoremap <C-x>k :bd<CR>
 
 imap <M-b> <Esc>bi
 imap <M-f> <Esc>wi
@@ -566,7 +566,7 @@ cnoreabbrev ag Ack
     xmap ga <Plug>(EasyAlign)
 
     " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-    nmap ga <Plug>(EasyAlign)
+    nnoremap ga <Plug>(EasyAlign)
 " }}} vim-easy-align
 
 " andviro/flake8-vim {{{
