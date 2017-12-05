@@ -32,7 +32,7 @@ export UNAME_S=$(uname -s 2>&1 || echo "Linux" )
 SAVEHIST=5000
 HISTSIZE=5000
 DIRSTACKSIZE=20
-HISTFILE=~/.bash_history
+HISTFILE=~/.zsh_history
 
 # Load options
 source ~/.zsh/options.zsh
@@ -96,8 +96,6 @@ select-word-style bash
 
 # Load Functions
 source ~/.zsh/functions.zsh
-
-source ~/.zsh/prompt.zsh
 
 # load shell.d definitions (sh and zsh compatible)
 for f in ~/shell.d/*.sh ~/shell.d/*.zsh; do
