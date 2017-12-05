@@ -3,18 +3,28 @@
 # when call without arg returns root project path
 # root of project determined by .git/.hg/etc. folder
 
-pattern="-d .git -o -d .hg -o -d .projectroot -o -f Cargo.toml -o -f README.md -o -d .idea -o -d .projectile"
+find_file_or_project_root() {
+    if [ "x$1" != "x" ]; then
+        find "$(pwd)" -iname "$@"
+        return $?
+    else
+        pwd
+        return
+    fi
+}
+
+pattern="-d .git -o -d .hg -o -d .projectroot -o -f Cargo.toml -o -f README.md -o -d .idea -o -f .projectile"
 curdir=$(pwd)
 while [ "x$(pwd)" != "x/" ]; do
-    if [ $pattern ]; then
-        if [ "x$1" != "x" ]; then
-            find "$(pwd)" -iname "$@"
-        else
-            pwd
-        fi
+    if [ -n "$PROJECT_ROOT" ] && [ -d "$PROJECT_ROOT" ]; then
+        cd "$PROJECT_ROOT" || echo "Failed to access $PROJECT_ROOT"
+        find_file_or_project_root "$1"
+        break
+    elif [ $pattern ]; then
+        find_file_or_project_root "$1"
         break
     else
-        cd ..
+        cd .. || echo "Failed to access .. directory"
     fi
 done
-cd "$curdir"
+cd "$curdir" || echo "Failed to access $curdir directory"
