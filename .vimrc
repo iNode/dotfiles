@@ -197,6 +197,10 @@ nnoremap <silent> <leader>w :w<CR>
 nnoremap <leader>' <c-^>
 nnoremap <leader>. :bn<CR>
 nnoremap <leader>, :bp<CR>
+
+" search for word under the cursor without word boundaries
+nnoremap <leader>/ "fyiw :/<c-r>f<cr>
+
 nnoremap <silent>   <tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
 nnoremap <silent> <s-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
 
