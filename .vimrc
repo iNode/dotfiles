@@ -12,6 +12,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'tpope/vim-fugitive'       " git interface
     Plug 'tpope/vim-scriptease'     " plugin for doing plugins, e.g. Vedit
     Plug 'tpope/vim-dispatch'       " async task dispatch
+    Plug 'tpope/vim-markdown'       " markdown support
     Plug 'airblade/vim-gitgutter'   " mark file changes in gutter for git repo
     Plug 'amiorin/vim-eval'         " C-c for eval line or selection
     Plug 'mileszs/ack.vim'          " ack/ag/etc. support
@@ -608,6 +609,10 @@ map <leader>b :CtrlPBuffer<cr>
 
 " fugitive {{{
 nnoremap <silent> <leader>gs :Gstatus<cr>
+" }}}
+
+" markdown {{{
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
 " }}}
 
 " # }}} Plugin settings
