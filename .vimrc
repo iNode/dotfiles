@@ -456,6 +456,11 @@ nnoremap <Leader>h :set list!<CR>
 nnoremap <BS> {
 nnoremap <expr> <CR> empty(&buftype) ? '}' : '<CR>'
 
+if v:version > 703
+  " remove a comment leader when joining lines
+  set formatoptions+=j
+endif
+
 " --------------------------------------------------
 " [GUI]
 if has("gui_running")
