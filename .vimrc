@@ -452,6 +452,10 @@ nnoremap <Leader>j :%!python -m json.tool<CR>:%s/\s\+$//g<CR>
 " toggle non-printing characters
 nnoremap <Leader>h :set list!<CR>
 
+" use backspace and enter to navigate by paragraph instead of line
+nnoremap <BS> {
+nnoremap <expr> <CR> empty(&buftype) ? '}' : '<CR>'
+
 " --------------------------------------------------
 " [GUI]
 if has("gui_running")
