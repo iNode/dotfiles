@@ -25,6 +25,8 @@ export PIP_REQUIRE_VIRTUALENV=true
 # set path for gems installation
 export GEM_HOME=$HOME/.gem/gems
 export PATH=$PATH:$GEM_HOME/bin
+# include cargo binaries into PATH
+export PATH="$HOME/.cargo/bin:$PATH"
 
 if [ -e ~/.profile.local ]
 then
