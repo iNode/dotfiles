@@ -36,3 +36,44 @@ apt-file-remote()
     wget "http://packages.ubuntu.com/search?searchon=contents&keywords=$pattern&mode=exactfilename&suite=$release" -qO- | \
         html2text -width 999 | grep --color=never '^/'
 }
+
+apt-history () {
+  case "$1" in
+    install)
+      zgrep --no-filename 'install ' $(ls -rt /var/log/dpkg*)
+      ;;
+    upgrade|remove)
+      zgrep --no-filename $1 $(ls -rt /var/log/dpkg*)
+      ;;
+    rollback)
+      zgrep --no-filename upgrade $(ls -rt /var/log/dpkg*) | \
+        grep "$2" -A10000000 | \
+        grep "$3" -B10000000 | \
+        awk '{print $4"="$5}'
+      ;;
+    list)
+      zgrep --no-filename '' $(ls -rt /var/log/dpkg*)
+      ;;
+    *)
+	cat<<EOF
+NAME:
+	apt-history - Prints apt history
+
+USAGE:
+	apt-history install
+	apt-history upgrade
+	apt-history remove
+	apt-history rollback
+	apt-history list
+
+PARAMETERS:
+	install - Lists all packages that have been installed.
+	upgrade - Lists all packages that have been upgraded.
+	remove - Lists all packages that have been removed.
+	rollback - Lists rollback information.
+	list - Lists all contains of dpkg logs.
+EOF
+	return 1
+      ;;
+  esac
+}
