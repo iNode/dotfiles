@@ -27,6 +27,8 @@ compctl -g '*.zip *.ZIP' + -g '*' unzip
 compctl -g '*.(mp3|MP3|ogg|OGG|temp|TEMP)' + -g '*(-/)'  mpg123 xmms mpg321
 compctl -g '*.(avi|mp4|mpg|mkv|flv)' + -g '*(-/)'  vlc
 
+compdef mosh=ssh
+
 # Completion Styles
 # vim: set noet ts=4 tw=80 syntax=zsh :
 # Local Variables:
