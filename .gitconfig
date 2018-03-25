@@ -3,44 +3,63 @@
 	email = pashelper@gmail.com
 
 [alias]
-  cisa = commit -a -s
-  ci = commit
-  co = checkout
-  b  = branch
-  rb = branch -r
-  nb = checkout -b
-  st = status
-  stat = status
-  sl = stash list
-  sa = stash apply
-  sd = stash drop
-  wu = log --stat origin..@{0}
-  up = !sh -c \"git commit -a -m 'Before rebase' && git pull --rebase && git reset head^\"
-  quicklog = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
-  ql = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
-  changes = log --pretty=oneline
-  svnup = svn rebase
-  svnpush = svn dcommit
-  dc = diff --color
-  dcc = diff --color --cached
-  ca = commit --amend -C HEAD
-  cb = !git branch | grep ^* | cut -d' ' -f2
-  lp = log -p --color
-  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-  ilog = log --all --graph --decorate --color
-  ilogs = log --all --graph --decorate --color --oneline
-  lgg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
-  g = !git grep
-  prune-all = !git remote | xargs -n 1 git remote prune
-  whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
-  whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
-  # git forkgiff parent branch
-  forkdiff = !bash -c 'git diff $(git merge-base "$1" "$2") "$2" "${@: 3}" ' -
-  sh = show --color
-  # add all changes except whitespace changes
-  addnw = !sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'
-  # shortcut for submodule update
-  su = submodule update --init
+	# simple shortcuts
+	cisa = commit -a -s
+	ci = commit
+	co = checkout
+	b  = branch
+	rb = branch -r
+	nb = checkout -b
+	st = status
+	stat = status
+	sl = stash list
+	sa = stash apply
+	sd = stash drop
+	sp = stash pop
+	# shortcut for submodule update
+	su = submodule update --init
+
+	up = !sh -c \"git commit -a -m 'Before rebase' && git pull --rebase && git reset head^\"
+	svnup = svn rebase
+	svnpush = svn dcommit
+
+	# branch specific aliases
+	cb = !git branch | grep ^* | cut -d' ' -f2
+
+	# diff specifi aliases
+	dc = diff --color
+	dcc = diff --color --cached
+	ca = commit --amend -C HEAD
+	# add all changes except whitespace changes
+	addnw = !sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'
+	forkdiff = !bash -c 'git diff $(git merge-base "$1" "$2") "$2" "${@: 3}" ' -
+
+	# tracking changes
+	# branch update date
+	budate = !git for-each-ref --sort='-committerdate:iso8601' --format=' %(committerdate:iso8601)%09%(refname)' | grep -v tags
+
+	# log specific aliases
+	wu = log --stat origin..@{0}
+	quicklog = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
+	ql = log --pretty=format:\"%h %cr\t%C(yellow)%cn\t%Cgreen%s%Creset\"
+	changes = log --pretty=oneline
+	daily = log --since=\"1 day ago\" --pretty=format:\"%h %cr\t%C(yellow)%cn\t%Cgreen%s%Creset\"
+	lp = log -p --color
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	ilog = log --all --graph --decorate --color
+	# ilog short
+	ilogs = log --all --graph --decorate --color --oneline
+	# log graph
+	lgg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+
+
+	g = !git grep
+	prune-all = !git remote | xargs -n 1 git remote prune
+	whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+	# git forkgiff parent branch
+	sh = show --color
+
 [apply]
 	whitespace = fix
 [push]
@@ -54,12 +73,12 @@
 	prompt = false
 [mergetool.ediff]
 	cmd = emacs -q --eval \" \
-(progn \
-  (setq ediff-quit-hook 'kill-emacs) \
-  (if (file-readable-p \\\"$BASE\\\") \
-      (ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\" \
-                                       \\\"$BASE\\\" nil \\\"$MERGED\\\") \
-      (ediff-merge-files \\\"$LOCAL\\\" \\\"$REMOTE\\\" nil \\\"$MERGED\\\")))\"
+	(progn \
+	(setq ediff-quit-hook 'kill-emacs) \
+	(if (file-readable-p \\\"$BASE\\\") \
+	(ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\" \
+	\\\"$BASE\\\" nil \\\"$MERGED\\\") \
+	(ediff-merge-files \\\"$LOCAL\\\" \\\"$REMOTE\\\" nil \\\"$MERGED\\\")))\"
 
 [color "diff-highlight"]
 	oldNormal = red bold
