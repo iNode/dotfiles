@@ -1,9 +1,10 @@
+#!/bin/sh
 # emacs alias section here
 # =========================
 
-if [ "$(which emacs)" ]; then
+if which emacs 1>/dev/null 2>&1 || which emacs-snapshot 1>/dev/null 2>&1; then
     #alias ee="emacsclient -n -a gvim "
-    alias em='emacsclient -c -a ""'
+    alias em='emacsclient -c -a "vim"'
     # emacs client execute/evaluate
     alias ece='emacsclient -e '
     #
