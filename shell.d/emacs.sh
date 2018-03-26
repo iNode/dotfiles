@@ -18,18 +18,22 @@ if which emacs 1>/dev/null 2>&1 || which emacs-snapshot 1>/dev/null 2>&1; then
     # dir emms add
     alias dea='ece "(emms-add-directory-tree \"`pwd`\")"'
     # emacs scratch
-    es () {
-        emacsclient -e '(switch-to-buffer "*scratch*" t t)'
-        if [ ! -z "$TMUX" ]; then
-            tmux select-window -t emacs
-        fi
-        if [ ! -z "$DISPLAY" ]; then
-            if [ "$(which emacs-snapshot)" ]; then
+    switch_to_emacs() {
+        if [ -n "$DISPLAY" ]; then
+            if which emacs-snapshot 2>/dev/null; then
                 ~/bin/wmctrl-switch-to emacs-snapshot emacs-snapshot.Emacs
             else
                 ~/bin/wmctrl-switch-to emacs emacs.Emacs
             fi
         fi
+    }
+
+    es () {
+        emacsclient -e '(switch-to-buffer "*scratch*" t t)'
+        if [ ! -z "$TMUX" ]; then
+            tmux select-window -t emacs
+        fi
+        switch_to_emacs
     }
     ediff() {
       if [ $# -lt 2 ]
