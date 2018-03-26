@@ -36,8 +36,7 @@ if which emacs 1>/dev/null 2>&1 || which emacs-snapshot 1>/dev/null 2>&1; then
         switch_to_emacs
     }
     ediff() {
-      if [ $# -lt 2 ]
-      then
+      if [ $# -lt 2 ]; then
           echo "USAGE: ediff <FILE 1> <FILE 2>"
       else
           # The --eval flag takes lisp code and evaluates it with EMACS
@@ -50,9 +49,9 @@ if which emacs 1>/dev/null 2>&1 || which emacs-snapshot 1>/dev/null 2>&1; then
         # TODO: add this to ee
         # example: eer long/relative/path/file.c:350
         # results: ee `ffip file.c`:350:
-      fn=$(echo "$1" | perl -pe 's/(.*\/)//; s/([^:]+):.*/$1/;')
-      line=$(echo "$1"| perl -pe 's/.*:(\d+):?/$1/')
-      ee "$(ffip "$fn"):$line:"
+	fn=$(echo "$1" | perl -pe 's/(.*\/)//; s/([^:]+):.*/$1/;')
+	line=$(echo "$1"| perl -pe 's/.*:(\d+):?/$1/')
+	ee "$(ffip "$fn"):$line:"
     }
 
     # auto fix typos
