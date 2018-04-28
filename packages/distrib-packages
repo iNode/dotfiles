@@ -29,7 +29,7 @@ apt install -y pavucontrol redshift
 # TODO: add racket latest https://launchpad.net/~plt/+archive/ubuntu/racket
 
 # networking tools
-apt install -y vpnc netcat nmap tcpdump ngrep
+apt install -y vpnc netcat nmap tcpdump ngrep sshuttle
 
 # laptop tools?
 
