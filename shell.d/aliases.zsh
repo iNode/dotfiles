@@ -49,6 +49,9 @@ then
     alias -g V="|vim -"
     alias -g ND='*(/om[1])' # newest directory
     alias -g NF='*(.om[1])' # newest file
+    alias -g Y='|yank-cli'      # yank "word" from output of the command
+    alias -g YL='|yank-cli -l'  # yank "line" from output of the command
+    alias -g P='$(xsel)'        # paste from clipboard, example "cd P"
 
     # Extenstions
     # extensions

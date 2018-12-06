@@ -5,6 +5,7 @@ apt install -y zsh tmux mosh autossh openssh-server tree htop iotop unzip unrar 
 # common heavyweight
 apt install -y emacs vim-nox
 # review
+apt install yank  # yank output of cli programm
 # apt install vcsh zgen
 # git-cola - might be too big (~65M)
 # experimental
