@@ -627,6 +627,14 @@ nnoremap <silent> <leader>gs :Gstatus<cr>
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
 " }}}
 
+" easy-align {{{
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+" }}} easy-align
+
 " # }}} Plugin settings
 
 if filereadable(expand("~/.vimrc.local"))
