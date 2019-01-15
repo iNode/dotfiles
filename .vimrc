@@ -606,6 +606,11 @@ map <leader>b :CtrlPBuffer<cr>
     set statusline+=%{SyntasticStatuslineFlag()}
     set statusline+=%*
 
+    " disable java checks
+    let g:syntastic_mode_map = { 'passive_filetypes': ['java']   }
+    let g:syntastic_disabled_filetypes=['java']
+    let g:syntastic_java_checkers=['']
+
     let g:syntastic_always_populate_loc_list = 1
     let g:syntastic_auto_loc_list = 1
     let g:syntastic_check_on_open = 1
