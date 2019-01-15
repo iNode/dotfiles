@@ -317,7 +317,7 @@ nnoremap Q !!$SHELL<CR>
 " scroll the viewport faster
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
-nnoremap <silent>  <leader>vv   [Edit .vimrc]          :next ~/.vimrc<CR>
+nnoremap <silent>  <leader>vv :next ~/.vimrc<CR>
 if has("autocmd")
     set autoindent
     filetype indent on
