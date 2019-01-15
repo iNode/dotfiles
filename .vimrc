@@ -6,27 +6,21 @@ set listchars=tab:▸\ ,trail:·,eol:¬ " Make tabs, trailing whitespace, and EO
 call plug#begin('~/.vim/bundle')
     Plug 'tpope/vim-sensible'       " sensible defaults for vim
     Plug 'tpope/vim-commentary'     " comment/uncomment (gcc)
-    Plug 'tpope/vim-repeat'         " repeat plugin command
-    Plug 'tpope/vim-unimpaired'     " Pairs of handy bracket mappings
-    Plug 'tpope/vim-surround'       " surround text
-    Plug 'tpope/vim-fugitive'       " git interface
-    Plug 'tpope/vim-scriptease'     " plugin for doing plugins, e.g. Vedit
-    Plug 'tpope/vim-dispatch'       " async task dispatch
+    Plug 'tpope/vim-unimpaired'     " Pairs of handy bracket mappings, :h unimp
+    Plug 'tpope/vim-surround'       " surround text, ( ys$' cs'` ds' ysw) )
+    Plug 'junegunn/vim-easy-align'  " easy-to-use Vim alignment
+    Plug 'tpope/vim-repeat'         " repeat plugin command: surround, unimpired, easy-align
+    Plug 'tpope/vim-dispatch'       " async task dispatch, :h dispatch
     Plug 'tpope/vim-markdown'       " markdown support
     Plug 'airblade/vim-gitgutter'   " mark file changes in gutter for git repo
     Plug 'amiorin/vim-eval'         " C-c for eval line or selection
     Plug 'mileszs/ack.vim'          " ack/ag/etc. support
     Plug 'jlanzarotta/bufexplorer'  " buffer navigation
     Plug 'vim-scripts/taglist.vim'  " source code tag browser
-    Plug 'ervandew/supertab'        " tab completion
-    Plug 'jiangmiao/auto-pairs'     " insert or delete brackets, parens, quotes in pair
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }    " fuzzy finder
-    Plug 'junegunn/vim-easy-align'  " easy-to-use Vim alignment
-    Plug 'benmills/vimux'           " Easily interact with tmux from vim.
+    Plug 'benmills/vimux'           " interact with tmux from vim, :h vimux
 "   Plug 'valloric/youcompleteme'   " code completion engine, obsoletes ^
-    Plug 'nfvs/vim-perforce'        " perforce client
 "   Plug 'tpope/tpope-vim-abolish'  " smart replacements and abbrevs
-    Plug 'kien/ctrlp.vim'           " full path fuzzy file, buffer, mru, tag, ... finder for Vim
+    Plug 'ctrlpvim/ctrlp.vim'       " full path fuzzy file, buffer, mru, tag, ... finder for Vim"
     Plug 'vim-syntastic/syntastic'  " syntax checking plugin
     " if executable('python')
     "     Plug 'andviro/flake8-vim', { 'for': 'python' }
