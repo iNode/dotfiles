@@ -99,7 +99,7 @@ alias dirs='dirs -v'
 alias c="cd -"
 alias ..='cd ..'
 alias ...='cd ../../'
-cdd() { cd "$(dirname \"$1\")"; }
+cdd() { cd "$(dirname "$1")"; }
 
 # vim based color less
 if [ -x /usr/share/vim/vimcurrent/macros/less.sh ]; then
