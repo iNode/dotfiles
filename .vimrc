@@ -535,6 +535,10 @@ if executable('ag')
     set grepformat=%f:%l:%c:%m
 endif
 
+" When writing encrypted files, use blowfish instead of zip encryption
+" vim -x filename
+set cryptmethod=blowfish2
+
 " netrw {{{
     " configure netrw like a nerdtree
     let g:netrw_banner = 0  " Use I for enabling banner
