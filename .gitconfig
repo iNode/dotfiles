@@ -1,5 +1,5 @@
 [user]
-	name = Stan. S. Krupoderov
+	name = Stanislav Krupoderov
 	email = pashelper@gmail.com
 
 [alias]
@@ -20,16 +20,18 @@
 	su = submodule update --init
 
 	up = !sh -c \"git commit -a -m 'Before rebase' && git pull --rebase && git reset head^\"
+	sup = 'pull --rebase --autostash'
 	svnup = svn rebase
 	svnpush = svn dcommit
 
 	# branch specific aliases
 	cb = !git branch | grep ^* | cut -d' ' -f2
 
-	# diff specifi aliases
+	# diff specific aliases
 	dc = diff --color
 	dcc = diff --color --cached
-	ca = commit --amend -C HEAD
+	ca = commit --amend
+	cah = commit --amend -C HEAD
 	# add all changes except whitespace changes
 	addnw = !sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'
 	forkdiff = !bash -c 'git diff $(git merge-base "$1" "$2") "$2" "${@: 3}" ' -
@@ -44,6 +46,7 @@
 	ql = log --pretty=format:\"%h %cr\t%C(yellow)%cn\t%Cgreen%s%Creset\"
 	changes = log --pretty=oneline
 	daily = log --since=\"1 day ago\" --pretty=format:\"%h %cr\t%C(yellow)%cn\t%Cgreen%s%Creset\"
+	weekly = log --since=\"7 day ago\" --pretty=format:\"%h %cr\t%C(yellow)%cn\t%Cgreen%s%Creset\"
 	lp = log -p --color
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	ilog = log --all --graph --decorate --color
@@ -59,6 +62,11 @@
 	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
 	# git forkgiff parent branch
 	sh = show --color
+
+	# push new branch
+	pushb = !bash -c \"git push origin $(git cb):$(git cb)\"
+        # push branch Forcefully
+	pushF = !bash -c \"git push origin -f $(git cb):$(git cb)\"
 
 [apply]
 	whitespace = fix
@@ -85,3 +93,7 @@
 	oldHighlight = red bold 52
 	newNormal = green bold
 	newHighlight = green bold 22
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true
