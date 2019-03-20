@@ -43,7 +43,8 @@ set path+=**
 
 
 " colorscheme elflord
-colorscheme desert
+" colorscheme desert
+colorscheme zenburn
 
 " Search settings {{{
 set hlsearch " use C-L to reset highlight from sensible-vim
