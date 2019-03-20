@@ -7,7 +7,7 @@ then
 
     # Disable correction.
     alias ack='nocorrect ack'
-    alias cd='nocorrect cd'
+    alias ag='nocorrect ag'
     alias cp='nocorrect cp -v'
     alias find='noglob find'
     alias gcc='nocorrect gcc'
@@ -16,7 +16,6 @@ then
     alias grep='nocorrect grep'
     alias ln='nocorrect ln'
     alias man='nocorrect man'
-    alias mcd='nocorrect mcd'
     alias mkdir='nocorrect mkdir'
     alias mv='nocorrect mv -v'
     alias mysql='nocorrect mysql'
