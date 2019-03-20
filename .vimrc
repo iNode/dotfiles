@@ -604,6 +604,7 @@ map <leader>b :CtrlPBuffer<cr>
  " Run last command executed by VimuxRunCommand
   nnoremap <Leader>vl :VimuxRunLastCommand<cr>
   nnoremap <Leader>vp :VimuxPromptCommand<cr>
+  nnoremap <Leader>vc :VimuxCloseRunner<cr>
 " }}}
 
 " syntactic {{{
@@ -622,10 +623,6 @@ map <leader>b :CtrlPBuffer<cr>
     let g:syntastic_check_on_wq = 0
     " allow shellcheck to work with external files
     let g:syntastic_sh_shellcheck_args="-x"
-" }}}
-
-" fugitive {{{
-nnoremap <silent> <leader>gs :Gstatus<cr>
 " }}}
 
 " markdown {{{
