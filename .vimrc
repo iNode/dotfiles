@@ -372,6 +372,9 @@ if has("autocmd")
         autocmd FileType python,lua setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
         " autocmd FileType python set define=^\\s*def
         autocmd FileType perl let b:dispatch = 'perl -Wc %'
+        " set sha-bang on C-x <!>
+        autocmd FileType sh,zsh,csh,tcsh        inoremap <silent> <buffer> <C-X>! #!/bin/<C-R>=&ft<CR>
+        autocmd FileType perl,python,ruby       inoremap <silent> <buffer> <C-X>! #!/usr/bin/env<Space><C-R>=&ft<CR>
         " autocmd FileType perl set define=^\\s*sub
     augroup END "}}}2
 
