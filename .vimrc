@@ -351,7 +351,7 @@ if has("autocmd")
         autocmd BufWritePre * :%s/\s\+$//e
         autocmd FileType spec setlocal commentstring=#\ %s
         autocmd FileType *commit* setlocal spell
-        autocmd FileType liquid,markdown,text,txt setlocal textwidth=78 linebreak nolist
+        autocmd FileType liquid,markdown,text,txt setlocal textwidth=78 linebreak nolist spell
         autocmd BufNewFile,BufRead *.json set filetype=javascript
         autocmd BufNewFile,BufRead *.1.md setlocal textwidth=78 makeprg=pandoc\ -s\ -w\
                     \ man\ %\ -o\ %<
