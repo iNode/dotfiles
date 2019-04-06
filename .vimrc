@@ -21,6 +21,7 @@ call plug#begin('~/.vim/bundle')
 "   Plug 'valloric/youcompleteme'   " code completion engine, obsoletes ^
 "   Plug 'tpope/tpope-vim-abolish'  " smart replacements and abbrevs
     Plug 'ctrlpvim/ctrlp.vim'       " full path fuzzy file, buffer, mru, tag, ... finder for Vim"
+    Plug 'neapel/vim-java-bytecode' " java bytehocode highlight
     Plug 'vim-syntastic/syntastic'  " syntax checking plugin
     " if executable('python')
     "     Plug 'andviro/flake8-vim', { 'for': 'python' }
@@ -358,6 +359,7 @@ if has("autocmd")
         " But for yaml keep 2 characters, pls
         autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
         autocmd FileType xml,xsd,xslt,javascript setlocal tabstop=2
+        au BufNewFile,BufRead *.javap setf java-bytecode
         autocmd FileType text,txt,mail          setlocal autoindent comments=fb:*,fb:-,n:>
         autocmd FileType haskell setlocal tabstop=2 shiftwidth=2
         autocmd FileType help setlocal autoindent formatoptions+=2n | silent! setlocal nospell
