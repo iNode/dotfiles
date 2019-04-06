@@ -628,6 +628,9 @@ map <leader>b :CtrlPBuffer<cr>
     let g:syntastic_check_on_wq = 0
     " allow shellcheck to work with external files
     let g:syntastic_sh_shellcheck_args="-x"
+
+    " use python3 as a baseline to check syntax
+    let g:syntastic_python_checkers = ['python3']
 " }}}
 
 " markdown {{{
