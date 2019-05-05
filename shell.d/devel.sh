@@ -1,3 +1,5 @@
+#!/bin/sh
+
 cscope_add ()
 {
     curdir=$(pwd)
@@ -9,8 +11,7 @@ cscope_add ()
     cscope -b
 }
 
-vgrep ()
-{ # multiple pattern inVert match grep
+vgrep () { # multiple pattern inVert match grep
     cmd="egrep -v "
     for arg in "$@"; do
         cmd="$cmd -e $arg"
@@ -18,8 +19,7 @@ vgrep ()
     eval "$cmd"
 }
 
-mgrep ()
-{ # multiple pattern grep
+mgrep () { # multiple pattern grep
   cmd="egrep "
   for arg in "$@"; do
       cmd="$cmd -e $arg"
@@ -27,10 +27,8 @@ mgrep ()
   eval "$cmd";
 }
 
-cdr ()
-{
-    cd "$(ffip "$@")";
-}
+cdr () { cd "$(ffip "$@")"; }
+
 
 # ag + less function
 agl () { ag --color "$@" | less -R; }
@@ -44,16 +42,12 @@ scat () { cat > "$1"; chmod +x "$1"; }
 # script append
 sapp () { cat >> "$1"; }
 
-
 # print stack trace of a core file without needing to enter gdb interactively
 alias gdbbt='gdb -q -n -ex bt -batch'
 alias gdbr='gdb --args'
 
 alias gn="grep -rnH"
-alias xmlfmt="tr -d '\n' | xmllint --format - |pygmentize -l xml"
-
-# go specific
-alias gb='go install -v'
+alias xmlfmt="tr -d '\\n' | xmllint --format - |pygmentize -l xml"
 
 wait_success() {
     cmd="$*"
@@ -68,12 +62,11 @@ wait_host() {
     wait_success ping -q -w 1 "$1"
 }
 
-if which colordiff 1>/dev/null; then
+if command -v colordiff 1>/dev/null; then
     alias diff=colordiff
 else
     alias colordiff=cat
 fi
-
 
 svndiff () { svn diff "${@}" | colordiff | less -R -E; }
 hgdiff () { hg diff "${@}" | colordiff | less -R -E; }
@@ -84,7 +77,7 @@ httpshare() {
 }
 
 # rust/cargo specific
-if cargo -h 1>/dev/null 2>&1; then
+if command -v cargo 1>/dev/null 2>&1; then
     Cr() {
         cargo run "$@"
     }
@@ -108,7 +101,6 @@ if cargo -h 1>/dev/null 2>&1; then
         rustc -C prefer-dynamic "$@"
     }
 fi
-
 # perforce specific
 p4log () {
     # provide ... argument for whole curren directory
