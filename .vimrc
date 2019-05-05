@@ -417,13 +417,13 @@ endif " has("autocmd")
 
 " --------------------------------------------------
 " Charsets
-" old Plain DOS charset				=p
-" kOi8-r charset				=o
-" cp1251 charset				=i
-" utf-8 charset					=u
-map =p	:e ++enc=866<CR>
-map =l	:e ++enc=cp1251<CR>
-map =o	:e ++enc=koi8-r<CR>
+" old Plain DOS charset                         =p
+" kOi8-r charset                                =o
+" cp1251 charset                                =i
+" utf-8 charset                                 =u
+map =p  :e ++enc=866<CR>
+map =l  :e ++enc=cp1251<CR>
+map =o  :e ++enc=koi8-r<CR>
 map =u  :e ++enc=utf-8<CR>
 
 " --------------------------------------------------
