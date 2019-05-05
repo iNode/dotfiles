@@ -1,5 +1,5 @@
 " use vim not vi
-" set nocompatible                    " enabled by default when handling .vimrc
+" set nocompatible                  " enabled by default when handling .vimrc
 set list                            " Display unprintable characters.
 set listchars=tab:▸\ ,trail:·,eol:¬ " Make tabs, trailing whitespace, and EOL characters easy to spot.
 
