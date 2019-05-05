@@ -224,7 +224,7 @@ cnoremap <Esc>b <S-Left>
 cnoremap <Esc>f <S-Right>
 
 " switch buffer
-nnoremap <C-x>b :BufExplorer<CR>
+nnoremap <C-x>b :CtrlPBuffer<CR>
 " kill buffer
 nnoremap <C-x>k :bd<CR>
 
