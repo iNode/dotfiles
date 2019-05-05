@@ -181,8 +181,6 @@ imap <Home> <Esc>I
 " default for leader is "\" key
 " Grep function
 nnoremap <Leader>gp :Grep<space>
-" fast jump within block
-nnoremap <Leader><Space> %
 
 "close other window
 nnoremap <silent> <leader>c <C-w>c
