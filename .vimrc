@@ -454,6 +454,9 @@ nnoremap <Leader>j :%!python -m json.tool<CR>:%s/\s\+$//g<CR>
 " toggle non-printing characters
 nnoremap <Leader>h :set list!<CR>
 
+" additional ESC mapping(s)
+inoremap <C-C> <ESC>
+
 " use backspace and enter to navigate by paragraph instead of line
 nnoremap <BS> {
 nnoremap <expr> <CR> empty(&buftype) ? '}' : '<CR>'
