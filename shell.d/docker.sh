@@ -51,7 +51,7 @@ drm() {
 }
 
 drma() {
-    # docker rm all conteiners
+    # docker rm all containers
     ids=$(docker ps -aq)
     [ ! -z $ids ] && docker rm $ids
 }
@@ -185,3 +185,18 @@ docker_search() {
         awk -F "${delimeter}" 'NR > 1 && $2 !~ /^[0-9]+/ {print}' | \
         column -xt -s "${delimeter}"
 }
+
+
+# docker-compose aliases
+alias dco='docker-compose'
+alias dcb='docker-compose build'
+alias dce='docker-compose exec'
+alias dcps='docker-compose ps'
+alias dcrestart='docker-compose restart'
+alias dcrm='docker-compose rm'
+alias dcr='docker-compose run'
+alias dcstop='docker-compose stop'
+alias dcup='docker-compose up'
+alias dcdn='docker-compose down'
+alias dcl='docker-compose logs'
+alias dclf='docker-compose logs -f'
