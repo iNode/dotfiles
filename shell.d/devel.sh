@@ -4,9 +4,9 @@ cscope_add ()
 {
     curdir=$(pwd)
     adddir="$1"
-    cd "$adddir"
+    cd "$adddir" || exit 1
     cscope-indexer -r -l -i "${curdir}/cscope.add"
-    cd "${curdir}"
+    cd "${curdir}" || exit 1
     perl -pe 's#^#'"$adddir"'/#' < cscope.add >> cscope.files
     cscope -b
 }
@@ -20,14 +20,14 @@ vgrep () { # multiple pattern inVert match grep
 }
 
 mgrep () { # multiple pattern grep
-  cmd="egrep "
-  for arg in "$@"; do
-      cmd="$cmd -e $arg"
-  done
-  eval "$cmd";
+    cmd="egrep "
+    for arg in "$@"; do
+        cmd="$cmd -e $arg"
+    done
+    eval "$cmd";
 }
 
-cdr () { cd "$(ffip "$@")"; }
+cdr () { cd "$(ffip "$@")" || exit 1; }
 
 
 # ag + less function
