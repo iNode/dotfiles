@@ -39,24 +39,24 @@ apt_file_remote() {
 }
 
 apt_history () {
-  case "$1" in
+    case "$1" in
     install)
-      zgrep --no-filename 'install ' "$(ls -rt /var/log/dpkg*)"
-      ;;
+        zgrep --no-filename 'install ' "$(ls -rt /var/log/dpkg*)"
+        ;;
     upgrade|remove)
-      zgrep --no-filename "$1" "$(ls -rt /var/log/dpkg*)"
-      ;;
+        zgrep --no-filename "$1" "$(ls -rt /var/log/dpkg*)"
+        ;;
     rollback)
-      zgrep --no-filename upgrade "$(ls -rt /var/log/dpkg*)" | \
+        zgrep --no-filename upgrade "$(ls -rt /var/log/dpkg*)" | \
         grep "$2" -A10000000 | \
         grep "$3" -B10000000 | \
         awk '{print $4"="$5}'
-      ;;
+        ;;
     list)
-      zgrep --no-filename '' "$(ls -rt /var/log/dpkg*)"
-      ;;
+        zgrep --no-filename '' "$(ls -rt /var/log/dpkg*)"
+        ;;
     *)
-    cat<<EOF
+        cat<<EOF
 NAME:
     apt-history - Prints apt history
 
@@ -74,7 +74,7 @@ PARAMETERS:
     rollback - Lists rollback information.
     list - Lists all contains of dpkg logs.
 EOF
-    return 1
-      ;;
-  esac
+        return 1
+        ;;
+    esac
 }
