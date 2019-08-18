@@ -674,6 +674,9 @@ vmap <Enter> <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 " }}} easy-align
+" Easy motion config
+let g:EasyMotion_do_mapping = 1
+" }}} vim-easymotion
 
 " # }}} Plugin settings
 
