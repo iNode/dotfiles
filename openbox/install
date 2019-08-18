@@ -1,12 +1,14 @@
 #!/bin/sh
 
-startdir=`pwd`
-dir=`dirname $0`
-cd $dir
-dir=`pwd`
+startdir=$(pwd)
+dir=$(dirname "$0")
+cd "$dir" || exit 1
+dir=$(pwd)
 
 # install only when openbox is available
 command -v openbox > /dev/null || exit
 
-ln -sf $dir/lubuntu-rc-`hostname`.xml $HOME/.config/openbox/lubuntu-rc.xml
+ln -svf "$dir/lubuntu-rc-$(hostname).xml" "$HOME/.config/openbox/lubuntu-rc.xml"
+ln -svf "$dir/keyboard-work.xml" "$HOME/.config/openbox/"
 
+cd "$startdir" || exit 1
