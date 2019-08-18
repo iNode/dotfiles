@@ -23,15 +23,13 @@ call plug#begin('~/.vim/bundle')
     Plug 'benmills/vimux'            " interact with tmux from vim, :h vimux
 "   Plug 'valloric/youcompleteme'   " code completion engine, obsoletes ^
 "   Plug 'tpope/tpope-vim-abolish'  " smart replacements and abbrevs
-    Plug 'ctrlpvim/ctrlp.vim'       " full path fuzzy file, buffer, mru, tag, ... finder for Vim"
-    Plug 'neapel/vim-java-bytecode' " java bytehocode highlight
-    Plug 'vim-syntastic/syntastic'  " syntax checking plugin
-    " if executable('python')
-    "     Plug 'andviro/flake8-vim', { 'for': 'python' }
-    " endif
-    if executable('go')
-        Plug 'fatih/vim-go', { 'for': 'go' }
-    endif
+    Plug 'ctrlpvim/ctrlp.vim'       " full path fuzzy file, buffer, mru, tag, ... finder for Vim
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }  " install fzf binary
+    Plug 'junegunn/fzf.vim'              " use fzf.vim for fuzzy matching TODO: review
+    Plug 'neapel/vim-java-bytecode'      " java bytehocode highlight
+    Plug 'iNode/vim-red'                 " red-lang code highlight
+    Plug 'vim-syntastic/syntastic'       " syntax checking plugin
+    Plug 'editorconfig/editorconfig-vim' " use editorconfig files if available
 call plug#end()
 
 " see some defaults under vim-sensible
