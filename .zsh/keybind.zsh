@@ -41,12 +41,11 @@ bindkey -s "^[r" "far"
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
+bindkey -s "^X^G" "git status .^m"
 
 bindkey -s "\C-o" "ee -n .^m"
-bindkey -s "\C-]" '^Upopd >/dev/null; dirs -v^M'
-bindkey -s "\C-[" '^Ucd ..^M'
 
-## file rename magick
+## file rename magick, M-m
 bindkey "^[m" copy-prev-shell-word
 
 # M-C-m runs last command
@@ -63,4 +62,3 @@ function runprev() { zle up-line-or-history ; zle accept-line } ; zle -N runprev
 # Local Variables:
 # mode: sh
 # End:
-
