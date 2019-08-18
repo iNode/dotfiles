@@ -1,0 +1,30 @@
+#!/bin/sh
+# must be executed as superuser
+
+# add-apt-repository ppa:alexlarsson/flatpak
+# apt update && apt install -y
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+# fresh flatpak packages which are not so fresh in distro
+# flatpak install flathub org.videolan.VLC
+
+# TODO: find something for yandex disk
+
+
+# proprietary flatpak packages
+# flatpak install flathub com.visualstudio.code  # unofficial, limited by container use, use snap instead
+# don't use it for now
+# flatpak install flathub com.skype.Client
+# flatpak install flathub org.telegram.desktop
+flatpak install flathub com.slack.Slack
+flatpak install flathub us.zoom.Zoom
+# flatpak install flathub com.github.IsmaelMartinez.teams_for_linux
+flatpak install flathub com.dropbox.Client
+flatpak install flathub com.discordapp.Discord
+flatpak install flathub im.gitter.Gitter
+
+
+# use command like this to run app
+# flatpak run flathub com.skype.Client
+
+# see more: https://wiki.archlinux.org/index.php/Flatpak

@@ -40,6 +40,9 @@ apt install -y vpnc netcat nmap tcpdump ngrep sshuttle openconnect net-tools
 # remoting tools
 apt install -y rdesktop
 
+# install flatpak for 3pp dependencies
+apt install -y flatpak
+
 # laptop tools?
 
 # troubleshooting
