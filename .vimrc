@@ -605,7 +605,34 @@ let g:AutoPairsShortcutBackInsert = '<M-b>'
 " }}} auto-pairs
 
 " ctrlp {{{
-map <leader>b :CtrlPBuffer<cr>
+" }}}
+
+" PLUGIN: fzf.vim{{{
+let g:fzf_layout = { 'down': '~40%' }
+
+" Add namespace for fzf.vim exported commands
+let g:fzf_command_prefix = 'Fzf'
+
+" Mappings
+nnoremap <silent> <leader>o :FzfFiles<CR>
+nnoremap <silent> <leader>O :FzfFiles!<CR>
+cnoremap <silent> <C-p>  :FzfHistory:<CR>
+cnoremap <silent> <C-_> <ESC>:FzfHistory/<CR>
+nnoremap <silent> <leader>b  :FzfBuffers<CR>
+nnoremap <silent> <leader>`  :FzfMarks<CR>
+nnoremap <silent> <F1> :FzfHelptags<CR>
+inoremap <silent> <F1> <ESC>:FzfHelptags<CR>
+noremap <silent> <leader>; :FzfCommands<CR>
+nnoremap <silent> <leader>l :FzfBLines<CR>
+inoremap <silent> <F3> <ESC>:FzfSnippets<CR>
+
+" fzf.Tags uses existing 'tags' file or generates it otherwise
+nnoremap <silent> <leader>t :FzfTags<CR>
+xnoremap <silent> <leader>t "zy:FzfTags <C-r>z<CR>
+
+" fzf.BTags generate tags on-fly for current file
+nnoremap <silent> <leader>T :FzfBTags<CR>
+xnoremap <silent> <leader>T "zy:FzfBTags <C-r>z<CR>
 " }}}
 
 " vimux {{{
