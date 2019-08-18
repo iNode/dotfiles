@@ -35,7 +35,10 @@ apt install -y pavucontrol redshift
 # TODO: add racket latest https://launchpad.net/~plt/+archive/ubuntu/racket
 
 # networking tools
-apt install -y vpnc netcat nmap tcpdump ngrep sshuttle
+apt install -y vpnc netcat nmap tcpdump ngrep sshuttle openconnect net-tools
+
+# remoting tools
+apt install -y rdesktop
 
 # laptop tools?
 
