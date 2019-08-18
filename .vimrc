@@ -4,20 +4,23 @@ set list                            " Display unprintable characters.
 set listchars=tab:▸\ ,trail:·,eol:¬ " Make tabs, trailing whitespace, and EOL characters easy to spot.
 
 call plug#begin('~/.vim/bundle')
-    Plug 'tpope/vim-sensible'       " sensible defaults for vim
-    Plug 'tpope/vim-commentary'     " comment/uncomment (gcc)
-    Plug 'tpope/vim-unimpaired'     " Pairs of handy bracket mappings, :h unimp
-    Plug 'tpope/vim-surround'       " surround text, ( ys$' cs'` ds' ysw) )
-    Plug 'junegunn/vim-easy-align'  " easy-to-use Vim alignment
-    Plug 'tpope/vim-repeat'         " repeat plugin command: surround, unimpired, easy-align
-    Plug 'tpope/vim-dispatch'       " async task dispatch, :h dispatch
-    Plug 'tpope/vim-markdown'       " markdown support
-    Plug 'airblade/vim-gitgutter'   " mark file changes in gutter for git repo
-    Plug 'amiorin/vim-eval'         " C-c for eval line or selection
-    Plug 'mileszs/ack.vim'          " ack/ag/etc. support
-    Plug 'jlanzarotta/bufexplorer'  " buffer navigation
-    Plug 'vim-scripts/taglist.vim'  " source code tag browser
-    Plug 'benmills/vimux'           " interact with tmux from vim, :h vimux
+    Plug 'tpope/vim-sensible'        " sensible defaults for vim
+    Plug 'tpope/vim-commentary'      " comment/uncomment (gcc)
+    Plug 'tpope/vim-unimpaired'      " Pairs of handy bracket mappings, :h unimp
+    Plug 'tpope/vim-surround'        " surround text, ( ys$' cs'` ds' ysw) )
+    Plug 'junegunn/vim-easy-align'   " easy-to-use Vim alignment
+    Plug 'easymotion/vim-easymotion' " easy motion, <SP><SP>w|W/b|B/f|F/j|k
+    Plug 'tpope/vim-repeat'          " repeat plugin command: surround, unimpired, easy-align
+    Plug 'tpope/vim-dispatch'        " async task dispatch, :h dispatch, '! - Start, m! - :Make!, `! - :Dispatch
+    Plug 'tpope/vim-markdown'        " markdown support
+    Plug 'tpope/vim-speeddating'     " date plugin used by org-mode, adds support for C-A/C-X auto dec/increment
+    Plug 'jceb/vim-orgmode'          " org-mode support, TODO: RTFM, add notes
+    Plug 'airblade/vim-gitgutter'    " mark file changes in gutter for git repo
+    Plug 'amiorin/vim-eval'          " C-c for eval line or selection
+    Plug 'mileszs/ack.vim'           " ack/ag/etc. support
+    " Plug 'jlanzarotta/bufexplorer'   " buffer navigation
+    Plug 'vim-scripts/taglist.vim'   " source code tag browser
+    Plug 'benmills/vimux'            " interact with tmux from vim, :h vimux
 "   Plug 'valloric/youcompleteme'   " code completion engine, obsoletes ^
 "   Plug 'tpope/tpope-vim-abolish'  " smart replacements and abbrevs
     Plug 'ctrlpvim/ctrlp.vim'       " full path fuzzy file, buffer, mru, tag, ... finder for Vim"
