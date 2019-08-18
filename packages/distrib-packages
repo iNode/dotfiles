@@ -1,7 +1,9 @@
 #!/bin/sh
 
 # common
-apt install -y zsh tmux mosh autossh openssh-server tree htop iotop unzip unrar direnv git-core curl
+apt install -y zsh tmux mosh autossh openssh-server tree htop iotop unzip unrar direnv git-core curl rename
+# consider to add: fasd
+# apt install -y dsh  # distributed shell
 # common heavyweight
 apt install -y emacs vim-nox
 # review
