@@ -28,13 +28,11 @@ case $TERM in
     ;;
 esac
 
-bindkey "^Xi" incremental-complete-word ## C-x-i
-bindkey -s "^Xm" 'alsamixer\n'			## C-x-m
+bindkey "^Xi" incremental-complete-word             ## C-x-i
+bindkey -s "^Xm" 'alsamixer\n'                      ## C-x-m
 
-bindkey -s "^Xl" 'export AUTOLS=true\n'			## C-x-l
-bindkey -s "^XL" 'unset AUTOLS\n'			## C-x-L
-bindkey -s "^Xh" 'unset HISTFILE\n'			## C-x-h
-bindkey -s "^XH" 'export HISTFILE=~/.bash_history\n'			## C-x-H
+bindkey -s "^Xh" 'unset HISTFILE\n'                 ## C-x-h
+bindkey -s "^XH" 'export HISTFILE=~/.zsh_history\n' ## C-x-H
 
 bindkey -s "^[c" "fag"
 bindkey -s "^[r" "far"
