@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# shellcheck disable=SC2016
+scrot -sb '/tmp/scrot_%F_%T_$wx$h.png' -e 'xclip -selection clipboard -t "image/png" -i $f && rm -vf $f'
