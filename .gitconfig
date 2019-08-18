@@ -67,7 +67,10 @@
 	pushb = !bash -c \"git push origin $(git cb):$(git cb)\"
         # push branch Forcefully
 	pushF = !bash -c \"git push origin -f $(git cb):$(git cb)\"
-
+	# get last commit id
+	lc = !bash -c \"git log --format=%H -1\"
+	# refresh branch
+	refb = !bash -c \"git fetch; cb=$(git cb); git co origin/master; git branch -D $cb; git co origin/$cb -b $cb\"
 [apply]
 	whitespace = fix
 [push]
