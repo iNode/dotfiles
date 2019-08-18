@@ -354,6 +354,7 @@ if has("autocmd")
         autocmd BufNewFile,BufRead *.json set filetype=javascript
         autocmd BufNewFile,BufRead *.1.md setlocal textwidth=78 makeprg=pandoc\ -s\ -w\
                     \ man\ %\ -o\ %<
+        autocmd BufNewFile,BufRead *.md setlocal makeprg=pandoc\ %\ -w\ html\ -o\ %<.html
         autocmd FileType make,snippet,snippets setlocal list tabstop=8 shiftwidth=8 softtabstop=8 noexpandtab
         " But for yaml keep 2 characters, pls
         autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
