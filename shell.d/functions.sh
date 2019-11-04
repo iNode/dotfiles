@@ -1,9 +1,10 @@
+#!/bin/sh
 # mkdir & cd to it
 mcd() { [ ! -z "$1" ] && mkdir -p -v "$1" && cd "$1"; }
 
 # Create temporary directory and to it
 cdt() {
-    cd "$(mktemp -d)"
+    cd "$(mktemp -d)" || return 1
     pwd
 }
 
