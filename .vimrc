@@ -267,18 +267,18 @@ set smartcase " if search word contains UpCase (noic)
 function! MyExec()
     let fn="./" . bufname("%")
     if !executable(fn)
-	silent! execute "!chmod a+x " . fn
+        silent! execute "!chmod a+x " . fn
     endif
     execute "!".fn
 endfunction
 
 function! MyTlist()
-	if !exists('loaded_taglist')
-		source ~/.vim/plugin/taglist.vim
-		Tlist
-	else
-		Tlist
-	endif
+        if !exists('loaded_taglist')
+                source ~/.vim/plugin/taglist.vim
+                Tlist
+        else
+                Tlist
+        endif
 endfunction
 
 map <F3> gcc
