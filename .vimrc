@@ -13,11 +13,10 @@ call plug#begin('~/.vim/bundle')
     Plug 'tpope/vim-repeat'          " repeat plugin command: surround, unimpired, easy-align
     Plug 'tpope/vim-dispatch'        " async task dispatch, :h dispatch, '! - Start, m! - :Make!, `! - :Dispatch
     Plug 'tpope/vim-markdown'        " markdown support
-    Plug 'tpope/vim-speeddating'     " date plugin used by org-mode, adds support for C-A/C-X auto dec/increment
-    Plug 'jceb/vim-orgmode'          " org-mode support, TODO: RTFM, add notes
     Plug 'airblade/vim-gitgutter'    " mark file changes in gutter for git repo
     Plug 'amiorin/vim-eval'          " C-c for eval line or selection
     Plug 'mileszs/ack.vim'           " ack/ag/etc. support
+    Plug 'qpkorr/vim-renamer'        " rename files interactively, see :h Renamer
     " Plug 'jlanzarotta/bufexplorer'   " buffer navigation
     Plug 'vim-scripts/taglist.vim'   " source code tag browser
     Plug 'benmills/vimux'            " interact with tmux from vim, :h vimux
@@ -27,9 +26,30 @@ call plug#begin('~/.vim/bundle')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }  " install fzf binary
     Plug 'junegunn/fzf.vim'              " use fzf.vim for fuzzy matching TODO: review
     Plug 'neapel/vim-java-bytecode'      " java bytehocode highlight
-    Plug 'iNode/vim-red'                 " red-lang code highlight
     Plug 'vim-syntastic/syntastic'       " syntax checking plugin
     Plug 'editorconfig/editorconfig-vim' " use editorconfig files if available
+
+    " syntax highlighting and programming languages
+    "
+    " org-mode
+    Plug 'tpope/vim-speeddating'     " date plugin used by org-mode, adds support for C-A/C-X auto dec/increment
+    Plug 'jceb/vim-orgmode'          " org-mode support, TODO: RTFM, add notes
+    " HCL
+    Plug 'b4b4r07/vim-hcl'
+
+if executable('tmux')
+    Plug 'tmux-plugins/vim-tmux'     " syntax highligt for tmux configs
+endif
+
+if executable('i3')
+    Plug 'PotatoesMaster/i3-vim-syntax'
+endif
+if executable('reds')
+    Plug 'iNode/vim-red'                 " red-lang code highlight
+endif
+if executable('v')
+    Plug 'ollykel/v-vim', { 'for': 'v,vsh' }
+endif
 call plug#end()
 
 " see some defaults under vim-sensible
