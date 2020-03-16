@@ -392,6 +392,7 @@ if has("autocmd")
         autocmd FileType help setlocal autoindent formatoptions+=2n | silent! setlocal nospell
         autocmd FileType help nnoremap <silent><buffer> q :q<CR>
 
+        autocmd FileType red,reds setlocal tabstop=4 shiftwidth=4 expandtab foldmethod syntax
         autocmd FileType c setlocal tabstop=4 shiftwidth=4
         autocmd FileType sh setlocal tabstop=4 shiftwidth=4 expandtab foldmethod=syntax
         autocmd FileType sh let g:sh_fold_enabled=5
