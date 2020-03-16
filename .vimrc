@@ -86,14 +86,17 @@ set secure
 
 " undo file configuration
 if has("persistent_undo")
-    let undopath=expand('~/.vim/undotest')
-    if !isdirectory(undopath)
-       call mkdir(undopath, 'p', 0700)
+    " Let's save undo info!
+    if !isdirectory($HOME."/.vim")
+        call mkdir($HOME."/.vim", "", 0750)
     endif
-    set undofile                " Save undo's after file closes
-    set undodir=undopath        " where to save undo histories
+    if !isdirectory($HOME."/.vim/undo")
+        call mkdir($HOME."/.vim/undo", "", 0700)
+    endif
     set undolevels=5000         " How many undos
     set undoreload=10000        " number of lines to save for undo
+    set undodir=~/.vim/undo
+    set undofile
 endif
 " set swap files location
 " // to avoid filename collisions
