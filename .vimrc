@@ -191,6 +191,10 @@ set statusline=%F%<\ %y%h%m%r%=%b\ 0x%B\ %{&encoding}\ \ %l,%c%V\ %P
 vnoremap < <gv
 vnoremap > >gv
 
+" moving lines virtically in visual mode only
+xnoremap K :move '<-2<CR>gv=gv
+xnoremap J :move '>+1<CR>gv=gv
+
 " taglist options
 let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 set tags=./tags*,tags
