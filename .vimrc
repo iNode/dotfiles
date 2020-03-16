@@ -573,7 +573,10 @@ endif
 
 " When writing encrypted files, use blowfish instead of zip encryption
 " vim -x filename
-set cryptmethod=blowfish2
+if !has('nvim')
+    " not supported in neovim
+    set cryptmethod=blowfish2
+endif
 
 " netrw {{{
     " configure netrw like a nerdtree
