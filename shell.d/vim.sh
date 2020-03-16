@@ -4,7 +4,7 @@ if which vim >/dev/null 2>&1; then
     alias vi=vim
     alias revim="vim -S ~/.vim/lastSession.vim"
     # vim server mode
-    alias v='vim --servername $(hostname)'
+    alias vv='vim --servername $(hostname)'
     alias gvim='gvim --servername $(hostname)'
     # foreground edit
     alias fv='vim --servername $(hostname) --remote-wait'
@@ -13,5 +13,5 @@ if which vim >/dev/null 2>&1; then
     # review current maps
     alias vmap='vim -c ":map" -c ":q" | less -R'
 else
-    alias v='$EDITOR'
+    alias vv='$EDITOR'
 fi
