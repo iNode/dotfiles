@@ -41,6 +41,7 @@ bindkey -s "^[r" "far"
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
+bindkey -s "^X^o" "ranger^M"
 bindkey -s "^X^G" "git status .^m"
 
 bindkey -s "\C-o" "ee -n .^m"
@@ -53,6 +54,7 @@ function runprev() { zle up-line-or-history ; zle accept-line } ; zle -N runprev
 
 # Key bindings notes:
 # C-x C-e - edit command line in EDITOR
+# C-x C-o - open current directory in ranger
 # C-o - run emacs dired here
 # C-] - popd
 # C-[ - ..
