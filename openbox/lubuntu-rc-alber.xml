@@ -289,10 +289,18 @@
 
     <keybind key="W-a">
       <!-- { -->
-      <keybind key="c">
+      <keybind key="!">
         <action name="Execute">
           <!-- switch to acme -->
           <command>~/bin/wmctrl-switch-to acme acme.acme
+         </command>
+        </action>
+      </keybind>
+
+      <keybind key="c">
+        <action name="Execute">
+          <!-- switch to vscode -->
+          <command>~/bin/wmctrl-switch-to code code.Code
          </command>
         </action>
       </keybind>
