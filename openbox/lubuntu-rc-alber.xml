@@ -377,8 +377,8 @@
 
       <keybind key="s">
         <action name="Execute">
-          <!-- switch to skype -->
-          <command>~/bin/wmctrl-switch-to skype skype.Skype
+          <!-- copy selected part of the screen to the clipboard -->
+          <command>~/bin/scrot_selection_to_clipboard
          </command>
         </action>
       </keybind>
