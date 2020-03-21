@@ -342,6 +342,17 @@
         </keybind>
       </keybind>
 
+      <keybind key="m">
+        <!-- minimize window -->
+        <action name="Execute">
+          <action name="Iconify"/>
+          <action name="Shade"/>
+          <action name="FocusToBottom"/>
+          <action name="Unfocus"/>
+          <action name="Lower"/>
+        </action>
+      </keybind>
+
       <keybind key="n">
         <action name="Execute">
           <command>emacsclient -n -e '(make-remember-frame)'</command>
