@@ -181,19 +181,6 @@ http://openbox.org/wiki/Help:Actions - reference to actions
   </dock>
   <keyboard>
     <chainQuitKey>C-g</chainQuitKey>
-    <!-- Keybindings for desktop switching -->
-    <keybind key="W-Left">
-      <action name="GoToDesktop">
-        <to>left</to>
-        <wrap>no</wrap>
-      </action>
-    </keybind>
-    <keybind key="W-Right">
-      <action name="GoToDesktop">
-        <to>right</to>
-        <wrap>no</wrap>
-      </action>
-    </keybind>
     <keybind key="C-A-Up">
       <action name="GoToDesktop">
         <to>up</to>
@@ -374,10 +361,11 @@ http://openbox.org/wiki/Help:Actions - reference to actions
 
       <!-- omnipresent -->
       <keybind key="o">
+        <!-- show window on all workspaces -->
         <action name="ToggleOmnipresent"/>
       </keybind>
 
-      <keybind key="p">
+      <keybind key="^">
         <action name="Execute">
           <!-- switch to pidgin -->
           <command>~/bin/wmctrl-switch-to ~/bin/my-pidgin Pidgin.Pidgin</command>
@@ -467,8 +455,8 @@ http://openbox.org/wiki/Help:Actions - reference to actions
         <action name="MoveResizeTo">
           <x>0</x>
           <y>50%</y>
-          <width>25%</width>
-          <height>25%</height>
+          <width>50%</width>
+          <height>50%</height>
         </action>
       </keybind>
       <keybind key="KP_5">
@@ -476,8 +464,8 @@ http://openbox.org/wiki/Help:Actions - reference to actions
         <action name="MoveResizeTo">
           <x>50%</x>
           <y>50%</y>
-          <width>25%</width>
-          <height>25%</height>
+          <width>50%</width>
+          <height>50%</height>
         </action>
       </keybind>
       <keybind key="KP_7">
@@ -485,17 +473,17 @@ http://openbox.org/wiki/Help:Actions - reference to actions
         <action name="MoveResizeTo">
           <x>0</x>
           <y>0</y>
-          <width>25%</width>
-          <height>25%</height>
+          <width>50%</width>
+          <height>50%</height>
         </action>
       </keybind>
       <keybind key="KP_8">
         <action name="UnmaximizeFull"/>
         <action name="MoveResizeTo">
-          <x>0</x>
-          <y>50%</y>
-          <width>25%</width>
-          <height>25%</height>
+          <x>50%</x>
+          <y>0</y>
+          <width>50%</width>
+          <height>50%</height>
         </action>
       </keybind>
       <!-- untile  -->
@@ -514,7 +502,6 @@ http://openbox.org/wiki/Help:Actions - reference to actions
 
     <keybind key="W-z">
         <action name="Execute">
-          <!-- to be used after keyboard reconnect-->
           <command>~/bin/cut-date</command>
         </action>
     </keybind>
@@ -616,22 +603,6 @@ http://openbox.org/wiki/Help:Actions - reference to actions
     <keybind key="C-A-Delete">
       <action name="Execute">
         <command>lxtask</command>
-      </action>
-    </keybind>
-    <!-- Fast access to Terminal -->
-    <keybind key="C-A-T">
-      <action name="Execute">
-        <command>x-terminal-emulator</command>
-      </action>
-    </keybind>
-    <!-- Launch a filemanager on Ctrl + Alt + D-->
-    <keybind key="C-A-D">
-      <action name="Execute">
-        <startupnotify>
-          <enabled>true</enabled>
-          <name>PCManFM</name>
-        </startupnotify>
-        <command>pcmanfm</command>
       </action>
     </keybind>
     <!-- Keybinding for Lock Screen -->
@@ -768,16 +739,6 @@ http://openbox.org/wiki/Help:Actions - reference to actions
         </action>
       </mousebind>
       <mousebind button="A-Down" action="Click">
-        <action name="GoToDesktop">
-          <to>next</to>
-        </action>
-      </mousebind>
-      <mousebind button="C-A-Up" action="Click">
-        <action name="GoToDesktop">
-          <to>previous</to>
-        </action>
-      </mousebind>
-      <mousebind button="C-A-Down" action="Click">
         <action name="GoToDesktop">
           <to>next</to>
         </action>
@@ -1012,12 +973,6 @@ http://openbox.org/wiki/Help:Actions - reference to actions
         <action name="DesktopPrevious"/>
       </mousebind>
       <mousebind button="A-Down" action="Click">
-        <action name="DesktopNext"/>
-      </mousebind>
-      <mousebind button="C-A-Up" action="Click">
-        <action name="DesktopPrevious"/>
-      </mousebind>
-      <mousebind button="C-A-Down" action="Click">
         <action name="DesktopNext"/>
       </mousebind>
       <mousebind button="Left" action="Press">
