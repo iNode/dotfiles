@@ -230,6 +230,18 @@ http://openbox.org/wiki/Help:Actions - reference to actions
         <wrap>no</wrap>
       </action>
     </keybind>
+    <keybind key="W-S-1">
+      <action name="MoveResizeTo">
+        <!-- move the window to the first monitor -->
+        <monitor>1</monitor>
+      </action>
+    </keybind>
+    <keybind key="W-S-2">
+      <action name="MoveResizeTo">
+        <!-- move the window to the second monitor -->
+        <monitor>2</monitor>
+      </action>
+    </keybind>
     <keybind key="W-1">
       <action name="GoToDesktop">
         <to>1</to>
