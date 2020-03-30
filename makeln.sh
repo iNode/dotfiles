@@ -36,11 +36,21 @@ for f in $(find "$dir" -maxdepth 1 -type f | grep -vE "$my_pattern"); do
     run_cmd ln -svf "$f" "$HOME"
 done
 
+# handle config directory
+for f in $(find "$dir/config" -maxdepth 1 -type d); do
+    confdir=$(basename "$f")
+    if [ ! -d "$HOME/.config/$confdir" ]; then
+        # run_cmd ln -svf "$f" "$HOME/~/.config"
+        run_cmd ln -svf "$f" "$HOME/.config"
+    else
+        echo "$HOME/.config/$confdir already exists"
+    fi
+done
+
 # special care about scripts dir
 mkdir -pv "$HOME/bin"
 for f in $(echo scripts/* | grep -vE '(^\.git$|.swp|\.\/$|\.$|makeln.sh|^scripts$)'); do
-    run_cmd ln -sf "$dir/$f" "$HOME/bin"
+    run_cmd ln -svf "$dir/$f" "$HOME/bin"
 done
-
 
 cd "$startdir" || exit 1
