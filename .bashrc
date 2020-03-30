@@ -1,3 +1,6 @@
+#!/bin/bash
+# shellcheck disable=SC1090
+
 . ~/.profile
 
 # If not running interactively, don't do anything
@@ -46,7 +49,8 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+# force_color_prompt=yes
+force_color_prompt=""
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -77,7 +81,10 @@ esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    dircolors=""
+    if [ -r ~/.dircolors ]; then dircolors=~/.dircolors; fi
+    eval "$(dircolors -b "$dircolors")"
+
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
@@ -108,6 +115,7 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 for f in ~/shell.d/*.{ba,}sh; do
+    echo "$f"
     . "$f"
 done
 
@@ -124,4 +132,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
-[ -s "$HOME/.bashrc.local" ] && source "$HOME/.bashrc.local"
+[ -s "$HOME/.bashrc.local" ] && . "$HOME/.bashrc.local"
