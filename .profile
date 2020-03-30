@@ -28,6 +28,11 @@ hn="$(hostname)"
 # shellcheck disable=SC1090
 [ -e "$HOME/.profile.$hn" ] && . "$HOME/.profile.$hn"
 
+# suppress PS telemetry
+export POWERSHELL_TELEMETRY_OPTOUT=true
+# suppress update checks
+export POWERSHELL_UPDATECHECK=Off
+
 # Local Variables:
 # mode: sh
 # End:
