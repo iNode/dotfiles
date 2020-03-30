@@ -9,9 +9,7 @@ alias vib="$EDITOR ~/.bashrc; # ~/.bashrc"
 # ZSH
 alias rezsh="source ~/.zshrc"
 
-alias cd='cd_ls'
 setopt COMPLETE_ALIASES
-# compctl -g *(/) -- cd_ls
 
 # zsh specific aliases
 # migrated to shell.d/aliases.zsh
