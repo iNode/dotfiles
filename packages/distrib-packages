@@ -1,48 +1,99 @@
 #!/bin/sh
 
 # common
-apt install -y zsh tmux mosh autossh openssh-server tree htop iotop unzip unrar direnv git-core curl rename
-# consider to add: fasd
-# apt install -y dsh  # distributed shell
+apt install -y zsh tmux tree htop iotop direnv git-core curl rename pwgen rlwrap pv ncdu moreutils
+
+# plan9 tools
+apt install -y 9base rc
+
 # common heavyweight
-apt install -y emacs vim-nox
-# review
-apt install yank  # yank output of cli programm
+apt install -y vim-nox w3m vis
+# NOTE: emacs is installed from other sources
+
+# p-review
+# archive tools
+apt install -y atool  # multiple archivers support (aunpack, apack, als, acat), used by ranger
+# apt install -y sgrep  # structured grep
+
+# apt install -y fasd # fast z-alike completion
+# apt install -y dsh  # distributed shell
+
+
 # apt install vcsh zgen
-# git-cola - might be too big (~65M)
 # experimental
-# apt install picolisp pv
 # review: retty - re-attach tty application to your tty/screen/tmux
+# review: magic-wormhole - file send utility
+# review: ttyrec - terminal interaction recording  with timing info and player
+
 # devel
-apt install -y git mercurial cscope silversearcher-ag exuberant-ctags libffi-dev upx sqlite3 jq make rsync
+apt install -y cscope silversearcher-ag exuberant-ctags libffi-dev upx sqlite3 jq jid make rsync highlight yamllint inotify-tools
+
 # devel python related
 # use from python repos: httpie ranger ipython
-apt install -y python3-venv python3-pip python3-dev fades
-# UI/desktop
-apt install -y suckless-tools dzen2 sdcv vlc mc keepassx xautomation shutter rofi synergy libnotify-bin scrot
-# x11 things
-apt install -y wmctrl x11-xserver-utils xbindkeys xclip xinput xsel
-# x11 server simulators
-# apt install xnest xserver-xephyr
-# # desktop
-apt install -y pavucontrol redshift
-# # Office
-# apt install libreoffice
-# # xorg related tools
-# apt install xpra xnest xserver-xephyr
-# TODO: add https://github.com/slgobinath/SafeEyes
-# TODO: add https://github.com/jp9000/obs-studio/wiki/Install-Instructions#linux
-# TODO: add racket latest https://launchpad.net/~plt/+archive/ubuntu/racket
+apt install -y python3-venv python3-pip python3-dev
 
 # networking tools
-apt install -y vpnc netcat nmap tcpdump ngrep sshuttle openconnect net-tools
+apt install -y netcat nmap tcpdump ngrep sshuttle openconnect net-tools openssh-server mosh autossh
 
-# remoting tools
-apt install -y rdesktop
+# consider to add back if/as needed:
+# apt install -y vpnc socat
 
-# install flatpak for 3pp dependencies
-apt install -y flatpak
+# non ui tools
+apt install -y sdcv mc pass
 
+# install snap for 3pp dependencies
+apt install -y snapd
+
+# xorg related tools
+if command -v Xorg >/dev/null; then
+    # install flatpak 3pp GUI app dependencies
+    apt install -y flatpak
+
+    # desktop security tools
+    apt install -y firejail firejail-profiles
+
+    # UI/desktop
+    apt install -y suckless-tools dzen2 vlc keepassx shutter rofi libnotify-bin scrot
+    # x11 things
+    apt install -y wmctrl x11-xserver-utils xbindkeys xclip xinput xsel
+    # x11 server simulators
+    # apt install xnest xserver-xephyr
+    # # desktop
+    apt install -y pavucontrol redshift
+
+    # plan9 based UI tools
+    apt install -y wily
+    # wmii
+
+    # to review:
+    apt install -y yank   # yank output of cli programm
+
+
+    # small/fast pdf/epub viewer
+    apt install -y mupdf
+
+    # mindmap editor: view your mind
+    apt install -y vym
+
+    # # Office
+    # apt install libreoffice
+    # # xorg related tools
+    # apt install xpra xnest xserver-xephyr
+    # TODO: add https://github.com/slgobinath/SafeEyes
+    # TODO: add https://github.com/jp9000/obs-studio/wiki/Install-Instructions#linux
+    # TODO: add racket latest https://launchpad.net/~plt/+archive/ubuntu/racket
+
+    # record terminal sessions
+    # apt install -y asciinema
+    # good alternative terminals
+    apt install -y guake terminology
+
+    # dev documentation, UI for online documentation browser, based on Dash
+    apt install -y zeal
+
+    # remoting tools
+    apt install -y rdesktop
+fi
 # laptop tools?
 
 # troubleshooting
