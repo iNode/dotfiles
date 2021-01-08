@@ -11,11 +11,13 @@
 	rb = branch -r
 	nb = checkout -b
 	st = status
+	s = status .
 	stat = status
 	sl = stash list
 	sa = stash apply
 	sd = stash drop
 	sp = stash pop
+	d = difftool
 	# shortcut for submodule update
 	su = submodule update --init
 
@@ -23,9 +25,6 @@
 	sup = 'pull --rebase --autostash'
 	svnup = svn rebase
 	svnpush = svn dcommit
-
-	# branch specific aliases
-	cb = !git branch | grep ^* | cut -d' ' -f2
 
 	# diff specific aliases
 	dc = diff --color
@@ -63,14 +62,31 @@
 	# git forkgiff parent branch
 	sh = show --color
 
+
+	# process specific
 	# push new branch
 	pushb = !bash -c \"git push origin $(git cb):$(git cb)\"
         # push branch Forcefully
 	pushF = !bash -c \"git push origin -f $(git cb):$(git cb)\"
 	# get last commit id
 	lc = !bash -c \"git log --format=%H -1\"
-	# refresh branch
+
+	# branch specific aliases
+	# get current active branch
+	cb = !git branch | grep ^* | cut -d' ' -f2
+
+	# refresh/replace local branch by one from the server
 	refb = !bash -c \"git fetch; cb=$(git cb); git co origin/master; git branch -D $cb; git co origin/$cb -b $cb\"
+
+	# update branch in gitlab
+	bup = !sh -c \"git fetch && git rebase && git pushf\"
+
+	# commit history manipulation
+	ca = commit --amend
+	can = commit --amend --no-edit
+	cah = commit --amend -C HEAD
+
+
 [apply]
 	whitespace = fix
 [push]
@@ -98,6 +114,13 @@
 	newHighlight = green bold 22
 [pull]
 	rebase = true
+	ff = only
 [rebase]
 	autoStash = true
 	autosquash = true
+[color]
+	ui = auto
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
