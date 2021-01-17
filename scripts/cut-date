@@ -2,8 +2,7 @@
 # script about to
 # format date and insert it from the clipboard
 
-if [ -n $DISPLAY ]; then
+if [ -n "$DISPLAY" ]; then
     date "+%F" | xclip -in
     sleep 0.2; xte 'mouseclick 2'
 fi
-
