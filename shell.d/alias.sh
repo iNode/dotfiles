@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # find shortcuts
 alias ff='find . -name '
 alias ffi='find . -iname '
@@ -13,13 +15,13 @@ alias df='df -h'
 alias du='du -h'
 alias dum='du -h --max-depth=1'
 
-function dumk() {
+dumk() {
     # alias dumk='rm dum; du -smc * > dum'
 
-    filename=$(mktemp `pwd`/dum.XXX)
-    trap "rm -f $filename" TERM
-    du -smc * > $filename
-    mv $filename dum
+    filename=$(mktemp "$(pwd)/dum.XXX")
+    trap 'rm -f $filename' TERM
+    du -smc ./* > "$filename"
+    mv "$filename" dum
 }
 
 alias dums='cat dum | sort -n'
@@ -48,8 +50,8 @@ lsd() { find "$1" -maxdepth 1 -type d -ls; }
 
 
 # ps tricks
-alias psfg="\ps -ylf"
-alias psg="\ps aux| grep -v grep | grep"
+alias psfg="\\ps -ylf"
+alias psg="\\ps aux| grep -v grep | grep"
 
 alias cfh='./configure --help | less'
 alias cfg='./configure --prefix=/usr --sysconfdir=/etc'
@@ -76,14 +78,14 @@ alias rgrab="S chown root --recursive"
 
 # allow to see disconnection time
 myssh () {
-    if [ "x$TMUX" != "x" -a "x$NORENAME" = "x" ]; then
+    if [ "x$TMUX" != "x" ] && [ "x$NORENAME" = "x" ]; then
         echo try to rename window
-        tmux rename-window $1
+        tmux rename-window "$1"
     else
 	: # do nothing for now
     fi
 
-    \ssh $*; date
+    \ssh "$@"; date
 }
 alias ssh="myssh"
 
@@ -99,7 +101,7 @@ alias dirs='dirs -v'
 alias c="cd -"
 alias ..='cd ..'
 alias ...='cd ../../'
-cdd() { cd "$(dirname "$1")"; }
+cdd() { cd "$(dirname "$1")" || return 0; }
 
 # vim based color less
 if [ -x /usr/share/vim/vimcurrent/macros/less.sh ]; then
