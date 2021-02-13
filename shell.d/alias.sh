@@ -6,8 +6,7 @@ alias ffi='find . -iname '
 alias unx='find . -type f -perm /a+x -exec chmod a-x {} \;'
 alias fblobs='nice find . -type f -ignore_readdir_race -size 2>/dev/null'
 
-if command -v ack >/dev/null;
-then
+if command -v ack >/dev/null; then
     alias ack='ack --nogroup '
 fi
 
@@ -117,6 +116,16 @@ alias tail='tail -n $((${LINES:-`tput lines 2>/dev/null||echo -n 25`} - 2))'
 # rsync
 alias ssync="rsync --rsh=ssh"
 alias ssyncr="rsync --rsh=ssh --recursive --verbose --progress"
+
+# Tool related aliases
+# text highlighters
+if which pygmentize > /dev/null; then
+    alias catc="pygmentize -f terminal256 -O style=native -g"
+else
+    if which highligt > /dev/null; then
+        alias catc="highlight -O ansi"
+    fi
+fi
 
 # alias home-up="rsync -Cavz -e ssh ~/ remoteserver:~/"
 # alias home-down="rsync -Cavz -e ssh --delete --exclude downloads/ --exclude ogg/ --exclude music/ remoteserver:~/ ~/"
