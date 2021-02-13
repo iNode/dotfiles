@@ -1,36 +1,13 @@
+#!/usr/bin/env zsh
+#
 # GLOBAL
-if [ "$SHELL" = "/bin/zsh" ];
-then
-    # common lazy commands
-    alias ping='ping -c 5'
-    alias path='echo -e ${PATH//:/\\n}'
-
+if [ "$SHELL" = "/bin/zsh" ]; then
     # Disable correction.
-    alias ack='nocorrect ack'
-    alias ag='nocorrect ag'
-    alias cp='nocorrect cp -v'
-    alias find='noglob find'
-    alias gcc='nocorrect gcc'
-    # alias gist='nocorrect gist'
-    alias git='nocorrect git'
-    alias grep='nocorrect grep'
-    alias ln='nocorrect ln'
-    alias man='nocorrect man'
-    alias mkdir='nocorrect mkdir'
-    alias mv='nocorrect mv -v'
-    alias mysql='nocorrect mysql'
-    alias rm='nocorrect rm -v'
-
+    for cmd (ack ag cp find gcc git grep ln man mkdir mv mysql rm nmcli
+	     ip ag man w3m docker) alias $cmd="nocorrect $cmd"
 
     # Disable globbing.
-    alias fc='noglob fc'
-    alias find='noglob find'
-    alias ftp='noglob ftp'
-    alias history='noglob history'
-    alias locate='noglob locate'
-    alias rsync='noglob rsync'
-    alias scp='noglob scp'
-    alias sftp='noglob sftp'
+    for cmd (fc find history rsync locate scp sftp) alias $cmd="noglob $cmd"
 
     # pipe aliases
     alias -g M='|more'
@@ -57,28 +34,13 @@ then
     alias -s html=sensible-browser
     alias -s htm=sensible-browser
 
-    alias -s avi=vlc
-    alias -s flv=vlc
-    alias -s mpg=vlc
-    alias -s wmv=vlc
-    alias -s mp4=vlc
-    alias -s mkv=vlc
-
     alias -s murl=sshmount
-    alias -s ps=evince
-    alias -s pdf=evince
-    alias -s xls=libreoffice
-    alias -s xlsx=libreoffice
-    alias -s doc=libreoffice
-    alias -s docx=libreoffice
-    alias -s ppt=libreoffice
-    alias -s pptx=libreoffice
-    alias -s odg=libreoffice
 
-    # Tool related aliases
-    if which pygmentize > /dev/null; then
-	alias catc="pygmentize -f terminal256 -O style=native -g"
-    fi
+    for ext (avi flv mpg wmv mp4 mkv) alias -s $ext=vlc
+    for ext (ps pdf djvu cbr cbz) alias -s $ext=zathura
+    for ext (epub) alias -s $ext=mupdf
+    for ext (jpg jpeg png) alias -s $ext=sxiv
+    for ext (xls xlsx doc docx ppt pptx odg) alias -s $ext=libreoffice
 
 fi
 # vim: set noet ts=4 tw=80 syntax=sh
