@@ -6,6 +6,13 @@ alias ffi='find . -iname '
 alias unx='find . -type f -perm /a+x -exec chmod a-x {} \;'
 alias fblobs='nice find . -type f -ignore_readdir_race -size 2>/dev/null'
 
+# common lazy commands
+alias ping='ping -c 5'
+alias path='echo -e $PATH|tr ":" "\n"'
+
+# encryption related aliases
+alias signfile="gpg -u iNode --clearsign -b -v "
+
 if command -v ack >/dev/null; then
     alias ack='ack --nogroup '
 fi

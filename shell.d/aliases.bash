@@ -1,7 +1,4 @@
 # bash/zsh commaon compatiable aliases
-alias signfile="gpg -u iNode --clearsign -b -v "
-alias encrypt="gpg -c -v "
-
 if which gtts_import 1>/dev/null; then
     # echo "create say function"
     say() {
