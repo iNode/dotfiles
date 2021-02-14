@@ -8,7 +8,7 @@ alias fblobs='nice find . -type f -ignore_readdir_race -size 2>/dev/null'
 
 # common lazy commands
 alias ping='ping -c 5'
-alias path='echo -e $PATH|tr ":" "\n"'
+alias path='echo -e $PATH|tr ":" "\n"|sed "/^\$/d"'
 
 # encryption related aliases
 alias signfile="gpg -u iNode --clearsign -b -v "
