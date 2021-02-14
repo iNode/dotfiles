@@ -1,3 +1,8 @@
+#!/bin/sh
+# wrappers for less to use if available
+if which lesspipe 1>/dev/null 2>&1; then
+    eval "$(lesspipe)"
+fi
 
 ###### example:	tmv -s /mnt/disk/5k
 # example:	make a playlist
