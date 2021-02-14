@@ -1,3 +1,22 @@
+#!/bin/sh
+
+if which python3 > /dev/null 2>&1; then
+    # python based one liners
+    urlencode() {
+        # encode url
+        python3 -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])" "$@"
+    }
+    urldecode() {
+        # "decode url"
+        python3 -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])" "$@"
+    }
+    jsont() {
+        # "call json tool, and keep keys stable/sorted"
+        python3 -m json.tool --sort-keys "$@"
+    }
+fi
+
+
 
 # python easy-install shorcut
 alias e-i='easy_install -d ~/.python/lib -s ~/.python/bin'
