@@ -1,8 +1,9 @@
 #!/bin/sh
-# mkdir & cd to it
-mcd() { [ ! -z "$1" ] && mkdir -p -v "$1" && cd "$1"; }
 
-# Create temporary directory and to it
+# mkdir & cd to it
+mcd() { [ -n "$1" ] && mkdir -p -v "$1" && cd "$1" || exit 1; }
+
+# Create temporary directory and go to it
 cdt() {
     cd "$(mktemp -d)" || return 1
     pwd
@@ -23,28 +24,20 @@ ssh_reagent () {
 
 stail () {
     # screen size tail
-    if [ $# -eq 0 ]; then
-        coeff=1
-    else
-        coeff="$1"
-    fi
-    # Use zsh/bash's arithmetic substitution to do the math
-    # then cast to an integer to round it off
-    integer l=$(((LINES - 2) * coeff))
-    tail -n"$l" "$2"
+    [ "-h" = "$1" ] && echo "Usage: stail [FILENAME [SCREEN_PERCENT]]" && exit 0
+    fn=${1:--}
+    percent=${2:-90}
+    l=$(((LINES - 4) * percent / 100))
+    tail -n"$l" "$fn"
 }
 
 shead () {
     # screen size head
-    if [ $# -eq 0 ]; then
-        coeff=1
-    else
-        coeff="$1"
-    fi
-    # Use zsh/bash's arithmetic substitution to do the math
-    # then cast to an integer to round it off
-    integer l=$(((LINES - 2) * coeff))
-    head -n"$l" "$2"
+    [ "-h" = "$1" ] && echo "Usage: stail [FILENAME [SCREEN_PERCENT]]" && exit 0
+    fn=${1:--}
+    percent=${2:-90}
+    l=$(((LINES - 4) * percent / 100))
+    sed ${l}q "$fn"
 }
 
 alisten() {
@@ -56,12 +49,16 @@ alisten() {
 }
 
 genpasswd() {
-    local len=${1:-20}
-    tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${len} | xargs
+    len=${1:-20}
+    tr -dc A-Za-z0-9_ < /dev/urandom | head -c "${len}" | xargs
 }
 
 purgeoldkernels() {
     # Purges old Ubuntu kernels
     # http://askubuntu.com/a/254585
-    echo $(dpkg --list | grep linux-image | awk '{ print $2 }' | sort -V | sed -n '/'`uname -r`'/q;p') $(dpkg --list | grep linux-headers | awk '{ print $2 }' | sort -V | sed -n '/'"$(uname -r | sed "s/\([0-9.-]*\)-\([^0-9]\+\)/\1/")"'/q;p') | xargs sudo apt-get -y purge
+    release="$(uname -r)"
+    packages="$(dpkg --list)"
+    kernels=$(echo "$packages" | awk '/linux-image/{print $2}'   | sort -V | sed -n '/'"$release"'/q;p')
+    headers=$(echo "$packages" | awk '/linux-headers/{print $2}' | sort -V | sed -n '/'"$(uname -r | sed 's/\([0-9.-]*\)-\([^0-9]\+\)/\1/')"'/q;p')
+    echo "$kernels" "$headers" | xargs sudo apt-get -y purge
 }
