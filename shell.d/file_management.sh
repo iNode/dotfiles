@@ -24,7 +24,7 @@ alias pcp="ionice -c 3 rsync -aP"
 alias pmv='ionice -c 3 rsync -aP --remove-source-files'
 
 fix_path() {
-    PATH="$(printf "%s" "${PATH}" | /usr/bin/awk -v RS=: -v ORS=: '!($0 in a) {a[$0]; print}')"
+    PATH="$(printf "%s" "${PATH}" | /usr/bin/awk -v RS=: -v ORS=: '!/^$/ && !($0 in a) {a[$0]; print $0;}')"
     export PATH
 }
 
