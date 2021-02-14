@@ -26,3 +26,6 @@ alias funfacts='wget http://www.randomfunfacts.com -O - 2>/dev/null | grep \<str
 wanip() {
   wget -q -O - checkip.dyndns.com/ | awk '{print $6}'| sed 's/<.*>//'
 }
+
+# like pastebin but nc is just enough
+alias tb="nc termbin.com 9999"
