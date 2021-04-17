@@ -16,9 +16,10 @@ export HISTFILESIZE=$HISTSIZE
 # export EDITOR="emacs"
 export EDITOR="vim"
 export PAGER="less"
-export PATH
+
 [ -d "$HOME/bin" ] && PATH="$PATH:$HOME/bin"
 [ -d "$HOME/.local/bin" ] && PATH="$PATH:$HOME/.local/bin"
+export PATH
 # set path for gems installation, and corresponding binary path
 export GEM_HOME=$HOME/.gem/gems
 [ -d "$HOME/.gem/gems/bin" ] && PATH="$PATH:$GEM_HOME/bin"
@@ -34,6 +35,8 @@ hn="$(hostname)"
 export POWERSHELL_TELEMETRY_OPTOUT=true
 # suppress update checks
 export POWERSHELL_UPDATECHECK=Off
+# disable for .NET
+export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
 # Local Variables:
 # mode: sh
