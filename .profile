@@ -1,11 +1,13 @@
 #!/bin/sh
 # 077 would be more secure, but 022 is generally quite realistic
 umask 022
-ulimit -c 10000
+
 # Locale specific
-export LANG="ru_RU.UTF-8"
+export LANG="en_US.UTF-8"
+export LANGUAGE="en:ru"
 export LC_ALL="en_US.UTF-8"
 export LC_MESSAGES="POSIX"
+
 # Shell specific
 export HISTCONTROL="ignoreboth"
 export HISTIGNORE="mc:ls:df:du:bc"
