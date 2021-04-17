@@ -88,10 +88,10 @@ set secure
 if has("persistent_undo")
     " Let's save undo info!
     if !isdirectory($HOME."/.vim")
-        call mkdir($HOME."/.vim", "", 0750)
+        call mkdir($HOME."/.vim", "p", 0700)
     endif
     if !isdirectory($HOME."/.vim/undo")
-        call mkdir($HOME."/.vim/undo", "", 0700)
+        call mkdir($HOME."/.vim/undo", "p", 0700)
     endif
     set undolevels=5000         " How many undos
     set undoreload=10000        " number of lines to save for undo
@@ -99,6 +99,9 @@ if has("persistent_undo")
     set undofile
 endif
 " set swap files location
+if !isdirectory($HOME."/.vim/swap")
+    call mkdir($HOME."/.vim/swap", "p", 0700)
+endif
 " // to avoid filename collisions
 set directory=~/.vim/swap//
 
