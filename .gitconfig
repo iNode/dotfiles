@@ -2,90 +2,9 @@
 	name = Stanislav Krupoderov
 	email = pashelper@gmail.com
 
-[alias]
-	# simple shortcuts
-	cisa = commit -a -s
-	ci = commit
-	co = checkout
-	b  = branch
-	rb = branch -r
-	nb = checkout -b
-	st = status
-	s = status .
-	stat = status
-	sl = stash list
-	sa = stash apply
-	sd = stash drop
-	sp = stash pop
-	d = difftool
-	# shortcut for submodule update
-	su = submodule update --init
-
-	up = !sh -c \"git commit -a -m 'Before rebase' && git pull --rebase && git reset head^\"
-	sup = 'pull --rebase --autostash'
-	svnup = svn rebase
-	svnpush = svn dcommit
-
-	# diff specific aliases
-	dc = diff --color
-	dcc = diff --color --cached
-	ca = commit --amend
-	cah = commit --amend -C HEAD
-	# add all changes except whitespace changes
-	addnw = !sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'
-	forkdiff = !bash -c 'git diff $(git merge-base "$1" "$2") "$2" "${@: 3}" ' -
-
-	# tracking changes
-	# branch update date
-	budate = !git for-each-ref --sort='-committerdate:iso8601' --format=' %(committerdate:iso8601)%09%(refname)' | grep -v tags
-
-	# log specific aliases
-	wu = log --stat origin..@{0}
-	quicklog = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
-	ql = log --pretty=format:\"%h %cr\t%C(yellow)%cn\t%Cgreen%s%Creset\"
-	changes = log --pretty=oneline
-	daily = log --since=\"1 day ago\" --pretty=format:\"%h %cr\t%C(yellow)%cn\t%Cgreen%s%Creset\"
-	weekly = log --since=\"7 day ago\" --pretty=format:\"%h %cr\t%C(yellow)%cn\t%Cgreen%s%Creset\"
-	lp = log -p --color
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-	ilog = log --all --graph --decorate --color
-	# ilog short
-	ilogs = log --all --graph --decorate --color --oneline
-	# log graph
-	lgg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
-
-
-	g = !git grep
-	prune-all = !git remote | xargs -n 1 git remote prune
-	whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
-	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
-	# git forkgiff parent branch
-	sh = show --color
-
-
-	# process specific
-	# push new branch
-	pushb = !bash -c \"git push origin $(git cb):$(git cb)\"
-        # push branch Forcefully
-	pushF = !bash -c \"git push origin -f $(git cb):$(git cb)\"
-	# get last commit id
-	lc = !bash -c \"git log --format=%H -1\"
-
-	# branch specific aliases
-	# get current active branch
-	cb = !git branch | grep ^* | cut -d' ' -f2
-
-	# refresh/replace local branch by one from the server
-	refb = !bash -c \"git fetch; cb=$(git cb); git co origin/master; git branch -D $cb; git co origin/$cb -b $cb\"
-
-	# update branch in gitlab
-	bup = !sh -c \"git fetch && git rebase && git pushf\"
-
-	# commit history manipulation
-	ca = commit --amend
-	can = commit --amend --no-edit
-	cah = commit --amend -C HEAD
-
+[include]
+	# include aliases
+	path = ~/.gitalias
 
 [apply]
 	whitespace = fix
