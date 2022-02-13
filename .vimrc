@@ -405,8 +405,8 @@ if has("autocmd")
         autocmd FileType help nnoremap <silent><buffer> q :q<CR>
 
         autocmd FileType red,reds setlocal tabstop=4 shiftwidth=4 expandtab foldmethod syntax
-        autocmd FileType c setlocal tabstop=4 shiftwidth=4
-        autocmd FileType sh setlocal tabstop=4 shiftwidth=4 expandtab foldmethod=syntax
+        autocmd FileType c setlocal tabstop=4 shiftwidth=4 softtabstop=4
+        autocmd FileType sh setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab foldmethod=syntax
         autocmd FileType sh let g:sh_fold_enabled=5
         autocmd FileType sh let g:is_bash=1
         " match pairs of < and >
@@ -417,6 +417,7 @@ if has("autocmd")
         " set sha-bang on C-x <!>
         autocmd FileType sh,zsh,csh,tcsh        inoremap <silent> <buffer> <C-X>! #!/bin/<C-R>=&ft<CR>
         autocmd FileType perl,python,ruby       inoremap <silent> <buffer> <C-X>! #!/usr/bin/env<Space><C-R>=&ft<CR>
+        autocmd Filetype gitcommit setlocal spell textwidth=72
         " autocmd FileType perl set define=^\\s*sub
     augroup END "}}}2
 
@@ -447,7 +448,7 @@ if has("autocmd")
     autocmd BufWritePre,FileWritePre *.gpg '[,']!gpg --default-recipient-self -ae 2>/dev/null
     " Undo the encryption so we are back in the normal text, directly
     " after the file has been written.
-    autocmd BufWritePost,FileWritePost *.gpg u
+    autocmd BufWritePost,FileWritePost *.gpg update
     autocmd BufReadPost * if getline(1) =~# '^#!' | let b:dispatch = getline(1)[2:-1] . ' %' | let b:start = b:dispatch | endif
     autocmd BufReadPost ~/.Xdefaults,~/.Xresources let b:dispatch = 'xrdb -load %'
   augroup END
