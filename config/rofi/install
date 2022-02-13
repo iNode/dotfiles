@@ -1,0 +1,19 @@
+#!/bin/sh
+# install only when vis is available
+command -v sxhkd > /dev/null || exit
+
+CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config/}"
+
+startdir=$(pwd)
+dir=$(dirname "$0")
+cd "$dir" || exit 1
+dir=$(pwd)
+
+
+if [ ! -d "$CONFIG_DIR/rofi" ]; then
+    ln -svf "$dir" "$CONFIG_DIR"
+else
+    echo "config for rofi exists, skipping..."
+fi
+
+cd "$startdir" || exit 1

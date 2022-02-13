@@ -57,7 +57,6 @@ endif
 call plug#end()
 
 " see some defaults under vim-sensible
-"
 " set spell
 
 " Search down into subfolders
@@ -66,11 +65,6 @@ set path+=**
 " use :find *file*name for fuzzy finding and in gf (goto file) and ^Wf (goto
 " file next window)
 " :ls show buffers list
-
-
-" colorscheme elflord
-" colorscheme desert
-colorscheme zenburn
 
 " Search settings {{{
 set hlsearch " use C-L to reset highlight from sensible-vim
@@ -712,6 +706,7 @@ vmap <Enter> <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 " }}} easy-align
+
 " Easy motion config
 let g:EasyMotion_do_mapping = 1
 " }}} vim-easymotion
@@ -721,3 +716,28 @@ let g:EasyMotion_do_mapping = 1
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
+
+
+
+" UI specific
+if &term =~ '256color'
+    " disable Background Color Erase (BCE) so that color schemes
+    " render properly when inside 256-color tmux and GNU screen.
+    " see also https://sunaku.github.io/vim-256color-bce.html
+    set t_ut=
+endif
+if has("termguicolors")
+
+    set termguicolors
+    " This is only necessary if you use "set termguicolors".
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+    " fixes glitch? in colors when using vim with tmux
+    set background=dark
+    set t_Co=256
+endif
+
+" colorscheme elflord
+" colorscheme desert
+colorscheme zenburn
