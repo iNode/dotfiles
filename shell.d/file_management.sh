@@ -1,8 +1,30 @@
 #!/bin/sh
-# wrappers for less to use if available
-if which lesspipe 1>/dev/null 2>&1; then
-    eval "$(lesspipe)"
+# use less as a PAGER with colored output support
+if command -v less 1>/dev/null 2>&1; then
+    LESS=-R
+    LESS_TERMCAP_me=$(printf '\e[0m')
+    LESS_TERMCAP_se=$(printf '\e[0m')
+    LESS_TERMCAP_ue=$(printf '\e[0m')
+    LESS_TERMCAP_mb=$(printf '\e[1;32m')
+    LESS_TERMCAP_md=$(printf '\e[1;34m')
+    LESS_TERMCAP_us=$(printf '\e[1;32m')
+    LESS_TERMCAP_so=$(printf '\e[1;44;1m')
+    export LESS LESS_TERMCAP_me LESS_TERMCAP_se
+    export LESS_TERMCAP_ue
+    export LESS_TERMCAP_mb LESS_TERMCAP_md
+    export LESS_TERMCAP_us LESS_TERMCAP_so
+
+    # colorize source by highlight
+    if command -v highlight 1>/dev/null 2>&1; then
+        export LESSOPEN="| highlight -O ansi %s"
+    fi
+
+    # wrappers for less to use if available
+    if command -v lesspipe 1>/dev/null 2>&1; then
+        eval "$(lesspipe)"
+    fi
 fi
+
 
 ###### example:	tmv -s /mnt/disk/5k
 # example:	make a playlist
