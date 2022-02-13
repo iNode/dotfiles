@@ -39,6 +39,9 @@ call plug#begin('~/.vim/bundle')
     " HCL
     Plug 'b4b4r07/vim-hcl'
 
+if executable('direnv')
+    Plug 'direnv/direnv.vim'         " direnv support
+endif
 if executable('sxhkd')
     Plug 'kovetskiy/sxhkd-vim'       " sxhkd syntax highlight
 endif
