@@ -23,11 +23,13 @@ call plug#begin('~/.vim/bundle')
 "   Plug 'valloric/youcompleteme'   " code completion engine, obsoletes ^
 "   Plug 'tpope/tpope-vim-abolish'  " smart replacements and abbrevs
     Plug 'ctrlpvim/ctrlp.vim'       " full path fuzzy file, buffer, mru, tag, ... finder for Vim
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }  " install fzf binary
+    " install fzf library
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'              " use fzf.vim for fuzzy matching TODO: review
     Plug 'neapel/vim-java-bytecode'      " java bytehocode highlight
     Plug 'vim-syntastic/syntastic'       " syntax checking plugin
     Plug 'editorconfig/editorconfig-vim' " use editorconfig files if available
+    Plug 'LnL7/vim-nix'                  " highlight for nix pkg experssions
 
     " syntax highlighting and programming languages
     "
