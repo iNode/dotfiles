@@ -38,6 +38,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'jceb/vim-orgmode'          " org-mode support, TODO: RTFM, add notes
     " HCL
     Plug 'b4b4r07/vim-hcl'
+    Plug 'KabbAmine/zeavim.vim'      " zeal integration plugin
 
 if executable('direnv')
     Plug 'direnv/direnv.vim'         " direnv support
@@ -727,6 +728,28 @@ let g:EasyMotion_do_mapping = 1
 " }}} vim-easymotion
 
 " # }}} Plugin settings
+
+" zeal integration
+nmap gzz <Plug>Zeavim
+vmap gzz <Plug>ZVVisSelection
+nmap <leader>z <Plug>ZVKeyDocset
+nmap gZ <Plug>ZVKeyDocset<CR>
+nmap gz <Plug>ZVOperator
+let g:zv_keep_focus = 0
+let g:zv_file_types = {
+            \   'help'                : 'vim',
+            \   'javascript'          : 'javascript,nodejs',
+            \   'python'              : 'python_3',
+            \   'java'                : 'java',
+            \   'html'                : 'html',
+            \   'go'                  : 'go',
+            \   'rust'                : 'rust',
+            \   'sql'                 : 'psql',
+            \   'cl'                  : 'lisp',
+            \   'sh'                  : 'bash',
+            \   'css'                 : 'css,foundation',
+            \   '\v^(G|g)ulpfile\.js' : 'gulp,javascript,nodejs',
+            \ }
 
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
