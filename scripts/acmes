@@ -2,29 +2,32 @@
 # acme start script
 # TODO: check if acme/plumber already started
 
-if [ -z $ACME_COL ];
-then
+if [ -z "$ACME_COL" ]; then
    ACME_COL=3
 fi
 
 EDITOR=E
 SHELL=rc
-export BROWSER='google-chrome'
+BROWSER='google-chrome'
 TERM=dumb
 PS1="% "
 PAGER=nobs
+export SHELL EDITOR BROWSER PAGER TERM PS1
 
-PATH=$HOME/Dropbox/scripts/dev/acme:$PATH:
+dir="$HOME/Dropbox/scripts/dev/acme"
+if [ -d "$dir" ]; then
+    PATH=$dir:$PATH:
+fi
 unset FCEDIT VISUAL
 
 plumber
 
 # fn cd { builtin cd $1 && awd $sysname }
-tabstop=4
+# tabstop=4
 #font=/home/jlouis/P/plan9/font/lucsans/unicode.8.font
 #font='/mnt/font/Noto Sans/12a/font'
 #lfont='/mnt/font/Source Code Pro/13a/font'
 font=/mnt/font/Liberation\ Mono/9/font
 
-exec acme -a -f "$font" -c $ACME_COL $*
-# -F $lfont 
+exec acme -a -f "$font" -c $ACME_COL "$@"
+# -F $lfont
