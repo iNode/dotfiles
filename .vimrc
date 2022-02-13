@@ -37,15 +37,17 @@ call plug#begin('~/.vim/bundle')
     " HCL
     Plug 'b4b4r07/vim-hcl'
 
+if executable('sxhkd')
+    Plug 'kovetskiy/sxhkd-vim'       " sxhkd syntax highlight
+endif
 if executable('tmux')
     Plug 'tmux-plugins/vim-tmux'     " syntax highligt for tmux configs
 endif
-
 if executable('i3')
     Plug 'PotatoesMaster/i3-vim-syntax'
 endif
 if executable('reds')
-    Plug 'iNode/vim-red'                 " red-lang code highlight
+    Plug 'iNode/vim-red'              " red-lang code highlight
 endif
 if executable('v')
     Plug 'ollykel/v-vim', { 'for': 'v,vsh' }

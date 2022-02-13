@@ -1,0 +1,17 @@
+#!/bin/sh
+# install only when sxhkd is available
+command -v sxhkd > /dev/null || exit
+
+CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config/}"
+
+startdir=$(pwd)
+dir=$(dirname "$0")
+cd "$dir" || exit 1
+dir=$(pwd)
+
+
+if [ ! -d "$CONFIG_DIR/sxhkd" ]; then
+    ln -svf "$dir" "$CONFIG_DIR"
+fi
+
+cd "$startdir" || exit 1

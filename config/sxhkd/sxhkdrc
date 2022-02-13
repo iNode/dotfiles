@@ -1,0 +1,98 @@
+# Reload functions
+# super + Escape
+#         killall sxhkd -USR2
+# 	# "$XDG_CONFIG_HOME"/sxhkd/functions
+
+super + c
+        ~/bin/wmctrl-switch-to code code.Code
+
+# super + d - free or show desktop
+
+super + e
+        ~/bin/wmctrl-switch-to true emacs.Emacs
+
+# reload
+super + 0
+        killall sxhkd -USR1
+
+# disable
+super + 9
+        killall sxhkd -USR2
+
+# firefox
+super + f
+        ~/bin/wmctrl-switch-to firefox Navigator.Firefox
+
+# UI file manager: pcmanfm-qt
+super + F
+      ~/bin/wmctrl-switch-to pcmanfm-qt pcmanfm-qt
+
+
+super + g
+      ~/bin/wmctrl-switch-to true Telegram.TelegramDesktop
+
+# super-h - used by openbox for tiling
+
+super + i
+      rofi -show window
+
+# super + k - free
+
+# used by albert
+# super + K
+
+# super + l - free
+
+super + L
+      ~/bin/my-lock
+
+# ~/bin/wmctrl-switch-to /bin/true teams-for-linux.teams-for-linux
+# TODO: find a way to execute it through ~/bin/teams
+super + m
+      ~/bin/wmctrl-switch-to true "teams"
+
+super + n
+      ~/bin/wmctrl-switch-to lxterminal lxterminal.Lxterminal
+
+super + N
+      emacsclient -n -e '(make-remember-frame)'
+
+# super + o
+
+super + p
+      ~/bin/wmctrl-switch-to ~/bin/select-books mupdf.MuPDF
+
+super + q
+      ~/bin/wmctrl-switch-to google-chrome-stable google-chrome.Google-Chrome
+
+super + r
+      dmenu_run
+
+# super + s - free
+# super + s
+#       ~/bin/wmctrl-switch-to "tabbed -c -n st -r 2 st -w ''" st.tabbed
+
+
+super + S
+      sleep 1; ~/bin/scrot_selection_to_clipboard
+
+super + t
+      ~/bin/dzen-translate
+
+super + v
+      ~/bin/wmctrl-switch-to false evince.Evince || ~/bin/wmctrl-switch-to true vlc.vlc
+
+super + V
+      pavucontrol
+
+super + w
+      ~/bin/wmctrl-switch-to ~/bin/far rdesktop.rdesktop
+
+super + x
+      ~/bin/xcedit
+
+# super + y
+
+super + z
+      ~/bin/cut-date
+

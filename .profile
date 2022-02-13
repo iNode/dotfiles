@@ -38,6 +38,8 @@ export POWERSHELL_UPDATECHECK=Off
 # disable for .NET
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
+export SXHKD_SHELL=/bin/sh
+
 # Local Variables:
 # mode: sh
 # End:
