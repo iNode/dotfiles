@@ -705,6 +705,9 @@ xnoremap <silent> <leader>T "zy:FzfBTags <C-r>z<CR>
 
     " use python3 as a baseline to check syntax
     let g:syntastic_python_checkers = ['python3']
+
+    " ignore files of Ansible Roles.
+    let g:syntastic_ignore_files = ['\m^roles/']
 " }}}
 
 " markdown {{{
