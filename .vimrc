@@ -125,7 +125,7 @@ highlight ColorColumn ctermbg=yellow
 call matchadd('ColorColumn', '\%81v', 100)
 
 " No tabs, only spaces
-set expandtab
+set expandtab smarttab shiftround
 
 "  view' mode settings
 if &readonly == 1
