@@ -214,6 +214,14 @@ imap <Home> <Esc>I
 " Grep function
 nnoremap <Leader>gp :Grep<space>
 
+" example file to read / go-to
+" ~/.bashrc
+nnoremap gr :r <cfile><CR>
+" open the file in new tab
+nnoremap gf <C-w>gf
+" create the file and open in new tab
+nnoremap gF :tabedit <C-r><C-f><CR>
+
 "close other window
 nnoremap <silent> <leader>c <C-w>c
 "quit without saving
