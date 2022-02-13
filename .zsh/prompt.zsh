@@ -52,10 +52,17 @@ prompt_inode_setup () {
     # user@host-(pwd)[hh:mm:ss] - %n@%m %D %*
     # smile signal last command result
     # export PS1="%(?.$cgreen✓ :%) .$cred✗ :( )$base_prompt"
-    export PS1="%(?.${cgreen}v :%) .${cred}x :( )$base_prompt"
+    local ret_status="%(?:%{$fg_bold[green]%}v:%{$fg_bold[red]%}x%s)"
+    export PS1="$ret_status $base_prompt"
+
 }
 
-prompt_inode_setup "$@"
+# use starship as a shell prompt if available
+if command -v starship 2>/dev/null 1>/dev/null; then
+    eval $(starship init zsh);
+else
+    prompt_inode_setup "$@"
+fi
 # vim: set noet ts=4 tw=80 syntax=zsh:
 # Local Variables:
 # mode: sh
