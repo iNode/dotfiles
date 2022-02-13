@@ -238,6 +238,9 @@ nnoremap <leader>' <c-^>
 nnoremap <leader>. :bn<CR>
 nnoremap <leader>, :bp<CR>
 
+" Toggle relative number by <Space> + L
+nnoremap <silent> <Leader>L :setlocal relativenumber! number!<CR>
+
 " search for word under the cursor without word boundaries
 nnoremap <leader>/ "fyiw :/<c-r>f<cr>
 
