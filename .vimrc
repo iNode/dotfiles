@@ -493,7 +493,9 @@ nnoremap <c-q>  :Man
 
 " Pretty-print JSON files with Python (& remove the trailing whitespace that
 " Python <2.7 json module adds, sigh)
-nnoremap <Leader>j :%!python3 -m json.tool<CR>:%s/\s\+$//g<CR>
+" nnoremap <Leader>j :%!python3 -m json.tool<CR>:%s/\s\+$//g<CR>
+" option with using jq instead
+nnoremap <Leader>j :%! jq .<CR>:%s/\s\+$//g<CR>
 
 " toggle non-printing characters
 nnoremap <Leader>h :set list!<CR>
