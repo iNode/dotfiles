@@ -14,6 +14,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'tpope/vim-dispatch'        " async task dispatch, :h dispatch, '! - Start, m! - :Make!, `! - :Dispatch
     Plug 'tpope/vim-markdown'        " markdown support
     Plug 'airblade/vim-gitgutter'    " mark file changes in gutter for git repo
+    Plug 'tpope/vim-fugitive'        " vim plugin for git
     Plug 'amiorin/vim-eval'          " C-c for eval line or selection
     Plug 'mileszs/ack.vim'           " ack/ag/etc. support
     Plug 'qpkorr/vim-renamer'        " rename files interactively, see :h Renamer
