@@ -16,7 +16,6 @@ call plug#begin('~/.vim/bundle')
     Plug 'airblade/vim-gitgutter'    " mark file changes in gutter for git repo
     Plug 'tpope/vim-fugitive'        " vim plugin for git
     Plug 'amiorin/vim-eval'          " C-c for eval line or selection
-    Plug 'mileszs/ack.vim'           " ack/ag/etc. support
     Plug 'qpkorr/vim-renamer'        " rename files interactively, see :h Renamer
     " Plug 'jlanzarotta/bufexplorer'   " buffer navigation
     Plug 'vim-scripts/taglist.vim'   " source code tag browser
@@ -31,6 +30,8 @@ call plug#begin('~/.vim/bundle')
     Plug 'vim-syntastic/syntastic'       " syntax checking plugin
     Plug 'editorconfig/editorconfig-vim' " use editorconfig files if available
     Plug 'LnL7/vim-nix'                  " highlight for nix pkg experssions
+    Plug 'jremmen/vim-ripgrep'           " use RipGrep in vim and display result in a quickfix list
+
 
     " syntax highlighting and programming languages
     "
@@ -632,9 +633,6 @@ augroup END
 
 " }}}
 
-" ack.vim
-let g:ackprg = "ag --vimgrep --smart-case"
-cnoreabbrev ag Ack
 
 " vim-easy-align {{{
     " Start interactive EasyAlign in visual mode (e.g. vipga)
