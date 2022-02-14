@@ -41,6 +41,7 @@ call plug#begin('~/.vim/bundle')
     " HCL
     Plug 'b4b4r07/vim-hcl'
     Plug 'KabbAmine/zeavim.vim'      " zeal integration plugin
+    Plug 'w0rp/ale'
 
 if executable('direnv')
     Plug 'direnv/direnv.vim'         " direnv support
@@ -755,6 +756,16 @@ let g:zv_file_types = {
             \   '\v^(G|g)ulpfile\.js' : 'gulp,javascript,nodejs',
             \ }
 
+" Ale
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_linters = {'python': ['flake8', 'mypy']}
+let g:ale_fixers = {'python': ['black']}
+let g:ale_fix_on_save = 1
+let g:ale_python_flake8_options = '--max-line-length=88'
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
