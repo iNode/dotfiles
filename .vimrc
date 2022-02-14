@@ -61,6 +61,9 @@ endif
 if executable('v')
     Plug 'ollykel/v-vim', { 'for': 'v,vsh' }
 endif
+if executable('python3')
+    Plug 'davidhalter/jedi-vim'
+endif
 call plug#end()
 
 " see some defaults under vim-sensible
