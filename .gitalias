@@ -26,6 +26,11 @@ d = difftool
 # shortcut for submodule update
 su = submodule update --init
 
+# git worktree shortcut aliases
+wa = worktree add
+wl = worktree list
+wr = worktree remove
+
 up = !sh -c \"git commit -a -m 'Before rebase' && git pull --rebase && git reset head^\"
 sup = 'pull --rebase --autostash'
 svnup = svn rebase
