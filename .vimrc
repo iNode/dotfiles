@@ -10,6 +10,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'tpope/vim-surround'        " surround text, ( ys$' cs'` ds' ysw) )
     Plug 'junegunn/vim-easy-align'   " easy-to-use Vim alignment
     Plug 'easymotion/vim-easymotion' " easy motion, <SP><SP>w|W/b|B/f|F/j|k
+    Plug 'matze/vim-move'            " move selection up/down with A-j/k
     Plug 'tpope/vim-repeat'          " repeat plugin command: surround, unimpired, easy-align
     Plug 'tpope/vim-dispatch'        " async task dispatch, :h dispatch, '! - Start, m! - :Make!, `! - :Dispatch
     Plug 'tpope/vim-markdown'        " markdown support
