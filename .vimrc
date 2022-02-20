@@ -16,6 +16,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'tpope/vim-markdown'        " markdown support
     Plug 'airblade/vim-gitgutter'    " mark file changes in gutter for git repo
     Plug 'tpope/vim-fugitive'        " vim plugin for git
+    Plug 'junegunn/gv.vim'           " git history viewer :GV/GV?/GV!
     Plug 'amiorin/vim-eval'          " C-c for eval line or selection
     Plug 'qpkorr/vim-renamer'        " rename files interactively, see :h Renamer
     " Plug 'jlanzarotta/bufexplorer'   " buffer navigation
