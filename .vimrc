@@ -66,6 +66,14 @@ endif
 if executable('python3')
     Plug 'davidhalter/jedi-vim'
 endif
+
+" neovim plugins
+if has("nvim")
+    " some extension library, used by harpoon
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'ThePrimeagen/harpoon'
+endif
+
 call plug#end()
 
 " see some defaults under vim-sensible
@@ -771,6 +779,16 @@ let g:ale_linters = {'python': ['flake8', 'mypy']}
 let g:ale_fixers = {'python': ['black']}
 let g:ale_fix_on_save = 1
 let g:ale_python_flake8_options = '--max-line-length=88'
+" neovim plugin configuration
+if has("nvim")
+    " harpoon config
+    nnoremap <silent><leader>a :lua require("harpoon.mark").add_file()<CR>
+    noremap <silent><leader>i :lua require("harpoon.ui").toggle_quick_menu()<CR>
+    nnoremap <silent><leader>ia :lua require("harpoon.ui").nav_file(1)<CR>
+    nnoremap <silent><leader>ir :lua require("harpoon.ui").nav_file(2)<CR>
+    nnoremap <silent><leader>is :lua require("harpoon.ui").nav_file(3)<CR>
+    nnoremap <silent><leader>it :lua require("harpoon.ui").nav_file(4)<CR>
+endif
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
