@@ -785,6 +785,19 @@ let g:airline_right_sep = ''
 let g:airline#extensions#ale#enabled = 1
 let airline#extensions#ale#error_symbol = 'E:'
 let airline#extensions#ale#warning_symbol = 'W:'
+
+" fugitive and gv bindings to work with git
+" git status
+nmap <leader>gs :Git<CR>
+" git fetch
+nmap <leader>ga :Git fetch --all<CR>
+" git log file
+nmap <leader>glf :GV!<CR>
+" git log history
+nmap <leader>glh :GV<CR>
+" git diff file
+nmap <leader>gdf :Gdiffsplit<CR>
+
 " neovim plugin configuration
 if has("nvim")
     " harpoon config
