@@ -44,6 +44,8 @@ call plug#begin('~/.vim/bundle')
     Plug 'b4b4r07/vim-hcl'
     Plug 'KabbAmine/zeavim.vim'      " zeal integration plugin
     Plug 'w0rp/ale'
+    " UI
+    Plug 'vim-airline/vim-airline'
 
 if executable('direnv')
     Plug 'direnv/direnv.vim'         " direnv support
@@ -745,8 +747,6 @@ nmap ga <Plug>(EasyAlign)
 let g:EasyMotion_do_mapping = 1
 " }}} vim-easymotion
 
-" # }}} Plugin settings
-
 " zeal integration
 nmap gzz <Plug>Zeavim
 vmap gzz <Plug>ZVVisSelection
@@ -779,6 +779,12 @@ let g:ale_linters = {'python': ['flake8', 'mypy']}
 let g:ale_fixers = {'python': ['black']}
 let g:ale_fix_on_save = 1
 let g:ale_python_flake8_options = '--max-line-length=88'
+" Airline
+let g:airline_left_sep  = ''
+let g:airline_right_sep = ''
+let g:airline#extensions#ale#enabled = 1
+let airline#extensions#ale#error_symbol = 'E:'
+let airline#extensions#ale#warning_symbol = 'W:'
 " neovim plugin configuration
 if has("nvim")
     " harpoon config
@@ -789,6 +795,8 @@ if has("nvim")
     nnoremap <silent><leader>is :lua require("harpoon.ui").nav_file(3)<CR>
     nnoremap <silent><leader>it :lua require("harpoon.ui").nav_file(4)<CR>
 endif
+" # }}} Plugin settings
+
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
