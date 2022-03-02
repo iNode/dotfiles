@@ -776,6 +776,8 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {'python': ['flake8', 'mypy']}
+let g:ale_linters = {'shell': ['shellcheck']}
+let g:ale_linters = {'yaml': ['yamllint']}
 let g:ale_fixers = {'python': ['black']}
 let g:ale_fix_on_save = 1
 let g:ale_python_flake8_options = '--max-line-length=88'
