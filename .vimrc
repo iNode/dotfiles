@@ -799,6 +799,8 @@ nmap <leader>glf :GV!<CR>
 nmap <leader>glh :GV<CR>
 " git diff file
 nmap <leader>gdf :Gdiffsplit<CR>
+" git write and commit ammend at once
+nmap <leader>gwc :Gwrite<CR> <bar> :Git commit --amend<CR>
 
 " neovim plugin configuration
 if has("nvim")
