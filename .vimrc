@@ -34,7 +34,6 @@ call plug#begin('~/.vim/bundle')
     Plug 'LnL7/vim-nix'                  " highlight for nix pkg experssions
     Plug 'jremmen/vim-ripgrep'           " use RipGrep in vim and display result in a quickfix list
 
-
     " syntax highlighting and programming languages
     "
     " org-mode
@@ -46,6 +45,12 @@ call plug#begin('~/.vim/bundle')
     Plug 'w0rp/ale'
     " UI
     Plug 'vim-airline/vim-airline'
+    " Snippets engine
+    Plug 'SirVer/ultisnips'
+    " Predefined snippets in a separate plugin
+    Plug 'honza/vim-snippets'
+    " Tab completion/snippets expand
+    Plug 'ervandew/supertab'       " :h supertab
 
 if executable('direnv')
     Plug 'direnv/direnv.vim'         " direnv support
@@ -630,6 +635,22 @@ endif
 " }}} netrw
 
 " # Plugin settings =============================================== {{{
+
+" UltiSnips {{{
+    " NOTE: may conflict with other completion plugins
+    let g:UltiSnipsExpandTrigger = '<tab>'
+    let g:UltiSnipsJumpForwardTrigger = '<tab>'
+    let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+
+    " :UltiSnipsEdit to split window.
+    let g:UltiSnipsEditSplit="horizontal"
+    " alternative locations for the snippets
+    let g:UltiSnipsSnippetDirectories=[$HOME.'.vim/UltiSnips.local', 'UltiSnips']
+
+    imap <F2> <C-R>=UltiSnips#ExpandSnippet()<CR>
+    nmap <F2> :UltiSnipsEdit<CR>
+" }}}
+
 " VimGo {{{
 
 let g:go_highlight_operators = 1
