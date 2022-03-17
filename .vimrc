@@ -312,6 +312,8 @@ nnoremap <C-x>b :CtrlPBuffer<CR>
 " kill buffer
 nnoremap <C-x>k :bd<CR>
 
+nmap <M-x> :
+imap <M-x> <Esc>:
 imap <M-b> <Esc>bi
 imap <M-f> <Esc>wi
 " }}}
