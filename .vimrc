@@ -247,6 +247,7 @@ nnoremap <silent> <leader>c <C-w>c
 nnoremap <silent> <leader>q ZQ
 nnoremap <silent> <Leader>qq :q<CR>
 nnoremap <silent> <Leader>qa :qa<CR>
+nnoremap <silent> <Leader>d :bdelete<CR>
 "re-read config
 nnoremap <silent> <leader>s :source ~/.vimrc<CR>
 " write file
