@@ -96,12 +96,6 @@ call plug#end()
 " see some defaults under vim-sensible
 " set spell
 
-" Search down into subfolders
-" Provides tab-completion for all file-related tasks
-set path+=**
-" use :find *file*name for fuzzy finding and in gf (goto file) and ^Wf (goto
-" file next window)
-" :ls show buffers list
 
 " Search settings {{{
 set hlsearch " use C-L to reset highlight from sensible-vim
@@ -214,6 +208,18 @@ inoremap <right> <nop>
 "-----------------------------------------------------------------------
 set dictionary=/usr/share/dict/words
 set wildmode=list:longest,full
+" ignore for version control directories
+set wildignore+=.git,.hg,.svn
+" ignore compiled artifacts
+set wildignore+=*.pyc,*.rbc,*.class,*.o,*.a,*.jar,*.war
+set wildignore+=*.swp                  " ignore vim backup files
+
+" Search down into subfolders
+" Provides tab-completion for all file-related tasks
+set path+=**
+" use :find *file*name for fuzzy finding and in gf (goto file) and ^Wf (goto
+" file next window)
+" :ls show buffers list
 
 set nobackup
 set hidden
