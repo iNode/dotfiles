@@ -455,6 +455,7 @@ if has("autocmd")
         autocmd FileType sh setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab foldmethod=syntax
         autocmd FileType sh let g:sh_fold_enabled=5
         autocmd FileType sh let g:is_bash=1
+        autocmd FileType sh setlocal keywordprg=man
         " match pairs of < and >
         autocmd FileType cpp set matchpairs+=<:>
         autocmd FileType python,lua setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
