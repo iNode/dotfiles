@@ -40,6 +40,7 @@ svnpush = svn dcommit
 dc = diff --color
 dcc = diff --color --cached
 ca = commit --amend
+can = commit --amend --no-edit
 cah = commit --amend -C HEAD
 # add all changes except whitespace changes
 addnw = !sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'

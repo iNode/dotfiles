@@ -815,6 +815,7 @@ nmap <leader>glh :GV<CR>
 nmap <leader>gdf :Gdiffsplit<CR>
 " git write and commit ammend at once
 nmap <leader>gwc :Gwrite<CR> <bar> :Git commit --amend<CR>
+nmap <leader>gwn :Gwrite<CR> <bar> :Git commit --amend --no-edit<CR>
 
 " fzf.vim configuration {{{
     let g:fzf_layout = { 'down': '~40%' }
