@@ -76,9 +76,19 @@ endif
 
 " neovim plugins
 if has("nvim")
-    " some extension library, used by harpoon
+    " some extension library, used by harpoon, telescope, etc.
     Plug 'nvim-lua/plenary.nvim'
+    " harpoon compatible with neovim 0.6+
     Plug 'ThePrimeagen/harpoon'
+    " treesitter compatible with neovim 0.6+
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+    " dependency library for telescope
+    Plug 'nvim-lua/popup.nvim'
+
+    Plug 'nvim-telescope/telescope.nvim'    " see help with :h telescope
+    Plug 'nvim-telescope/telescope-fzy-native.nvim'
+    Plug 'ThePrimeagen/git-worktree.nvim'    " plugin to simplify work with a git-worktree
 endif
 
 call plug#end()
@@ -694,33 +704,6 @@ let g:AutoPairsShortcutBackInsert = '<M-b>'
 " ctrlp {{{
 " }}}
 
-" PLUGIN: fzf.vim{{{
-let g:fzf_layout = { 'down': '~40%' }
-
-" Add namespace for fzf.vim exported commands
-let g:fzf_command_prefix = 'Fzf'
-
-" Mappings
-nnoremap <silent> <leader>o :FzfFiles<CR>
-nnoremap <silent> <leader>O :FzfFiles!<CR>
-cnoremap <silent> <C-p>  :FzfHistory:<CR>
-cnoremap <silent> <C-_> <ESC>:FzfHistory/<CR>
-nnoremap <silent> <leader>b  :FzfBuffers<CR>
-nnoremap <silent> <leader>`  :FzfMarks<CR>
-nnoremap <silent> <F1> :FzfHelptags<CR>
-inoremap <silent> <F1> <ESC>:FzfHelptags<CR>
-noremap <silent> <leader>; :FzfCommands<CR>
-nnoremap <silent> <leader>l :FzfBLines<CR>
-inoremap <silent> <F3> <ESC>:FzfSnippets<CR>
-
-" fzf.Tags uses existing 'tags' file or generates it otherwise
-nnoremap <silent> <leader>t :FzfTags<CR>
-xnoremap <silent> <leader>t "zy:FzfTags <C-r>z<CR>
-
-" fzf.BTags generate tags on-fly for current file
-nnoremap <silent> <leader>T :FzfBTags<CR>
-xnoremap <silent> <leader>T "zy:FzfBTags <C-r>z<CR>
-" }}}
 
 " vimux {{{
  " Run last command executed by VimuxRunCommand
@@ -824,15 +807,66 @@ nmap <leader>gdf :Gdiffsplit<CR>
 " git write and commit ammend at once
 nmap <leader>gwc :Gwrite<CR> <bar> :Git commit --amend<CR>
 
-" neovim plugin configuration
-if has("nvim")
+" fzf.vim configuration {{{
+    let g:fzf_layout = { 'down': '~40%' }
+
+    " Add namespace for fzf.vim exported commands
+    let g:fzf_command_prefix = 'Fzf'
+
+    " Mappings
+    nnoremap <silent> <leader>O :FzfFiles!<CR>
+    cnoremap <silent> <C-p>  :FzfHistory:<CR>
+    cnoremap <silent> <C-_> <ESC>:FzfHistory/<CR>
+
+    inoremap <silent> <F3> <ESC>:FzfSnippets<CR>
+
+    " fzf.Tags uses existing 'tags' file or generates it otherwise
+    nnoremap <silent> <leader>t :FzfTags<CR>
+    xnoremap <silent> <leader>t "zy:FzfTags <C-r>z<CR>
+
+    " fzf.BTags generate tags on-fly for current file
+    nnoremap <silent> <leader>T :FzfBTags<CR>
+    xnoremap <silent> <leader>T "zy:FzfBTags <C-r>z<CR>
+" }}}
+
+if !has('nvim')
+    " Mappings replaced by telescope
+    nnoremap <silent> <leader>o :FzfFiles<CR>
+    nnoremap <silent> <leader>b  :FzfBuffers<CR>
+    nnoremap <silent> <leader>`  :FzfMarks<CR>
+    nnoremap <silent> <F1> :FzfHelptags<CR>
+    inoremap <silent> <F1> <ESC>:FzfHelptags<CR>
+    noremap <silent> <leader>; :FzfCommands<CR>
+    nnoremap <silent> <leader>l :FzfBLines<CR>
+else
+    " neovim plugin configuration
     " harpoon config
     nnoremap <silent><leader>a :lua require("harpoon.mark").add_file()<CR>
-    noremap <silent><leader>i :lua require("harpoon.ui").toggle_quick_menu()<CR>
+    noremap <silent><leader>im :lua require("harpoon.ui").toggle_quick_menu()<CR>
     nnoremap <silent><leader>ia :lua require("harpoon.ui").nav_file(1)<CR>
     nnoremap <silent><leader>ir :lua require("harpoon.ui").nav_file(2)<CR>
     nnoremap <silent><leader>is :lua require("harpoon.ui").nav_file(3)<CR>
     nnoremap <silent><leader>it :lua require("harpoon.ui").nav_file(4)<CR>
+
+    " Telescope config
+    " commands
+    nnoremap <silent> <leader>o <cmd>Telescope find_files<cr>
+    " cnoremap <silent> <C-p> <cmd>Telescope command_history<cr>
+    nnoremap <silent> <leader>p <cmd>Telescope command_history<cr>
+    nnoremap <silent> <leader>b <cmd>Telescope buffers<cr>
+    nnoremap <silent> <leader>` <cmd>Telescope marks<cr>
+    nnoremap <silent> <leader>; <cmd>Telescope commands<cr>
+    nnoremap <silent> <leader>l <cmd>Telescope current_buffer_fuzzy_find<cr>
+    nnoremap <silent> <F1> <cmd>Telescope help_tags<cr>
+    inoremap <silent> <F1> <ESC><cmd>Telescope help_tags<cr>
+    " Find files using Telescope command-line sugare
+    nnoremap <leader>ff <cmd>Telescope find_files<cr>
+    nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+    nnoremap <leader>fb <cmd>Telescope buffers<cr>
+    nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+    nnoremap <leader>fk <cmd>Telescope keymaps<cr>
+
 endif
 " # }}} Plugin settings
 
