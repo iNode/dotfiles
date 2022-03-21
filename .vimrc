@@ -4,91 +4,172 @@ set list                            " Display unprintable characters.
 set listchars=tab:▸\ ,trail:·,eol:¬ " Make tabs, trailing whitespace, and EOL characters easy to spot.
 
 call plug#begin('~/.vim/bundle')
-    Plug 'tpope/vim-sensible'        " sensible defaults for vim
-    Plug 'tpope/vim-commentary'      " comment/uncomment (gcc)
-    Plug 'tpope/vim-unimpaired'      " Pairs of handy bracket mappings, :h unimp
-    Plug 'tpope/vim-surround'        " surround text, ( ys$' cs'` ds' ysw) )
-    Plug 'junegunn/vim-easy-align'   " easy-to-use Vim alignment
-    Plug 'easymotion/vim-easymotion' " easy motion, <SP><SP>w|W/b|B/f|F/j|k
-    Plug 'matze/vim-move'            " move selection up/down with A-j/k
-    Plug 'tpope/vim-repeat'          " repeat plugin command: surround, unimpired, easy-align
-    Plug 'tpope/vim-dispatch'        " async task dispatch, :h dispatch, '! - Start, m! - :Make!, `! - :Dispatch
-    Plug 'tpope/vim-markdown'        " markdown support
-    Plug 'airblade/vim-gitgutter'    " mark file changes in gutter for git repo
-    Plug 'tpope/vim-fugitive'        " vim plugin for git
-    Plug 'junegunn/gv.vim'           " git history viewer :GV/GV?/GV!
-    Plug 'amiorin/vim-eval'          " C-c for eval line or selection
-    Plug 'qpkorr/vim-renamer'        " rename files interactively, see :h Renamer
-    " Plug 'jlanzarotta/bufexplorer'   " buffer navigation
-    Plug 'vim-scripts/taglist.vim'   " source code tag browser
-    Plug 'benmills/vimux'            " interact with tmux from vim, :h vimux
-"   Plug 'valloric/youcompleteme'   " code completion engine, obsoletes ^
-"   Plug 'tpope/tpope-vim-abolish'  " smart replacements and abbrevs
-    Plug 'ctrlpvim/ctrlp.vim'       " full path fuzzy file, buffer, mru, tag, ... finder for Vim
-    " install fzf library
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'              " use fzf.vim for fuzzy matching TODO: review
-    Plug 'neapel/vim-java-bytecode'      " java bytehocode highlight
-    Plug 'vim-syntastic/syntastic'       " syntax checking plugin
-    Plug 'editorconfig/editorconfig-vim' " use editorconfig files if available
-    Plug 'LnL7/vim-nix'                  " highlight for nix pkg experssions
-    Plug 'jremmen/vim-ripgrep'           " use RipGrep in vim and display result in a quickfix list
+    " sensible defaults for vim
+    " pin packages, update date: 2022-03-21
+    " vimPlugins.vim-sensible
+    Plug 'tpope/vim-sensible',  { 'commit': '2d9f34c09f548ed4df213389caa2882bfe56db58' }
+    " comment/uncomment (gcc)
+    " vimPlugins.vim-commentary
+    Plug 'tpope/vim-commentary', { 'commit': '627308e30639be3e2d5402808ce18690557e8292' }
+    " Pairs of handy bracket mappings, :h unimp
+    " vimPlugins.vim-unimpaired
+    Plug 'tpope/vim-unimpaired', { 'commit': 'f992923d336e93c7f50fe9b35a07d5a92660ecaf' }
+    " surround text, ( ys$' cs'` ds' ysw) )
+    " vimPlugins.vim-surround
+    Plug 'tpope/vim-surround', { 'commit': 'baf89ad26488f6a7665d51b986f5c7ad2d22b30b' }
+    " repeat plugin command: surround, unimpired, easy-align
+    " vimPlugins.vim-repeat
+    Plug 'tpope/vim-repeat', { 'commit': '24afe922e6a05891756ecf331f39a1f6743d3d5a' }
+    " async task dispatch, :h dispatch, '! - Start, m! - :Make!, `! - :Dispatch
+    " vimPlugins.vim-dispatch
+    Plug 'tpope/vim-dispatch', { 'commit': '00e77d90452e3c710014b26dc61ea919bc895e92' }
+    " markdown support
+    " vimPlugins.vim-markdown
+    Plug 'tpope/vim-markdown', { 'commit': 'b52c46dd8e9532cb12cae85ed7fb6dcac3957ea5' }
+    " vim plugin for git
+    " vimPlugins.vim-fugitive
+    Plug 'tpope/vim-fugitive', { 'commit': '46652a304f0b89f36d70cee954d77e467ec0f6de' }
+    " easy-to-use Vim alignment
+    " vimPlugins.vim-easy-align
+    Plug 'junegunn/vim-easy-align', { 'commit': '12dd6316974f71ce333e360c0260b4e1f81169c3' }
+    " easy motion, <SP><SP>w|W/b|B/f|F/j|k
+    " vimPlugins.vim-easymotion
+    Plug 'easymotion/vim-easymotion', { 'commit': 'd75d9591e415652b25d9e0a3669355550325263d' }
+    " move selection up/down with A-j/k
+    " vimPlugins.vim-move
+    Plug 'matze/vim-move', { 'commit': '97fc86064eaa95384b5b00f6253e339fba44da5d' }
+    " mark file changes in gutter for git repo
+    " vimPlugins.vim-gitgutter
+    Plug 'airblade/vim-gitgutter', { 'commit': '18d12985ea6cb7ede59755ff4fd0a9fa1e6bf835' }
+    " source code tag browser
+    " vimPlugins.taglist-vim
+    Plug 'vim-scripts/taglist.vim', { 'commit': '53041fbc45398a9af631a20657e109707a455339' }
 
-    " syntax highlighting and programming languages
-    "
-    " org-mode
-    Plug 'tpope/vim-speeddating'     " date plugin used by org-mode, adds support for C-A/C-X auto dec/increment
-    Plug 'jceb/vim-orgmode'          " org-mode support, TODO: RTFM, add notes
-    " HCL
-    Plug 'b4b4r07/vim-hcl'
-    Plug 'KabbAmine/zeavim.vim'      " zeal integration plugin
-    Plug 'w0rp/ale'
+    " git history viewer :GV/GV?/GV!
+    " vimPlugins.gv-vim
+    Plug 'junegunn/gv.vim', { 'commit': '386d770e916dd680d1d622e715b9eb3a77f21bd1' }
+
+    " interact with tmux from vim, :h vimux
+    " vimPlugins.vimux
+    Plug 'benmills/vimux', { 'commit': '89604a4464c3069dbe31f7bc8dd16a5fbc88a303' }
+    " full path fuzzy file, buffer, mru, tag, ... finder for Vim
+    " vimPlugins.ctrlp-vim
+    Plug 'ctrlpvim/ctrlp.vim', { 'commit': '02d72d6a4008b0f0ef28a3bbefa67c231645fcaa' }
+    " install fzf library
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() }, 'commit': 'dc975e8974c4f569980676d9f605226368e20711' }
+    " use fzf.vim for fuzzy matching
+    " vimPlugins.fzf-vim
+    Plug 'junegunn/fzf.vim', { 'commit': 'b23e4bb8f853cb9641a609c5c8545751276958b0' }
+    " use editorconfig files if available
+    " vimPlugins.editorconfig-vim
+    Plug 'editorconfig/editorconfig-vim', { 'commit': 'a8e3e66deefb6122f476c27cee505aaae93f7109' }
+
+    Plug 'editorconfig/editorconfig-vim', { 'commit': 'a8e3e66deefb6122f476c27cee505aaae93f7109' }
+    " zeal integration plugin
+    " vimPlugins.zeavim-vim
+    Plug 'KabbAmine/zeavim.vim', { 'commit': '298e52ad683680b4aa19b53d009cf0e6b9197664' }
+    " async linter
+    " vimPlugins.ale
+    Plug 'w0rp/ale', { 'commit': '5c7019f394588bdc29d7573f5063198c2803dfe4' }
     " UI
-    Plug 'vim-airline/vim-airline'
-    " Snippets engine
-    Plug 'SirVer/ultisnips'
-    " Predefined snippets in a separate plugin
-    Plug 'honza/vim-snippets'
-    " Tab completion/snippets expand
-    Plug 'ervandew/supertab'       " :h supertab
+    " vimPlugins.vim-airline
+    Plug 'vim-airline/vim-airline', { 'commit': 'e2498d72dcc123115ed1d0fe1449beba6dadecc2' }
+    " snippets: Snippets engine
+    " vimPlugins.ultisnips
+    Plug 'SirVer/ultisnips', { 'commit': 'ca21d30c7a72e0e18ad95f25ded5a5f820052685' }
+    " snippets: Predefined snippets in a separate plugin
+    " vimPlugins.vim-snippets
+    Plug 'honza/vim-snippets', { 'commit': '3c40345e100624e2a8946457839e80f526acbe3b' }
+    " Tab completion/snippets expand :h supertab
+    " vimPlugins.supertab
+    Plug 'ervandew/supertab', { 'commit': 'f0093ae12a9115498f887199809a6114659fc858' }
 
 if executable('direnv')
-    Plug 'direnv/direnv.vim'         " direnv support
+    " direnv support
+    " vimPlugins.direnv-vim
+    Plug 'direnv/direnv.vim', { 'commit': '451e3637a15af7d4a206ac761af7a2247f139e0e' }
 endif
 if executable('sxhkd')
-    Plug 'kovetskiy/sxhkd-vim'       " sxhkd syntax highlight
+    " sxhkd syntax highlight
+    " NOTE: no nix-pkg plugin available
+    Plug 'kovetskiy/sxhkd-vim', { 'commit': '2760f9d32bd2fb4d7d5305a88eb2056d149c6484' }
 endif
 if executable('tmux')
-    Plug 'tmux-plugins/vim-tmux'     " syntax highligt for tmux configs
+    " syntax highligt for tmux configs
+    " vimPlugins.vim-tmux
+    Plug 'tmux-plugins/vim-tmux', { 'commit': 'cfe76281efc29890548cf9eedd42ad51c7a1faf0' }
 endif
 if executable('i3')
-    Plug 'PotatoesMaster/i3-vim-syntax'
+    " i3 syntax highlighting
+    " vimPlugins.i3config-vim
+    Plug 'mboughaba/i3config.vim', { 'commit': '5c753c56c033d3b17e5005a67cdb9653bbb88ba7' }
 endif
 if executable('reds')
+    " NOTE: no nix-pkg plugin available
     Plug 'iNode/vim-red'              " red-lang code highlight
 endif
 if executable('v')
-    Plug 'ollykel/v-vim', { 'for': 'v,vsh' }
+    " v language code highlight
+    " NOTE: no nix-pkg plugin available
+    Plug 'ollykel/v-vim', { 'commit': '1dc1388bafb89072f8349dbd96f9462ae22237cb' }
 endif
 if executable('python3')
-    Plug 'davidhalter/jedi-vim'
+    " python code completion
+    " vimPlugins.jedi-vim
+    Plug 'davidhalter/jedi-vim', { 'commit': '030211555d5340e4a1acfa3a9368df85f34469d0' } " pin on master: 2021-11-18
+endif
+if executable('nix-shell')
+    " highlight for nix-pkg experssions
+    " vimPlugins.vim-nix
+    Plug 'LnL7/vim-nix', { 'commit': '63b47b39c8d481ebca3092822ca8972e08df769b' }
 endif
 
 " neovim plugins
 if has("nvim")
-    " some extension library, used by harpoon, telescope, etc.
-    Plug 'nvim-lua/plenary.nvim'
-    " harpoon compatible with neovim 0.6+
-    Plug 'ThePrimeagen/harpoon'
-    " treesitter compatible with neovim 0.6+
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    if has("nvim-0.6")
+        " some extension library, used by harpoon, telescope, etc.
+        " vimPlugins.plenary-nvim
+        Plug 'nvim-lua/plenary.nvim', { 'commit': '0d660152000a40d52158c155625865da2aa7aa1b' }
+        " harpoon compatible with neovim 0.6+
+        " vimPlugins.harpoon
+        Plug 'ThePrimeagen/harpoon', { 'commit': 'b2bb0d6f2b8a55895afda53f0ad04527998d3411' }
+        " treesitter compatible with neovim 0.6+
+        " vimPlugins.nvim-treesitter
+        " pin on master: 2022-02-15
+        Plug 'nvim-treesitter/nvim-treesitter', { 'commit': '32eb1678756f8c396061ee72611fd18a8d309eff' }
+        " dependency library for telescope
+        " vimPlugins.popup-nvim
+        Plug 'nvim-lua/popup.nvim', { 'commit': 'b7404d35d5d3548a82149238289fa71f7f6de4ac' }
+        " see help with :h telescope
+        " vimPlugins.telescope-nvim
+        Plug 'nvim-telescope/telescope.nvim', { 'commit': '1a72a92b641e1dab42036c07e2571b43c55bfaa1' }
+        " vimPlugins.telescope-fzy-native-nvim
+        Plug 'nvim-telescope/telescope-fzy-native.nvim', { 'commit': '7b3d2528102f858036627a68821ccf5fc1d78ce4' }
 
-    " dependency library for telescope
-    Plug 'nvim-lua/popup.nvim'
+        " lsp support
+        " vimPlugins.nvim-lspconfig
+        Plug 'neovim/nvim-lspconfig', { 'commit': 'ea29110765cb42e842dc8372c793a6173d89b0c4' }
 
-    Plug 'nvim-telescope/telescope.nvim'    " see help with :h telescope
-    Plug 'nvim-telescope/telescope-fzy-native.nvim'
-    Plug 'ThePrimeagen/git-worktree.nvim'    " plugin to simplify work with a git-worktree
+        " code complete support
+        " vimPlugins.nvim-cmp
+        Plug 'hrsh7th/nvim-cmp', { 'commit': '1001683bee3a52a7b7e07ba9d391472961739c7b' }
+        " vimPlugins.cmp-nvim-lsp
+        Plug 'hrsh7th/cmp-nvim-lsp', { 'commit': 'ebdfc204afb87f15ce3d3d3f5df0b8181443b5ba' }
+
+        " snippets support
+        Plug 'saadparwaiz1/cmp_luasnip', { 'commit': 'b10829736542e7cc9291e60bab134df1273165c9' }
+        Plug 'L3MON4D3/LuaSnip', { 'commit': 'eb5b77e7927e4b28800b4f40c5507d6396b7eeaf' }
+
+    endif
+
+    " plugin to simplify work with a git-worktree
+    " vimPlugins.git-worktree-nvim
+    Plug 'ThePrimeagen/git-worktree.nvim', { 'commit': 'd7f4e2584e81670154f07ca9fa5dd791d9c1b458' }
+endif
+
+" to make it posible to load local plugins as well
+if filereadable(expand("~/.vimrc.plug.local"))
+  source ~/.vimrc.plug.local
 endif
 
 call plug#end()
@@ -719,30 +800,6 @@ let g:AutoPairsShortcutBackInsert = '<M-b>'
   nnoremap <Leader>vl :VimuxRunLastCommand<cr>
   nnoremap <Leader>vp :VimuxPromptCommand<cr>
   nnoremap <Leader>vc :VimuxCloseRunner<cr>
-" }}}
-
-" syntactic {{{
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
-
-    " disable java checks
-    let g:syntastic_mode_map = { 'passive_filetypes': ['java']   }
-    let g:syntastic_disabled_filetypes=['java']
-    let g:syntastic_java_checkers=['']
-
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
-    " allow shellcheck to work with external files
-    let g:syntastic_sh_shellcheck_args="-x"
-
-    " use python3 as a baseline to check syntax
-    let g:syntastic_python_checkers = ['python3']
-
-    " ignore files of Ansible Roles.
-    let g:syntastic_ignore_files = ['\m^roles/']
 " }}}
 
 " markdown {{{
