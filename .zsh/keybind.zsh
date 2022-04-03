@@ -43,6 +43,8 @@ zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 bindkey -s "^X^o" "ranger^M"
 bindkey -s "^X^G" "git status .^m"
+# open selected directory in in corresponding tmux session
+bindkey -s "\C-f" "tmux-toggle-session\n"
 
 bindkey -s "\C-o" "ee -n .^m"
 

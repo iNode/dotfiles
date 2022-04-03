@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# shellcheck disable=SC2086,SC1117
+selected=$(echo $CHT_LANGUAGES $CHT_COMMANDS | tr ' ' "\n" | fzf)
+if [ -z "$selected" ]; then
+    exit 0
+fi
+
+read -p "Enter Query: " query
+
+if echo $CHT_LANGUAGES | grep -qs "$selected"; then
+    query="$(echo $query | tr ' ' '+')"
+    query="$selected/$query"
+else
+    query="$selected~$query"
+fi
+sh -c "curl -s cht.sh/$query | less -R"
+
+# vim: softtabstop=2 shiftwidth=2 expandtab :
