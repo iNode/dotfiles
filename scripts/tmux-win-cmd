@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# might be dir name or just window name
+base_name="$(basename "$1")"
+
+current_session="$(tmux display-message -p "#S")"
+win_name="$(echo "$base_name" | tr "./" "__")"
+target="$current_session:$win_name"
+
+# create window if needed
+if ! tmux has-session -t "$target" 2>/dev/null; then
+    tmux new-window -dn "$win_name"
+fi
+
+shift
+# send message to the window
+tmux send-keys -t "$target" "$*"

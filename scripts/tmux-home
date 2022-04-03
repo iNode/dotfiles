@@ -1,15 +1,15 @@
 #!/bin/sh
 
-tmux has-session -t home
-if [ $? != 0 ]
-then
+if ! tmux has-session -t home 2>/dev/null; then
     tmux new-session -s home -d -n "#" "sudo -s"
     tmux source-file -t home ~/.tmux.conf
     tmux new-window -t home -n "ipy" "ipython"
 #    tmux new-window -t home -n "ghc" "ghci"
     tmux new-window -t home -n "sdcv" "sdcv"
     tmux new-window -t home -n "misc"
-    tmux new-window -t home -n "mc" mc
+    tmux new-window -t home -n "emacs" "emacs --debug-init -nw"
+    tmux new-window -t home -n "conf" -c ~/dotfiles
+#    tmux new-window -t home -n "mc" mc
     tmux select-window -t home:2
 fi
 tmux attach -t home

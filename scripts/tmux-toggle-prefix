@@ -1,0 +1,25 @@
+#!/bin/sh
+
+current_prefix="$(tmux show -g | awk '/prefix /{print $2}')"
+
+case $current_prefix in
+    "C-\\")
+        echo "CLASH was a prefix"
+        tmux unbind C-\\
+        tmux unbind \\
+        tmux set-option -g prefix C-b
+        tmux bind-key C-b send-prefix
+        ;;
+    "C-b")
+        echo "COB was a prefix"
+        tmux unbind C-b
+        tmux unbind b
+        tmux set-option -g prefix C-\\
+        tmux bind-key C-\\ send-prefix
+        ;;
+    *)
+        echo "Unsupported prefix. Exiting..."
+        exit 1
+        ;;
+esac
+
