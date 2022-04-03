@@ -1,4 +1,4 @@
 #!/bin/sh
 
-openssl aes-256-cbc -a -salt -pass "pass:$2" -in "$1" -out "$1.enc"
+openssl enc -aes-256-cbc -md sha512 -pbkdf2 -iter 250000 -salt -in "$1" -out "$1.enc"
 
