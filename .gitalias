@@ -58,6 +58,8 @@ changes = log --pretty=oneline
 daily = log --since=\"1 day ago\" --pretty=format:\"%h %cr\t%C(yellow)%cn\t%Cgreen%s%Creset\"
 weekly = log --since=\"7 day ago\" --pretty=format:\"%h %cr\t%C(yellow)%cn\t%Cgreen%s%Creset\"
 lp = log -p --color
+lop = log -p --color
+lod = log --oneline --decorate
 lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 ilog = log --all --graph --decorate --color
 # ilog short
