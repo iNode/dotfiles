@@ -64,7 +64,6 @@ call plug#begin('~/.vim/bundle')
     " vimPlugins.editorconfig-vim
     Plug 'editorconfig/editorconfig-vim', { 'commit': 'a8e3e66deefb6122f476c27cee505aaae93f7109' }
 
-    Plug 'editorconfig/editorconfig-vim', { 'commit': 'a8e3e66deefb6122f476c27cee505aaae93f7109' }
     " zeal integration plugin
     " vimPlugins.zeavim-vim
     Plug 'KabbAmine/zeavim.vim', { 'commit': '298e52ad683680b4aa19b53d009cf0e6b9197664' }
@@ -137,6 +136,7 @@ if has("nvim")
         " vimPlugins.nvim-treesitter
         " pin on master: 2022-02-15
         Plug 'nvim-treesitter/nvim-treesitter', { 'commit': '32eb1678756f8c396061ee72611fd18a8d309eff' }
+        Plug 'nvim-treesitter/nvim-treesitter-textobjects', { 'commit': 'c4b41e42dad700b23c6ea86ecb69c9deb55a8fbb' }
         " dependency library for telescope
         " vimPlugins.popup-nvim
         Plug 'nvim-lua/popup.nvim', { 'commit': 'b7404d35d5d3548a82149238289fa71f7f6de4ac' }
@@ -220,10 +220,6 @@ if &term == "xterm-color"
     let &term = "xterm-256color"
 endif
 
-"
-" use gitignore to ignore files
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-let g:ctrlp_use_caching = 0
 
 " highlight lines longer than 80chars
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -792,6 +788,12 @@ let g:AutoPairsShortcutBackInsert = '<M-b>'
 " }}} auto-pairs
 
 " ctrlp {{{
+" use gitignore to ignore files
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+let g:ctrlp_use_caching = 0
+" key mappings
+let g:ctrlp_map='<C-p>'
+let g:ctrlp_cmd = 'CtrlPMRU'
 " }}}
 
 
@@ -934,6 +936,124 @@ else
 
     nnoremap <leader>fk <cmd>Telescope keymaps<cr>
 
+    " lua configuration
+    lua <<EOF
+    -- Set completeopt to have a better completion experience
+    vim.o.completeopt = 'menuone,noselect'
+
+    -- luasnip setup
+    local luasnip = require 'luasnip'
+
+    -- nvim-cmp setup
+    local cmp = require 'cmp'
+    cmp.setup {
+        completion = {
+            autocomplete = false
+        },
+        snippet = {
+            expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+            end,
+        },
+        mapping = {
+            ['<C-p>'] = cmp.mapping.select_prev_item(),
+            ['<C-n>'] = cmp.mapping.select_next_item(),
+            ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+            ['<C-f>'] = cmp.mapping.scroll_docs(4),
+            ['<C-Space>'] = cmp.mapping.complete(),
+            ['<C-e>'] = cmp.mapping.close(),
+            ['<CR>'] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+            },
+            ['<Tab>'] = function(fallback)
+            if vim.fn.pumvisible() == 1 then
+                vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
+            elseif luasnip.expand_or_jumpable() then
+                vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
+            else
+                fallback()
+            end
+            end,
+            ['<S-Tab>'] = function(fallback)
+            if vim.fn.pumvisible() == 1 then
+                vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
+            elseif luasnip.jumpable(-1) then
+                vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '')
+            else
+                fallback()
+            end
+            end,
+        },
+        sources = {
+            { name = 'nvim_lsp' },
+            { name = 'luasnip' },
+        },
+    }
+
+    -- nvim-treesitter setup
+    local tsc = require 'nvim-treesitter.configs'
+    tsc.setup {
+      highlight = {
+        enable = true,
+        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+        -- Using this option may slow down your editor, and you may see some duplicate highlights.
+        -- Instead of true it can also be a list of languages
+        additional_vim_regex_highlighting = false,
+      },
+    }
+
+
+    -- nvim-lsp setup
+    local nvim_lsp = require('lspconfig')
+
+    -- Use common an on_attach function to only map the following keys
+    -- after the language server attaches to the current buffer
+    -- language specific functions also can be used in configuration
+    local on_attach = function(client, bufnr)
+
+      local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+      local function buf_set_nkeymap(...) vim.api.nvim_buf_set_keymap(bufnr, 'n', ...) end
+      local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+      -- Enable completion triggered by <c-x><c-o>
+      buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+      -- Mappings.
+      local opts = { noremap=true, silent=true }
+
+      -- See `:help vim.lsp.*` for documentation on any of the below functions
+      buf_set_nkeymap('gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+      buf_set_nkeymap('gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+      buf_set_nkeymap('K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+      buf_set_nkeymap('gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+      buf_set_nkeymap('<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+      buf_set_nkeymap('<Leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+      buf_set_nkeymap('<Leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+      buf_set_nkeymap('<Leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+      buf_set_nkeymap('<Leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+      buf_set_nkeymap('<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+      buf_set_nkeymap('<Leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+      buf_set_nkeymap('gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+      buf_set_nkeymap('<Leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+    end
+
+    -- Use a loop to conveniently call 'setup' on multiple servers and
+    -- map buffer local keybindings when the language server attaches
+    local servers = { 'pyright', 'rust_analyzer' }
+    for _, lsp in ipairs(servers) do
+      nvim_lsp[lsp].setup {
+        on_attach = on_attach,
+        flags = {
+          debounce_text_changes = 150,
+        }
+      }
+    end
+EOF
+    " nvim-treesitter folding
+    " set foldmethod=expr
+    set foldexpr=nvim_treesitter#foldexpr()
 endif
 " # }}} Plugin settings
 
